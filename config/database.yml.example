@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  database: masasx_development
+  username: root
+  password:
+  pool: 5
+
+test: &test
+  adapter: postgresql
+  database: masasx_test
+  username: root
+  password:
+  pool: 5
+
+production: &production
+  adapter: postgresql
+  database: masasx_production
+  username: postgres
+  password: 0nly4deploy
+  pool: 5
+
+cucumber:
+  <<: *test
+
+staging:
+  <<: *production
