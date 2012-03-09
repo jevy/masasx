@@ -6,6 +6,14 @@ gem 'pg'
 
 gem 'jquery-rails'
 
+gem 'simple_form'
+
+gem 'carrierwave'
+
+gem 'twitter-bootstrap-rails'
+
+gem 'sorcery'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
