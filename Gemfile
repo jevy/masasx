@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 
-gem 'pg'
+gem 'mysql'
 
 gem 'jquery-rails'
 
@@ -22,6 +22,7 @@ end
 
 group :development, :test do
   gem 'cucumber-rails', '~> 1.0', require: false
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'growl', require: RUBY_PLATFORM.include?('darwin') && 'growl'
   gem 'guard'

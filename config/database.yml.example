@@ -1,22 +1,22 @@
 development:
-  adapter: postgresql
+  adapter: mysql
   database: masasx_development
   username: root
-  password:
+  password: root
   pool: 5
 
 test: &test
-  adapter: postgresql
+  adapter: mysql
   database: masasx_test
   username: root
-  password:
+  password: root
   pool: 5
 
 production: &production
-  adapter: postgresql
+  adapter: mysql
   database: masasx_production
-  username: postgres
-  password: 0nly4deploy
+  username: root
+  password: root
   pool: 5
 
 cucumber:
