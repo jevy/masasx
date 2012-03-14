@@ -8,6 +8,6 @@ Given /^I complete the agreement page$/ do
   check('I certify that I am a bona fide member of the Canadian Emergency Management community and have a valid reason to join the MASAS-X community.')
 end
 
-Given /^I follow (\w+)$/ do |label|
-  click_link(label)
+Given /^I follow "(\w+)"$/ do |label|
+  click_button(label)
 end
