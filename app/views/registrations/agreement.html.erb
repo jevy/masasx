@@ -2,22 +2,25 @@
 
 <ul class="nav nav-pills">
   <li class="active">
-  <%= link_to '1', registration_path  %>
+  <%= link_to 'Step 1', registration_path  %>
   </li>
-  <li><a>2</a></li>
-  <li><a>3</a></li>
-  <li><a>4</a></li>
+  <li><a>Step 2</a></li>
+  <li><a>Step 3</a></li>
+  <li><a>Step 4</a></li>
 </ul>
 
-<%# <%= simple_form_for @user do |f| %1> %>
-<%#   <%= f.input :agreement %1> %>
+<%= simple_form_for @user, url: accept_agreements_path do |f| %>
+  <%= f.input :masax_agreement,
+              label: 'I accept the MASAS Information eXchange (MASAS-X) Pilot Participation Agreement.',
+              as: :boolean %>
 
-<%#   <ul class="pager"> %>
-<%#     <li class="previous"> %>
-<%#     <a href="#">Cancel</a> %>
-<%#     </li> %>
-<%#     <li class="next"> %>
-<%#     <%= f.button :submit, 'Next' %1> %>
-<%#     </li> %>
-<%#   </ul> %>
-<%# <% end %1> %>
+  <%= f.input :media_agreement,
+              label: 'I am not a member of the media.',
+              as: :boolean %>
+
+  <%= f.input :community_agreement,
+              label: 'I certify that I am a bona fide member of the Canadian Emergency Management community and have a valid reason to join the MASAS-X community.',
+              as: :boolean %>
+
+  <%= f.button :submit, 'Next', class: 'btn-primary' %>
+<% end %>
