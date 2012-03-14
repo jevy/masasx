@@ -1,4 +1,7 @@
 class RegistrationsController < ApplicationController
-  def new
+
+  def agreement
+    @user = User.new
   end
+
 end

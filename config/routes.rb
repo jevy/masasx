@@ -1,5 +1,5 @@
 Masasx::Application.routes.draw do
-  get '/registration' => 'registrations#new'
+  get '/registration' => 'registrations#agreement'
 
-  root to: 'registrations#new'
+  root to: 'registrations#agreement'
 end
