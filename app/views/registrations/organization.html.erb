@@ -1,1 +1,30 @@
 <% title 'Step 2 - Organization Information' %>
+
+<ul class="nav nav-pills">
+  <li>
+  <%= link_to 'Step 1', registration_path  %>
+  </li>
+  <li class="active">
+    <%= link_to 'Step 2', organization_path  %>
+  </li>
+  <li><a>Step 3</a></li>
+  <li><a>Step 4</a></li>
+</ul>
+
+<%= simple_form_for @user, url: update_organization_path do |f| %>
+  <%= f.input :organization_name, label: 'Organization Name' %>
+
+  <%= f.input :department %>
+
+  <%= f.input :division %>
+
+  <%= f.input :sub_division, label: 'Sub Division' %>
+
+  <%= f.input :address_line_1, label: 'Address Line 1' %>
+
+  <%= f.input :telephone %>
+
+  <%= f.input :website %>
+
+  <%= f.button :submit, 'Next', class: 'btn-primary' %>
+<% end %>

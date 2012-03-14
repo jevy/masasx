@@ -10,6 +10,20 @@ describe User do
 
   it { should respond_to(:community_agreement) }
 
+  it { should respond_to(:organization_name) }
+
+  it { should respond_to(:department) }
+
+  it { should respond_to(:division) }
+
+  it { should respond_to(:sub_division) }
+
+  it { should respond_to(:address_line_1) }
+
+  it { should respond_to(:telephone) }
+
+  it { should respond_to(:website) }
+
   context 'before creating' do
 
     before do
