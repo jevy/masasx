@@ -14,7 +14,12 @@ class RegistrationsController < ApplicationController
 
   def update_organization
     @user.update_attributes(params[:user])
-    redirect_to contact_path(@user)
+    redirect_to primary_contact_path(@user)
+  end
+
+  def update_primary_contact
+    @user.update_attributes(params[:user])
+    redirect_to secondary_contact_path(@user)
   end
 
   private

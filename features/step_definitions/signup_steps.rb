@@ -21,3 +21,13 @@ Given /^I complete the organization page$/ do
   fill_in 'Telephone',          with: '555-42-42-42'
   fill_in 'Website',            with: 'http://www.example.com'
 end
+
+Given /^I complete the Primary Contact page$/ do
+  fill_in 'Name',           with: 'John Doe'
+  fill_in 'Title',          with: 'Head of nothing'
+  select 'English',         from: 'Language'
+  fill_in 'Office e-mail',  with: 'john.doe@example.com'
+  fill_in 'Mobile e-mail',  with: 'john.doe@mobile.com'
+  fill_in 'Office Phone',   with: '555-111-111-111'
+  fill_in 'Mobile Phone',   with: '555-222-222-222'
+end

@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314171128) do
+ActiveRecord::Schema.define(:version => 20120315164902) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "status"
     t.string   "organization_name"
     t.string   "department"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(:version => 20120314171128) do
     t.string   "address_line_1"
     t.string   "telephone"
     t.string   "website"
+    t.string   "primary_contact_name"
+    t.string   "primary_contact_title"
+    t.string   "primary_contact_language"
+    t.string   "primary_contact_office_email"
+    t.string   "primary_contact_mobile_email"
+    t.string   "primary_contact_office_phone"
+    t.string   "primary_contact_mobile_phone"
   end
 
 end
