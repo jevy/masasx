@@ -28,7 +28,6 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'json_spec'
   gem 'libnotify', require: RUBY_PLATFORM.include?('linux') && 'libnotify'
   gem 'rb-fchange', require: false
   gem 'rb-fsevent', require: false
