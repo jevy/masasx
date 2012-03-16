@@ -38,6 +38,20 @@ describe User do
 
   it { should respond_to(:primary_contact_mobile_phone) }
 
+  it { should respond_to(:secondary_contact_name) }
+
+  it { should respond_to(:secondary_contact_title) }
+
+  it { should respond_to(:secondary_contact_language) }
+
+  it { should respond_to(:secondary_contact_office_email) }
+
+  it { should respond_to(:secondary_contact_mobile_email) }
+
+  it { should respond_to(:secondary_contact_office_phone) }
+
+  it { should respond_to(:secondary_contact_mobile_phone) }
+
   context 'before creating' do
 
     before do

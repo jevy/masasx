@@ -9,6 +9,9 @@ Masasx::Application.routes.draw do
   put '/primary_contact/:id' => 'registrations#update_primary_contact', as: :update_primary_contact
 
   get '/secondary_contact/:id' => 'registrations#secondary_contact', as: :secondary_contact
+  put '/secondary_contact/:id' => 'registrations#update_secondary_contact', as: :update_secondary_contact
+
+  get '/references/:id' => 'registrations#references', as: :references
 
   root to: 'registrations#agreement'
 end

@@ -22,6 +22,11 @@ class RegistrationsController < ApplicationController
     redirect_to secondary_contact_path(@user)
   end
 
+  def update_secondary_contact
+    @user.update_attributes(params[:user])
+    redirect_to references_path(@user)
+  end
+
   private
   def find_user
     @user = User.find params[:id]
