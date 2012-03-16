@@ -1,1 +1,27 @@
 <% title 'Step 4 - References Information' %>
+
+<ul class="nav nav-pills">
+  <li>
+  <%= link_to 'Step 1', registration_path  %>
+  </li>
+  <li>
+  <%= link_to 'Step 2', organization_path(@user)  %>
+  </li>
+  <li>
+  <%= link_to 'Step 3', secondary_contact_path(@user)  %>
+  </li>
+  <li class="active">
+  <%= link_to 'Step 4', references_path(@user)  %>
+  </li
+</ul>
+
+<%= simple_form_for @user, url: update_references_path do |f| %>
+
+  <%= f.input :references_language, label: 'Language', collection: Language.all %>
+
+  <%= f.input :references, label: 'References' %>
+
+  <%= f.input :questions, label: 'Comments/Questions' %>
+
+  <%= f.button :submit, 'Next', class: 'btn-primary' %>
+<% end %>

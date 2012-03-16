@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120316092846) do
+ActiveRecord::Schema.define(:version => 20120316100105) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
@@ -41,6 +41,9 @@ ActiveRecord::Schema.define(:version => 20120316092846) do
     t.string   "secondary_contact_mobile_email"
     t.string   "secondary_contact_office_phone"
     t.string   "secondary_contact_mobile_phone"
+    t.string   "references_language"
+    t.string   "references"
+    t.string   "questions"
   end
 
 end

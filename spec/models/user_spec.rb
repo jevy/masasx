@@ -52,6 +52,12 @@ describe User do
 
   it { should respond_to(:secondary_contact_mobile_phone) }
 
+  it { should respond_to(:references_language) }
+
+  it { should respond_to(:references) }
+
+  it { should respond_to(:questions) }
+
   context 'before creating' do
 
     before do

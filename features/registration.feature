@@ -12,4 +12,4 @@ Feature: A brand new user may apply for an account
     And I follow "Next"
     And I complete the References page
     And I follow "Next"
-    Then I should see "Thank you for applying to become a MASAS member"
+    Then I should see "Thank you for applying to become a MASAS member."

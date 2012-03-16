@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
 
-  before_filter :find_user, except: [:agreement, :accept_agreement]
+  before_filter :find_user, except: [:agreement, :accept_agreement, :thanks]
 
   def agreement
     @user = User.new
@@ -25,6 +25,11 @@ class RegistrationsController < ApplicationController
   def update_secondary_contact
     @user.update_attributes(params[:user])
     redirect_to references_path(@user)
+  end
+
+  def update_references
+    @user.update_attributes(params[:user])
+    redirect_to thanks_path(@user)
   end
 
   private

@@ -31,3 +31,13 @@ Given /^I complete the (\w+) Contact page$/ do |contact|
   fill_in 'Office Phone',   with: '555-111-111-111'
   fill_in 'Mobile Phone',   with: '555-222-222-222'
 end
+
+Given /^I complete the References page$/ do
+  select 'English',              from: 'Language'
+  fill_in 'References',          with: 'A nice guy told me'
+  fill_in 'Comments/Questions',  with: 'What is the meaning of 42?'
+end
+
+Then /^I should see "([^"]*)"$/ do |message|
+  page.should have_content(message)
+end
