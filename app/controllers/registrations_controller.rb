@@ -11,7 +11,8 @@ class RegistrationsController < ApplicationController
     if @user.save
     redirect_to organization_path(@user)
     else
-      render :agreement, error: 'There are some problems'
+      flash.now[:error] = 'You must accept all the agreements'
+      render :agreement
     end
   end
 
