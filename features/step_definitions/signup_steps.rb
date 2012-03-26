@@ -8,6 +8,10 @@ Given /^I complete the agreement page$/ do
   check('I certify that I am a bona fide member of the Canadian Emergency Management community and have a valid reason to join the MASAS-X community.')
 end
 
+Given /^I do not complete the agreement page$/ do
+  check('I accept the MASAS Information eXchange (MASAS-X) Pilot Participation Agreement.')
+end
+
 Given /^I follow "(\w+)"$/ do |label|
   click_button(label)
 end
@@ -40,4 +44,8 @@ end
 
 Then /^I should see "([^"]*)"$/ do |message|
   page.should have_content(message)
+end
+
+Then /^I should be on the agreement page$/ do
+  URI.parse(current_url).path.should eql(accept_agreement_path)
 end
