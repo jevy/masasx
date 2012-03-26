@@ -1,9 +1,9 @@
-Feature: A brand new user may apply for an account
+Feature: A brand new organization may apply for an account
 
   Background:
     Given I am on the signup page
 
-  Scenario: A brand new user signs up for an account
+  Scenario: A brand new organization signs up for an account
     Given I complete the agreement page
     And I follow "Next"
     And I complete the organization page
@@ -16,7 +16,7 @@ Feature: A brand new user may apply for an account
     And I follow "Next"
     Then I should see "Thank you for applying to become a MASAS member."
 
-  Scenario: A brand new user does not complete the agreement page
+  Scenario: A brand new organization does not complete the agreement page
     Given I do not complete the agreement page
     And I follow "Next"
     Then I should be on the agreement page
