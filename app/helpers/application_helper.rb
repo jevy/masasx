@@ -8,6 +8,14 @@ module ApplicationHelper
     @show_title
   end
 
+  def agreements_options
+    [
+      'I accept the MASAS Information eXchange (MASAS-X) Pilot Participation Agreement.',
+      'I am not a member of the media.',
+      'I certify that I am a bona fide member of the Canadian Emergency Management community and have a valid reason to join the MASAS-X community.'
+    ]
+  end
+
   def on_dom_ready(javascript)
     content_for(:head) do
       javascript_tag("$(function() {#{javascript}})")

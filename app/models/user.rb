@@ -4,14 +4,13 @@ class User < ActiveRecord::Base
 
   authenticates_with_sorcery!
 
-  attr_accessor :masax_agreement
-  attr_accessor :media_agreement
-  attr_accessor :community_agreement
+  attr_accessor :agreements
 
   after_initialize :init_status
 
   def init_status
-    self.status = 'agreement'
+    self.status     ||= 'agreement'
+    self.agreements ||= []
   end
 
   aasm column: :status do
@@ -48,10 +47,14 @@ class User < ActiveRecord::Base
     send("complete_#{self.status}!")
   end
 
-
   with_options if: -> user { user.status == 'agreement' } do |f|
-    f.validates :masax_agreement, acceptance: true
-    f.validates :media_agreement, acceptance: true
-    f.validates :community_agreement, acceptance: true
+    f.validate :accept_agreements
+  end
+
+  private
+  def accept_agreements
+    if self.agreements.size < 3
+      self.errors[:agreements] = 'All the agreements must be accepted.'
+    end
   end
 end

@@ -23,6 +23,8 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'pry'
+  gem 'pry-nav'
   gem 'cucumber-rails', '~> 1.0', require: false
   gem 'database_cleaner'
   gem 'factory_girl_rails'

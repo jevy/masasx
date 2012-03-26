@@ -8,8 +8,11 @@ class RegistrationsController < ApplicationController
 
   def accept_agreement
     @user = User.new params[:user]
-    @user.save
+    if @user.save
     redirect_to organization_path(@user)
+    else
+      render :agreement, error: 'There are some problems'
+    end
   end
 
   def update_organization
