@@ -10,6 +10,7 @@ end
 
 Given /^I do not complete the agreement page$/ do
   check('I accept the MASAS Information eXchange (MASAS-X) Pilot Participation Agreement.')
+  check('I am not a member of the media.')
 end
 
 Given /^I follow "(\w+)"$/ do |label|
