@@ -57,7 +57,7 @@ class Organization < ActiveRecord::Base
 
   private
   def accept_agreements
-    if self.agreements.size < 3
+    if self.agreements.reject(&:blank?).size < 3
       self.errors[:agreements] = 'All the agreements must be accepted.'
     end
   end

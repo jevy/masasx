@@ -12,10 +12,10 @@
   </li>
   <li class="active">
   <%= link_to 'Step 4', references_path(@user)  %>
-  </li
+  </li>
 </ul>
 
-<%= simple_form_for @user, url: update_references_path do |f| %>
+<%= simple_form_for @organization, url: update_references_path do |f| %>
 
   <%= f.input :references_language, label: 'Language', collection: Language.all %>
 

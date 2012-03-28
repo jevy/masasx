@@ -11,8 +11,8 @@
   <li><a>Step 4</a></li>
 </ul>
 
-<%= simple_form_for @user, url: update_organization_path do |f| %>
-  <%= f.input :organization_name, label: 'Organization Name' %>
+<%= simple_form_for @organization, url: update_organization_path do |f| %>
+  <%= f.input :name, label: 'Organization Name' %>
 
   <%= f.input :department %>
 

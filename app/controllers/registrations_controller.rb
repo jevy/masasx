@@ -1,15 +1,27 @@
 class RegistrationsController < ApplicationController
 
-  before_filter :find_user, except: [:agreement, :accept_agreement, :thanks]
+  before_filter :find_organization, except: [:agreement, :accept_agreement, :thanks]
 
   def agreement
-    @user = User.new
+    @organization = Organization.new
+  end
+
+  def primary_contact
+    organization_administrator = OrganizationAdmin.new
+    organization_administrator.build_contact_info
+    @organization.primary_organization_administrator = organization_administrator
+  end
+
+  def secondary_contact
+    organization_administrator = OrganizationAdmin.new
+    organization_administrator.build_contact_info
+    @organization.secondary_organization_administrator = organization_administrator
   end
 
   def accept_agreement
-    @user = User.new params[:user]
-    if @user.save
-    redirect_to organization_path(@user)
+    @organization = Organization.new params[:organization]
+    if @organization.save
+    redirect_to organization_path(@organization)
     else
       flash.now[:error] = 'You must accept all the agreements.'
       render :agreement
@@ -17,28 +29,28 @@ class RegistrationsController < ApplicationController
   end
 
   def update_organization
-    @user.update_attributes(params[:user])
-    redirect_to primary_contact_path(@user)
+    @organization.update_attributes(params[:organization])
+    redirect_to primary_contact_path(@organization)
   end
 
   def update_primary_contact
-    @user.update_attributes(params[:user])
-    redirect_to secondary_contact_path(@user)
+    @organization.update_attributes(params[:organization])
+    redirect_to secondary_contact_path(@organization)
   end
 
   def update_secondary_contact
-    @user.update_attributes(params[:user])
-    redirect_to references_path(@user)
+    @organization.update_attributes(params[:organization])
+    redirect_to references_path(@organization)
   end
 
   def update_references
-    @user.update_attributes(params[:user])
-    redirect_to thanks_path(@user)
+    @organization.update_attributes(params[:organization])
+    redirect_to thanks_path(@organization)
   end
 
   private
-  def find_user
-    @user = User.find params[:id]
+  def find_organization
+    @organization = Organization.find params[:id]
   end
 
 end
