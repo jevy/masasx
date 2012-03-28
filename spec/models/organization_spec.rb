@@ -22,7 +22,7 @@ describe Organization do
 
   it { should respond_to(:primary_organization_administrator) }
 
-  it { should respond_to(:secondary_organization_adminstrator) }
+  it { should respond_to(:secondary_organization_administrator) }
 
   it { should respond_to(:references_language) }
 
@@ -174,19 +174,20 @@ describe Organization do
   context 'administrators' do
 
     before do
-      @organization = Factory.build(:organization_with_administrators)
+      @organization = Factory.build(:organization)
+      @organization.primary_organization_administrator_attributes   = Factory.attributes_for(:organization_admin, email: 'primary@example.com', contact_info: Factory.build(:contact, name: 'Luca Pette', office_email: 'luca@pette.com'))
+      @organization.secondary_organization_administrator_attributes = Factory.attributes_for(:organization_admin, email: 'secondary@example.com')
     end
 
     it 'are created when organization is created' do
-      OrganizationAdmin.should_receive(:create).twice
       @organization.save
-      OrganizationAdmin.count.should have(2).accounts
+      OrganizationAdmin.count.should eql 2
     end
 
     it 'have the correct contact info' do
       @organization.save
-      OrganizationAdmin.first.contact.name eql 'Luca Pette'
-      OrganizationAdmin.first.contact.office_email eql 'luca@pette.com'
+      OrganizationAdmin.first.contact_info.name.should eql 'Luca Pette'
+      OrganizationAdmin.first.contact_info.office_email.should eql 'luca@pette.com'
     end
 
   end

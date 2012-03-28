@@ -18,10 +18,12 @@ Spork.prefork do
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run :focus
 
-    require Rails.root.join('db','seeds')     # Load the seed data
-
     config.use_transactional_fixtures = true
   end
+
+  DatabaseCleaner.strategy = :truncation
+  DatabaseCleaner.clean
+  require Rails.root.join('db','seeds')     # Load the seed data
 
   ActiveSupport::Dependencies.clear if Spork.using_spork?
 end

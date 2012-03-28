@@ -15,51 +15,58 @@ describe Account do
     end
 
     it 'has denies all permissions by default' do
-      @account.permissions.should =~ MasasService.all
+      @account.permissions_store.should eql '0000'
     end
 
-    it 'can_read?' do
-      @account.should_not can_read(CmsService)
+    it 'can? should be false by default for :read' do
+      @account.can?(:read, CmsService).should be false
     end
 
-    it 'can_read?' do
+    it 'can? should be true when granted for :read' do
       @account.can!(:read, CmsService)
-      @account.should_not be_can(:read, CmsService)
+      @account.can?(:read, CmsService).should be true
     end
 
-    it 'can_write?' do
-      @account.should_not be_can(:write, CmsService)
+    it 'can? should false by default for :write' do
+      @account.can?(:write, CmsService).should be false
     end
 
-    it 'can_write?' do
+    it 'can? should be true when granted for :write' do
       @account.can!(:write, CmsService)
-      @account.should_not be_can(:write, CmsService)
+      @account.can?(:write, CmsService).should be true
     end
 
-    it 'can_write!' do
+    it 'can! grants a service for :write' do
+      @account.should_receive(:update_attribute).with(:permissions_store, kind_of(String))
       expect {
         @account.can!(:write, CmsService)
-      }.to change(@account,:can?,:write, CmsService).from(false).to(true)
+      }.to change { @account.can?(:write, CmsService) }.from(false).to(true)
     end
 
-    it 'cant_write!' do
+    it 'cant! doesnt grant a service for :write' do
       @account.can!(:write, CmsService)
+
+      @account.should_receive(:update_attribute).with(:permissions_store, kind_of(String))
       expect {
         @account.cant!(:write, CmsService)
-      }.to change(@account,:can?, :write, CmsService).from(true).to(false)
+      }.to change { @account.can?(:write, CmsService) }.from(true).to(false)
     end
 
-    it 'can_read!' do
+    it 'can! grants a service for :read' do
+      @account.should_receive(:update_attribute).with(:permissions_store, kind_of(String))
+
       expect {
         @account.can!(:read, CmsService)
-      }.to change(@account,:can?, :read, CmsService).from(false).to(true)
+      }.to change { @account.can?(:read, CmsService) }.from(false).to(true)
     end
 
-    it 'cant_read!' do
+    it 'cant! doesnt grant a service for :read' do
       @account.can!(:read, CmsService)
+
+      @account.should_receive(:update_attribute).with(:permissions_store, kind_of(String))
       expect {
         @account.cant!(:read, CmsService)
-      }.to change(@account,:can?,:read, CmsService).from(true).to(false)
+      }.to change { @account.can?(:read, CmsService) }.from(true).to(false)
     end
 
   end

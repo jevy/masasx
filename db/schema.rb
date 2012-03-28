@@ -11,39 +11,52 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120316100105) do
+ActiveRecord::Schema.define(:version => 20120328084547) do
 
-  create_table "users", :force => true do |t|
+  create_table "accounts", :force => true do |t|
+    t.string   "name"
+    t.string   "access_code"
+    t.string   "permissions_store"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "language"
+    t.string   "office_email"
+    t.string   "mobile_email"
+    t.string   "office_phone"
+    t.string   "mobile_phone"
+    t.integer  "contactable_id"
+    t.string   "contactable_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "organization_admins", :force => true do |t|
     t.string   "email"
-    t.string   "crypted_password"
-    t.string   "salt"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.integer  "contact_info_id"
+    t.integer  "organization_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "organizations", :force => true do |t|
     t.string   "status"
-    t.string   "organization_name"
+    t.string   "name"
     t.string   "department"
     t.string   "division"
     t.string   "sub_division"
     t.string   "address_line_1"
     t.string   "telephone"
     t.string   "website"
-    t.string   "primary_contact_name"
-    t.string   "primary_contact_title"
-    t.string   "primary_contact_language"
-    t.string   "primary_contact_office_email"
-    t.string   "primary_contact_mobile_email"
-    t.string   "primary_contact_office_phone"
-    t.string   "primary_contact_mobile_phone"
-    t.string   "secondary_contact_name"
-    t.string   "secondary_contact_title"
-    t.string   "secondary_contact_language"
-    t.string   "secondary_contact_office_email"
-    t.string   "secondary_contact_mobile_email"
-    t.string   "secondary_contact_office_phone"
-    t.string   "secondary_contact_mobile_phone"
     t.string   "references_language"
     t.string   "references"
     t.string   "questions"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
 end

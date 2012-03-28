@@ -1,8 +1,12 @@
-class User < ActiveRecord::Base
+class Organization < ActiveRecord::Base
 
   include AASM
 
-  authenticates_with_sorcery!
+  has_one :primary_organization_administrator,   class_name: 'OrganizationAdmin'
+  has_one :secondary_organization_administrator,  class_name: 'OrganizationAdmin'
+
+  accepts_nested_attributes_for :primary_organization_administrator
+  accepts_nested_attributes_for :secondary_organization_administrator
 
   attr_accessor :agreements
 
@@ -53,7 +57,7 @@ class User < ActiveRecord::Base
 
   private
   def accept_agreements
-    if self.agreements.size <= 3
+    if self.agreements.size < 3
       self.errors[:agreements] = 'All the agreements must be accepted.'
     end
   end
