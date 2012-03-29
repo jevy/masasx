@@ -40,4 +40,5 @@ group :development, :test do
   gem 'rb-inotify', require: false
   gem 'rspec-rails'
   gem 'spork', '> 0.9.0.rc'
+  gem 'ci_reporter'
 end
