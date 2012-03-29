@@ -1,0 +1,10 @@
+<% title 'login' %>
+
+<%= simple_form_for @organization_admin, url: admin_sessions_path, method: :post do |f| %>
+
+  <%= f.input :email %>
+
+  <%= f.input :password %>
+
+  <%= f.button :submit, 'Login' %>
+<% end %>

@@ -1,0 +1,32 @@
+<% title 'Accounts' %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Access Code</th>
+      <% for service in MasasService.all %>
+        <th colspan='2'><%= service %></th>
+      <% end %>
+    </tr>
+    <tr>
+      <th colspan='2'></th>
+      <% for service in MasasService.all %>
+        <th>Read</th>
+        <th>Write</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% for account in @accounts %>
+        <td><%= account.name %></td>
+        <td><%= account.access_code %></td>
+        <% for service in MasasService.all %>
+          <th><%= account.can?(:read, service) ? 'Yes' : 'No' %></th>
+          <th><%= account.can?(:write, service) ? 'Yes' : 'No' %></th>
+        <% end %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

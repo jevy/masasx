@@ -13,10 +13,6 @@ Given /^I do not complete the agreement page$/ do
   check('I am not a member of the media.')
 end
 
-Given /^I follow "(\w+)"$/ do |label|
-  click_button(label)
-end
-
 Given /^I complete the organization page$/ do
   fill_in 'Organization Name',  with: 'Awesome Organization'
   fill_in 'Department',         with: 'Awesome Deparment'
@@ -41,10 +37,6 @@ Given /^I complete the References page$/ do
   select 'English',              from: 'Language'
   fill_in 'References',          with: 'A nice guy told me'
   fill_in 'Comments/Questions',  with: 'What is the meaning of 42?'
-end
-
-Then /^I should see "([^"]*)"$/ do |message|
-  page.should have_content(message)
 end
 
 Then /^I should be on the agreement page$/ do

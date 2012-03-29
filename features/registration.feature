@@ -5,7 +5,7 @@ Feature: A brand new organization may apply for an account
 
   Scenario: A brand new organization signs up for an account
     Given I complete the agreement page
-    And I follow "Next"
+    When I follow "Next"
     And I complete the organization page
     And I follow "Next"
     And I complete the Primary Contact page
@@ -18,6 +18,6 @@ Feature: A brand new organization may apply for an account
 
   Scenario: A brand new organization does not complete the agreement page
     Given I do not complete the agreement page
-    And I follow "Next"
+    When I follow "Next"
     Then I should be on the agreement page
     And I should see "You must accept all the agreements."

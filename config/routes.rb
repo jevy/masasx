@@ -1,4 +1,9 @@
 Masasx::Application.routes.draw do
+
+  match 'login'  => 'admin_sessions#new',     as: :login
+  match 'logout' => 'admin_sessions#destroy', as: :logout
+  resources :admin_sessions, only: [:new, :create, :destroy]
+
   get '/registration' => 'registrations#agreement'
   post '/accept_agreement' => 'registrations#accept_agreement', as: :accept_agreement
 
@@ -15,6 +20,11 @@ Masasx::Application.routes.draw do
   put '/update_references/:id' => 'registrations#update_references', as: :update_references
 
   get '/thanks' => 'registrations#thanks', as: :thanks
+
+  namespace :admin do
+    resources :accounts
+    root to: 'home#index'
+  end
 
   root to: 'registrations#agreement'
 end

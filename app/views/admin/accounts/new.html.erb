@@ -1,0 +1,10 @@
+<% title 'New Account' %>
+
+<%= simple_form_for [:admin, @account] do |f| %>
+
+  <%= f.input :name %>
+
+  <%= f.input :access_code %>
+
+  <%= f.button :submit, 'Save' %>
+<% end %>
