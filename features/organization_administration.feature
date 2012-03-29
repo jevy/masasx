@@ -8,7 +8,7 @@ Feature: An appoved organization can create and manage their own user accounts
     And I am logged-in as an Organization Administrator for "Ottawa Fire Services"
 
   Scenario: I can create a User Account
-    Given I am on the organization adminstration page
+    Given I am on the accounts organization administration page
     When I press "Add New User Account"
     And I fill in the user account information with the name "Ops Manager"
     And I press "Save"
@@ -16,11 +16,11 @@ Feature: An appoved organization can create and manage their own user accounts
     And "Ops Manager" should have all the permissions denied
 
   Scenario: I can edit a User Account's details
-    Given user account "Ops Manager" exists for organization "Ottawa Fire Services"
-    When I am on the organization adminstration page
-    And I click the "Ops Manager" link
+    Given a user account "Ops Manager" exists for organization "Ottawa Fire Services"
+    When I am on the accounts organization administration page
+    And I follow "Ops Manager"
     And I fill in the "Name" field with "Night Ops Manager"
-    Then I press "Save"
+    And I press "Save"
     Then I should see "Night Ops Manager"
 
   Scenario: I can edit a User Account's permissions and it is persistant

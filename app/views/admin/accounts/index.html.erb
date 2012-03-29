@@ -1,5 +1,9 @@
 <% title 'Accounts' %>
 
+<p>
+<%= link_to 'Add New User Account', new_admin_account_path, class: 'btn'  %>
+</p>
+
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -20,7 +24,7 @@
   <tbody>
     <tr>
       <% for account in @accounts %>
-        <td><%= account.name %></td>
+        <td><%= link_to account.name, edit_admin_account_path(account) %></td>
         <td><%= account.access_code %></td>
         <% for service in MasasService.all %>
           <th><%= account.can?(:read, service) ? 'Yes' : 'No' %></th>

@@ -11,8 +11,13 @@ Given /^I am logged-in as an Organization Administrator for "([^"]*)"$/ do |orga
   click_on 'Login'
 end
 
-Given /^I am on the organization adminstration page$/ do
-  visit admin_root_path
+Given /^I am on the accounts organization administration page$/ do
+  visit admin_accounts_path
+end
+
+Given /^a user account "([^"]*)" exists for organization "([^"]*)"$/ do |account_name, organization_name|
+  Factory(:account, name: account_name)
+  Factory(:organization, name: organization_name)
 end
 
 When /^I fill in the user account information with the name "([^"]*)"$/ do |name|
