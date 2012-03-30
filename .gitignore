@@ -5,3 +5,4 @@
 /.rvmrc
 /config/database.yml
 /spec/reports
+/bin
