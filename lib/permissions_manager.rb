@@ -1,5 +1,10 @@
 module PermissionsManager
 
+  NONE  = '0'
+  READ  = '1'
+  WRITE = '2'
+  ALL   = '3'
+
   # Permissions are stored in the 'permissions_store' string. The string
   # represents an array of permissions services where each elements has the
   # following meaning:
@@ -11,7 +16,7 @@ module PermissionsManager
   # stores inside the MasasService module.
 
   def can? action, service
-    allowed_actions = ['3']
+    allowed_actions = [ALL]
     allowed_actions << decode_action(action)
     permission_index = MasasService.position(service)
 
@@ -22,29 +27,29 @@ module PermissionsManager
     permission_index   = MasasService.position(service)
     allowed_action     = decode_action(action)
     current_permission = permissions_store[permission_index]
-    if current_permission == '0'
+    if current_permission == NONE
       permissions_store[permission_index] = allowed_action
     elsif current_permission != allowed_action
-      permissions_store[permission_index] = '4'
+      permissions_store[permission_index] = ALL
     end
-    update_attribute(:permissions_store, permissions_store)
+    self.permissions_store_will_change!
   end
 
   def cant! action, service
     permission_index   = MasasService.position(service)
     allowed_action     = decode_action(action)
     current_permission = permissions_store[permission_index]
-    if current_permission == '4'
+    if current_permission == allowed_action
+      permissions_store[permission_index] = NONE
+    elsif current_permission == ALL
       permissions_store[permission_index] = decode_action(action == :read ? :write : :read)
-    elsif current_permission == allowed_action
-      permissions_store[permission_index] = '0'
     end
-    update_attribute(:permissions_store, permissions_store)
+    self.permissions_store_will_change!
   end
 
   private
 
   def decode_action action
-    :read ? '1' : '2'
+    action == :read ? READ : WRITE
   end
 end

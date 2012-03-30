@@ -16,6 +16,13 @@ module ApplicationHelper
     ]
   end
 
+  def yesno_options
+    [
+      ['Yes', true],
+      ['No', false]
+    ]
+  end
+
   def on_dom_ready(javascript)
     content_for(:head) do
       javascript_tag("$(function() {#{javascript}})")

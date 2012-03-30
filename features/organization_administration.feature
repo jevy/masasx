@@ -24,10 +24,10 @@ Feature: An appoved organization can create and manage their own user accounts
     Then I should see "Night Ops Manager"
 
   Scenario: I can edit a User Account's permissions and it is persistant
-    Given user account "Ops Manager" exists for organization "Ottawa Fire Services"
-    When I am on the organization adminstration page
-    And I click "Edit permissions"
-    And I select "No" for the "Account Admin" admin permission
-    And I click "Exit edit permissions"
-    Then I am on the organization adminstration page
-    And I should see "Ops Manager" have the "No" for "Account Admin"
+    Given a user account "Ops Manager" exists for organization "Ottawa Fire Services"
+    When I am on the accounts organization administration page
+    And I press "Edit Permissions"
+    And I select "Yes" for the "Cms Service" permission
+    And I press "Exit Edit Permissions"
+    Then I am on the accounts organization administration page
+    And I should see "Ops Manager" have the "Yes" for "Cms Service"

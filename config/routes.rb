@@ -22,7 +22,12 @@ Masasx::Application.routes.draw do
   get '/thanks' => 'registrations#thanks', as: :thanks
 
   namespace :admin do
-    resources :accounts
+    resources :accounts do
+      member do
+        get 'permissions'
+        put 'update_permissions'
+      end
+    end
     root to: 'home#index'
   end
 

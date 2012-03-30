@@ -19,6 +19,7 @@
         <th>Read</th>
         <th>Write</th>
       <% end %>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -27,9 +28,16 @@
         <td><%= link_to account.name, edit_admin_account_path(account) %></td>
         <td><%= account.access_code %></td>
         <% for service in MasasService.all %>
-          <th><%= account.can?(:read, service) ? 'Yes' : 'No' %></th>
-          <th><%= account.can?(:write, service) ? 'Yes' : 'No' %></th>
+          <td><%= account.can?(:read, service) ? 'Yes' : 'No' %></td>
+          <td><%= account.can?(:write, service) ? 'Yes' : 'No' %></td>
         <% end %>
+        <td>
+          <div class="btn-toolbar">
+            <%= link_to 'View', admin_account_path(account), class: 'btn' %>
+            <%= link_to 'Edit', edit_admin_account_path(account), class: 'btn' %>
+            <%= link_to 'Edit Permissions', permissions_admin_account_path(account), class: 'btn' %>
+          </div>
+        </td>
       <% end %>
     </tr>
   </tbody>
