@@ -30,6 +30,8 @@ describe Organization do
 
   it { should respond_to(:questions) }
 
+  it { should respond_to(:accounts) }
+
   context 'before creating' do
 
     before do

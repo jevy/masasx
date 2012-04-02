@@ -1,7 +1,7 @@
 class Admin::AccountsController < Admin::AdminController
 
   def index
-    @accounts = Account.all
+    @accounts = current_user.organization.accounts
   end
 
   def new
@@ -30,7 +30,8 @@ class Admin::AccountsController < Admin::AdminController
   end
 
   def create
-    @account = Account.new params[:account]
+    @account              = Account.new params[:account]
+    @account.organization = current_user.organization
     @account.save
     redirect_to admin_accounts_path, notice: 'Account successfully created!'
   end

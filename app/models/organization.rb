@@ -3,10 +3,13 @@ class Organization < ActiveRecord::Base
   include AASM
 
   has_one :primary_organization_administrator,   class_name: 'OrganizationAdmin'
-  has_one :secondary_organization_administrator,  class_name: 'OrganizationAdmin'
+  has_one :secondary_organization_administrator, class_name: 'OrganizationAdmin'
+
+  has_many :accounts
 
   accepts_nested_attributes_for :primary_organization_administrator
   accepts_nested_attributes_for :secondary_organization_administrator
+
 
   attr_accessor :agreements
 

@@ -12,7 +12,7 @@ Feature: An appoved organization can create and manage their own user accounts
     When I press "Add New User Account"
     And I fill in the user account information with the name "Ops Manager"
     And I press "Save"
-    Then I should see the user account with name "Ops Manager"
+    Then I should see "Ops Manager"
     And "Ops Manager" should have all the permissions denied
 
   Scenario: I can edit a User Account's details
@@ -31,3 +31,13 @@ Feature: An appoved organization can create and manage their own user accounts
     And I press "Exit Edit Permissions"
     Then I am on the accounts organization administration page
     And I should see "Ops Manager" have the "Yes" for "Cms Service"
+
+  Scenario: I can manage only user accounts for my organization
+    Given an approved organization "Ottawa Sky Watchers" exists
+    And a user account "Ops Fire Manager" exists for organization "Ottawa Fire Services"
+    And a user account "Ops Fire Senior Manager" exists for organization "Ottawa Fire Services"
+    And a user account "Ops Sky Manager" exists for organization "Ottawa Sky Watchers"
+    When I am on the accounts organization administration page
+    Then I should see "Ops Fire Manager"
+    And I should see "Ops Fire Senior Manager"
+    And I should not see "Ops Sky Manager"

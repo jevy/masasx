@@ -16,8 +16,7 @@ Given /^I am on the accounts organization administration page$/ do
 end
 
 Given /^a user account "([^"]*)" exists for organization "([^"]*)"$/ do |account_name, organization_name|
-  Factory(:account, name: account_name)
-  Factory(:organization, name: organization_name)
+  Factory(:account, name: account_name, organization: Organization.find_by_name(organization_name))
 end
 
 When /^I fill in the user account information with the name "([^"]*)"$/ do |name|
@@ -31,10 +30,6 @@ end
 
 Then /^I should see "([^"]*)" have the "([^"]*)" for "([^"]*)"$/ do |account_name, value, permission|
   page.should have_content(value)
-end
-
-Then /^I should see the user account with name "([^"]*)"$/ do |name|
-  page.should have_content(name)
 end
 
 Then /^"([^"]*)" should have all the permissions denied$/ do |name|

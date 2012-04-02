@@ -1,4 +1,7 @@
 class Account < ActiveRecord::Base
+
+  belongs_to :organization
+
   include PermissionsManager
 
   attr_accessor :permissions_attributes

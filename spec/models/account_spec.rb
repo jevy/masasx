@@ -10,6 +10,8 @@ describe Account do
 
   it { should respond_to(:permissions_attributes) }
 
+  it { should respond_to(:organization) }
+
   context 'permissions_attributes' do
 
     before do
