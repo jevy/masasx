@@ -5,10 +5,10 @@ end
 Given /^I am logged-in as an Organization Administrator for "([^"]*)"$/ do |organization_name|
   organization_admin = Factory(:organization_admin, organization: Organization.find_by_name(organization_name), password: 'mypassword')
 
-  visit login_path
+  visit new_organization_admin_session_path
   fill_in 'Email',    with: organization_admin.email
   fill_in 'Password', with: 'mypassword'
-  click_on 'Login'
+  click_on 'Sign in'
 end
 
 Given /^I am on the accounts organization administration page$/ do

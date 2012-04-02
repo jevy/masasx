@@ -8,14 +8,12 @@ class RegistrationsController < ApplicationController
 
   def primary_contact
     organization_administrator = OrganizationAdmin.new
-    organization_administrator.build_contact_info
-    @organization.primary_organization_administrator = organization_administrator
+    @organization.build_primary_organization_administrator.build_contact_info
   end
 
   def secondary_contact
     organization_administrator = OrganizationAdmin.new
-    organization_administrator.build_contact_info
-    @organization.secondary_organization_administrator = organization_administrator
+    @organization.build_secondary_organization_administrator.build_contact_info
   end
 
   def accept_agreement

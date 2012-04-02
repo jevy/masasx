@@ -12,7 +12,7 @@ gem 'carrierwave'
 
 gem 'twitter-bootstrap-rails'
 
-gem 'sorcery'
+gem 'devise'
 
 gem 'aasm'
 

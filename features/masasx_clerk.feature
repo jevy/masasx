@@ -3,10 +3,11 @@ Feature: MasasxClerk should be able to manage the entire system
   Background:
     Given I am logged-in as a MasasxClerk
 
+    @wip
   Scenario: MasasxClerk should see the number of pending Organization applications
     Given an organization pending approval exists
     When I am on the MasasxClerk admin dashboard page
-    Then I should see "1 Organization pending approval"
+    Then I should see "1 Organizations pending approval"
 
   Scenario: MasasxClerk should be able to review all the Organization's application
     Given there is one Organization pending approval

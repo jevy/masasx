@@ -14,4 +14,10 @@ FactoryGirl.define do
     agreements [1, 2, 3]
   end
 
+  factory :organization_pending_approval, parent: :organization do
+    status 'completed'
+    association :primary_organization_administrator,   factory: :organization_admin
+    association :secondary_organization_administrator, factory: :organization_admin
+  end
+
 end

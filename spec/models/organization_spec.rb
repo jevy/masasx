@@ -194,4 +194,16 @@ describe Organization do
 
   end
 
+  context '.pending_approval', :focus do
+
+    before do
+      @organizations = FactoryGirl.create_list(:organization_pending_approval, 2)
+    end
+
+    it 'returns the organization pending approval' do
+      Organization.pending_approval.should =~ @organizations
+    end
+
+  end
+
 end

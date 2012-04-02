@@ -10,6 +10,7 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :primary_organization_administrator
   accepts_nested_attributes_for :secondary_organization_administrator
 
+  scope :pending_approval, where(status: 'completed')
 
   attr_accessor :agreements
 

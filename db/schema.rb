@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402131617) do
+ActiveRecord::Schema.define(:version => 20120402144627) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -36,15 +36,43 @@ ActiveRecord::Schema.define(:version => 20120402131617) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "masasx_clerks", :force => true do |t|
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  add_index "masasx_clerks", ["email"], :name => "index_masasx_clerks_on_email", :unique => true
+  add_index "masasx_clerks", ["reset_password_token"], :name => "index_masasx_clerks_on_reset_password_token", :unique => true
+
   create_table "organization_admins", :force => true do |t|
     t.string   "email"
     t.integer  "contact_info_id"
     t.integer  "organization_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.string   "crypted_password"
-    t.string   "salt"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "organization_admins", ["email"], :name => "index_organization_admins_on_email", :unique => true
+  add_index "organization_admins", ["reset_password_token"], :name => "index_organization_admins_on_reset_password_token", :unique => true
 
   create_table "organizations", :force => true do |t|
     t.string   "status"
