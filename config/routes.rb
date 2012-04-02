@@ -22,6 +22,11 @@ Masasx::Application.routes.draw do
   get '/thanks' => 'registrations#thanks', as: :thanks
 
   namespace :admin do
+    resources :organizations do
+      member  do
+        get 'approve'
+      end
+    end
     resources :accounts do
       member do
         get 'permissions'

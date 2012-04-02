@@ -7,8 +7,8 @@ Given /^I am logged\-in as a MasasxClerk$/ do
   click_on 'Sign in'
 end
 
-Given /^an organization pending approval exists$/ do
-  Factory(:organization_pending_approval)
+Given /^an organization "([^"]*)" pending approval exists$/ do |name|
+  Factory(:organization_pending_approval, name: name)
 end
 
 When /^I am on the MasasxClerk admin dashboard page$/ do

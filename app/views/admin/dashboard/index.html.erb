@@ -1,3 +1,5 @@
 <% title 'Dashboard' %>
 
 <p><%= @pending_approval_organizations.count %> Organizations pending approval</p>
+
+<p><%= link_to 'Review Pending Applications', admin_organizations_path(status: 'completed'), class: 'btn btn-primary' %></p>

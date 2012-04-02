@@ -1,0 +1,23 @@
+<% title 'Organizations' %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for organization in @organizations %>
+      <tr>
+        <td><%= organization.name %></td>
+        <td>
+          <div class="btn-toolbar">
+
+          </div>
+        </td>
+      </tr>
+    <% end -%>
+  </tbody>
+
+</table>
