@@ -125,6 +125,20 @@ describe Organization do
 
   end
 
+  context '#approve!' do
+
+    it "changes to status to 'approved'" do
+      @organization = Organization.new
+
+      @organization.status = 'completed'
+
+      @organization.approve!
+
+      @organization.status.should eql('approved')
+    end
+
+  end
+
   context '#next!' do
 
     before do

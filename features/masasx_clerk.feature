@@ -15,8 +15,9 @@ Feature: MasasxClerk should be able to manage the entire system
     Then I should see "Organization Name"
 
   Scenario: MasasxClerk should be able to approve an Organization's application
-    Given there is one Organization pending approval
-    Given I am on MasasxClerk dashboard page
-    Given I click "Review pending applications"
-    Then I should see the organization's information
-    Then I press "reject"
+    Given an organization "Organization Name" pending approval exists
+    And I am on the MasasxClerk admin dashboard page
+    And I press "Review Pending Applications"
+    When I press "Approve"
+    Then I should be on the Review Organizations page
+    And I should not see "Organization Name"

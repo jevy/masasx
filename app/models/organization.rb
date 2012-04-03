@@ -28,6 +28,7 @@ class Organization < ActiveRecord::Base
     state :secondary_contact
     state :references
     state :completed
+    state :approved
 
     event :complete_agreement do
       transitions to: :organization, from: :agreement
@@ -47,6 +48,10 @@ class Organization < ActiveRecord::Base
 
     event :complete_references do
       transitions to: :completed, from: :references
+    end
+
+    event :approve do
+      transitions to: :approved, from: :completed
     end
 
   end
