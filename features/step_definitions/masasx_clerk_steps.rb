@@ -7,10 +7,6 @@ Given /^I am logged\-in as a MasasxClerk$/ do
   click_on 'Sign in'
 end
 
-Given /^an organization "([^"]*)" pending approval exists$/ do |name|
-  Factory(:organization_pending_approval, name: name)
-end
-
 Then /^I should be on the MasasxClerk admin dashboard page$/ do
   URI.parse(current_url).path.should eql(admin_dashboard_path)
 end

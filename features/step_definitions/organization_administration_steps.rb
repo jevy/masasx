@@ -1,7 +1,3 @@
-Given /^an approved organization "([^"]*)" exists$/ do |name|
-  Factory(:organization, name: name)
-end
-
 Given /^I am logged-in as an Organization Administrator for "([^"]*)"$/ do |organization_name|
   organization_admin = Factory(:organization_admin, organization: Organization.find_by_name(organization_name), password: 'mypassword')
 
@@ -13,10 +9,6 @@ end
 
 Given /^I am on the accounts organization administration page$/ do
   visit admin_accounts_path
-end
-
-Given /^a user account "([^"]*)" exists for organization "([^"]*)"$/ do |account_name, organization_name|
-  Factory(:account, name: account_name, organization: Organization.find_by_name(organization_name))
 end
 
 When /^I fill in the user account information with the name "([^"]*)"$/ do |name|
