@@ -57,7 +57,7 @@ describe Organization do
 
   end
 
-  context '#complete_agreement!' do
+  describe '#complete_agreement!' do
 
     it "changes the status to 'organization' " do
       @organization = Organization.new
@@ -69,7 +69,7 @@ describe Organization do
 
   end
 
-  context '#complete_organization!' do
+  describe '#complete_organization!' do
 
     it "changes the status to 'primary_contact' " do
       @organization = Organization.new
@@ -83,7 +83,7 @@ describe Organization do
 
   end
 
-  context '#complete_primary_contact!' do
+  describe '#complete_primary_contact!' do
 
     it "changes the status to 'secondary_contact' " do
       @organization = Organization.new
@@ -97,7 +97,7 @@ describe Organization do
 
   end
 
-  context '#complete_secondary_contact!' do
+  describe '#complete_secondary_contact!' do
 
     it "changes the status to 'references' " do
       @organization = Organization.new
@@ -111,7 +111,7 @@ describe Organization do
 
   end
 
-  context '#complete_references!' do
+  describe '#complete_references!' do
 
     it "changes the status to 'completed' " do
       @organization = Organization.new
@@ -125,7 +125,7 @@ describe Organization do
 
   end
 
-  context '#approve!' do
+  describe '#approve!' do
 
     it "changes to status to 'approved'" do
       @organization = Organization.new
@@ -139,7 +139,7 @@ describe Organization do
 
   end
 
-  context '#reject!' do
+  describe '#reject!' do
 
     it "changes to status to 'rejected'" do
       @organization = Organization.new
@@ -174,7 +174,7 @@ describe Organization do
 
   end
 
-  context '.pending_approval' do
+  describe '.pending_approval' do
 
     before do
       @organizations = FactoryGirl.create_list(:organization_pending_approval, 2)
@@ -186,7 +186,7 @@ describe Organization do
 
   end
 
-  context '.pending_approval' do
+  describe '.pending_approval' do
 
     before do
       @organizations = FactoryGirl.create_list(:organization_approved, 2)
@@ -198,7 +198,7 @@ describe Organization do
 
   end
 
-  context '.approved' do
+  describe '.approved' do
 
     before do
       @organizations = FactoryGirl.create_list(:organization_pending_approval, 2)
@@ -210,7 +210,7 @@ describe Organization do
 
   end
 
-  context '.rejected' do
+  describe '.rejected' do
 
     before do
       @organizations = FactoryGirl.create_list(:organization_rejected, 2)
