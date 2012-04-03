@@ -5,6 +5,10 @@ class Admin::OrganizationsController < Admin::AdminController
     @organizations = params[:status].present? ? Organization.where(status: params[:status]) : Organization.all
   end
 
+  def show
+    @organization = Organization.find params[:id]
+  end
+
   def approve
     @organization = Organization.find params[:id]
 
