@@ -61,10 +61,6 @@ class Organization < ActiveRecord::Base
 
   end
 
-  def next!
-    send("complete_#{self.status}!")
-  end
-
   with_options if: -> user { user.status == 'agreement' } do |f|
     f.validate :accept_agreements
   end

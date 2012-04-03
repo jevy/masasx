@@ -153,54 +153,6 @@ describe Organization do
 
   end
 
-  context '#next!' do
-
-    before do
-      @organization = Organization.new
-    end
-
-    it 'transits from agreement to organization' do
-      @organization.status = 'agreement'
-
-      @organization.should_receive(:complete_agreement!)
-
-      @organization.next!
-    end
-
-    it 'transits from organization to primary_contact' do
-      @organization.status = 'organization'
-
-      @organization.should_receive(:complete_organization!)
-
-      @organization.next!
-    end
-
-    it 'transits from primary_contact to secondary_contact' do
-      @organization.status = 'primary_contact'
-
-      @organization.should_receive(:complete_primary_contact!)
-
-      @organization.next!
-    end
-
-    it 'transits from secondary_contact to references' do
-      @organization.status = 'secondary_contact'
-
-      @organization.should_receive(:complete_secondary_contact!)
-
-      @organization.next!
-    end
-
-    it 'transits from references to completed' do
-      @organization.status = 'references'
-
-      @organization.should_receive(:complete_references!)
-
-      @organization.next!
-    end
-
-  end
-
   context 'administrators' do
 
     before do
