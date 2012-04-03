@@ -39,4 +39,5 @@ Masasx::Application.routes.draw do
   end
 
   root to: 'registrations#agreement'
+  match '/admin/dashboard' => "dashboard#index", :as => :masasx_clerk_root # For redirect after signin
 end
