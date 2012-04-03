@@ -52,3 +52,18 @@ Feature: MasasxClerk should be able to manage the entire system
 
   Scenario: After I login, I should be taken to the admin dashboard
     Then I should be on the MasasxClerk admin dashboard page
+
+  Scenario: End to end registration test
+    Given I am on the signup page
+    And I complete the agreement page
+    And I follow "Next"
+    And I complete the organization page
+    And I follow "Next"
+    And I complete the Primary Contact page
+    And I follow "Next"
+    And I complete the Secondary Contact page
+    And I follow "Next"
+    And I complete the References page
+    And I follow "Next"
+    When I am on the MasasxClerk admin dashboard page
+    Then I should see "1 Organizations pending approval"
