@@ -11,8 +11,8 @@ Given /^an organization "([^"]*)" pending approval exists$/ do |name|
   Factory(:organization_pending_approval, name: name)
 end
 
-Then /^I should be on the Review Organizations page$/ do
-  URI.parse(current_url).path.should eql(admin_organizations_path)
+Then /^I should be on the MasasxClerk admin dashboard page$/ do
+  URI.parse(current_url).path.should eql(admin_dashboard_path)
 end
 
 When /^I am on the MasasxClerk admin dashboard page$/ do

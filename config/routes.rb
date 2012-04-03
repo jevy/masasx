@@ -25,6 +25,7 @@ Masasx::Application.routes.draw do
     resources :organizations do
       member  do
         get 'approve'
+        get 'reject'
       end
     end
     resources :accounts do

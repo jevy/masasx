@@ -20,4 +20,16 @@ FactoryGirl.define do
     association :secondary_organization_administrator, factory: :organization_admin
   end
 
+  factory :organization_approved, parent: :organization do
+    status 'approved'
+    association :primary_organization_administrator,   factory: :organization_admin
+    association :secondary_organization_administrator, factory: :organization_admin
+  end
+
+  factory :organization_rejected, parent: :organization do
+    status 'rejected'
+    association :primary_organization_administrator,   factory: :organization_admin
+    association :secondary_organization_administrator, factory: :organization_admin
+  end
+
 end

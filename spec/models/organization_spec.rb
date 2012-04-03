@@ -139,6 +139,20 @@ describe Organization do
 
   end
 
+  context '#reject!' do
+
+    it "changes to status to 'rejected'" do
+      @organization = Organization.new
+
+      @organization.status = 'completed'
+
+      @organization.reject!
+
+      @organization.status.should eql('rejected')
+    end
+
+  end
+
   context '#next!' do
 
     before do
@@ -216,6 +230,42 @@ describe Organization do
 
     it 'returns the organization pending approval' do
       Organization.pending_approval.should =~ @organizations
+    end
+
+  end
+
+  context '.pending_approval' do
+
+    before do
+      @organizations = FactoryGirl.create_list(:organization_approved, 2)
+    end
+
+    it 'returns the approved organizations' do
+      Organization.approved.should =~ @organizations
+    end
+
+  end
+
+  context '.approved' do
+
+    before do
+      @organizations = FactoryGirl.create_list(:organization_pending_approval, 2)
+    end
+
+    it 'returns the organizations pending approval' do
+      Organization.pending_approval.should =~ @organizations
+    end
+
+  end
+
+  context '.rejected' do
+
+    before do
+      @organizations = FactoryGirl.create_list(:organization_rejected, 2)
+    end
+
+    it 'returns the rejected organizations' do
+      Organization.rejected.should =~ @organizations
     end
 
   end

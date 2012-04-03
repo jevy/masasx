@@ -3,6 +3,8 @@ class Admin::DashboardController < Admin::AdminController
 
   def index
     @pending_approval_organizations = Organization.pending_approval
+    @approved_organizations         = Organization.approved
+    @rejected_organizations         = Organization.rejected
   end
 
 end
