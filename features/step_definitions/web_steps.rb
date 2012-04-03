@@ -17,3 +17,7 @@ end
 Then /^I should not see "([^"]*)"$/ do |message|
   page.should_not have_content(message)
 end
+
+Given /^I leave the "([^"]*)" field blank$/ do |field|
+  fill_in field, with: ""
+end

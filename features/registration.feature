@@ -21,3 +21,27 @@ Feature: A brand new organization may apply for an account
     When I follow "Next"
     Then I should be on the agreement page
     And I should see "You must accept all the agreements."
+
+  Scenario: A new organization does not enter an email for the primany contact
+    Given I complete the agreement page
+    And I follow "Next"
+    And I complete the organization page
+    And I follow "Next"
+    And I complete the Primary Contact page
+    And I leave the "Office e-mail" field blank
+    And I follow "Next"
+    Then I should see "Email address required"
+    And I should not see "Password required"
+
+  Scenario: A new organization does not enter an email or password for the secondary contact
+    Given I complete the agreement page
+    And I follow "Next"
+    And I complete the organization page
+    And I follow "Next"
+    And I complete the Primary Contact page
+    And I follow "Next"
+    And I complete the Secondary Contact page
+    And I leave the "Office e-mail" field blank
+    And I follow "Next"
+    Then I should see "Email address required"
+    And I should not see "Password required"

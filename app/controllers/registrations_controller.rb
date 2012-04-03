@@ -19,7 +19,8 @@ class RegistrationsController < ApplicationController
   def accept_agreement
     @organization = Organization.new params[:organization]
     if @organization.save
-    redirect_to organization_path(@organization)
+      @organization.complete_agreement!
+      redirect_to organization_path(@organization)
     else
       flash.now[:error] = 'You must accept all the agreements.'
       render :agreement
@@ -27,23 +28,43 @@ class RegistrationsController < ApplicationController
   end
 
   def update_organization
-    @organization.update_attributes(params[:organization])
-    redirect_to primary_contact_path(@organization)
+    if @organization.update_attributes(params[:organization])
+      @organization.complete_organization!
+      redirect_to primary_contact_path(@organization)
+    else
+      flash.now[:error] = @organization.errors.full_messages.to_sentence
+      render organization_path(@organization)
+    end
   end
 
   def update_primary_contact
-    @organization.update_attributes(params[:organization])
-    redirect_to secondary_contact_path(@organization)
+    if @organization.update_attributes(params[:organization])
+      @organization.complete_primary_contact!
+      redirect_to secondary_contact_path(@organization)
+    else
+      flash.now[:error] = @organization.errors.full_messages.to_sentence
+      render primary_contact_path(@organization)
+    end
   end
 
   def update_secondary_contact
-    @organization.update_attributes(params[:organization])
-    redirect_to references_path(@organization)
+    if @organization.update_attributes(params[:organization])
+      @organization.complete_secondary_contact!
+      redirect_to references_path(@organization)
+    else
+      flash.now[:error] = @organization.errors.full_messages.to_sentence
+      render secondary_contact_path(@organization)
+    end
   end
 
   def update_references
-    @organization.update_attributes(params[:organization])
-    redirect_to thanks_path(@organization)
+    if @organization.update_attributes(params[:organization])
+      @organization.complete_references!
+      redirect_to thanks_path(@organization)
+    else
+      flash.now[:error] = @organization.errors.full_messages.to_sentence
+      render references_path(@organization)
+    end
   end
 
   private
