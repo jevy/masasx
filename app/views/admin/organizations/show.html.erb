@@ -4,3 +4,5 @@
 <p>Division: <%= @organization.division %></p>
 <p>Telephone: <%= @organization.telephone %></p>
 <p>Website: <%= @organization.website %></p>
+
+<p><%= link_to 'Back to review applications', admin_organizations_path(status: 'completed')  %></p>

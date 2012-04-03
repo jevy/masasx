@@ -7,10 +7,15 @@ Given /^I am logged\-in as a MasasxClerk$/ do
   click_on 'Sign in'
 end
 
+When /^I am on the MasasxClerk admin dashboard page$/ do
+  visit admin_dashboard_path
+end
+
 Then /^I should be on the MasasxClerk admin dashboard page$/ do
   URI.parse(current_url).path.should eql(admin_dashboard_path)
 end
 
-When /^I am on the MasasxClerk admin dashboard page$/ do
-  visit admin_dashboard_path
+Then /^I should be on the MasasxClerk review pending applications page$/ do
+  #TODO test query string
+  URI.parse(current_url).path.should eql(admin_organizations_path)
 end

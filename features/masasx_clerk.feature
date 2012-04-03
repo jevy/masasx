@@ -42,10 +42,11 @@ Feature: MasasxClerk should be able to manage the entire system
     And I should see "555-42-42-42"
     And I should see "http://example.com"
 
+    @wip
   Scenario: MasasxClerk should be able to return to the review pending applications page from application details page
-    Given an organization "Organization Name" pending approval exists
+    Given an organization pending approval exists with a name of "Organization Name"
     And I am on the MasasxClerk admin dashboard page
     And I press "Review Pending Applications"
     And I press "View"
-    When then I click "Back to review applications"
-    Then I should be on the MasasxClerk admin dashboard page
+    When I press "Back to review applications"
+    Then I should be on the MasasxClerk review pending applications page
