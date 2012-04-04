@@ -1,6 +1,6 @@
 <div class="well sidebar-nav">
   <ul class="nav nav-list">
-    <li class="nav-header">Sidebar</li>
-      <li><%= link_to 'Info', 'Info'  %></li>
+    <li class="nav-header">Info</li>
+    <li><%= content_for?(:sidebar) ? content_for(:sidebar) : 'No information available at the moment.' %></li>
   </ul>
 </div>
