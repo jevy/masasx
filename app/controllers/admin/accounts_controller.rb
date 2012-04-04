@@ -14,6 +14,12 @@ class Admin::AccountsController < Admin::AdminController
     @account = Account.find params[:id]
   end
 
+  def destroy
+    @account = Account.find params[:id]
+    @account.destroy
+    redirect_to admin_accounts_path, notice: 'Account successfully removed!'
+  end
+
   def permissions
     @account = Account.find params[:id]
   end

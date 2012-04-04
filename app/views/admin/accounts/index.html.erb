@@ -35,8 +35,9 @@
         <% end %>
         <td>
           <div class="btn-toolbar">
-            <%= link_to 'View', admin_account_path(account), class: 'btn' %>
+            <%= link_to 'View', admin_account_path(account), class: 'btn btn-primary' %>
             <%= link_to 'Edit', edit_admin_account_path(account), class: 'btn' %>
+            <%= link_to 'Remove', admin_account_path(account), method: :delete, confirm: 'Sure?', class: 'btn btn-danger' %>
             <%= link_to 'Edit Permissions', permissions_admin_account_path(account), class: 'btn' %>
           </div>
         </td>
