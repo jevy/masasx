@@ -20,6 +20,10 @@ When /^I select "([^"]*)" for the "([^"]*)" permission$/ do |value, permission|
   select(value)
 end
 
+Then /^I should be on the Organization admin dashboard page$/ do
+  URI.parse(current_url).path.should eql(admin_accounts_path)
+end
+
 Then /^I should see "([^"]*)" have the "([^"]*)" for "([^"]*)"$/ do |account_name, value, permission|
   page.should have_content(value)
 end

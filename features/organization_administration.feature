@@ -7,6 +7,9 @@ Feature: An appoved organization can create and manage their own user accounts
     Given an organization approved exists with a name of "Ottawa Fire Services"
     And I am logged-in as an Organization Administrator for "Ottawa Fire Services"
 
+  Scenario: After I login, I should be taken to the admin dashboard
+    Then I should be on the Organization admin dashboard page
+
   Scenario: I can create a User Account
     Given I am on the accounts organization administration page
     When I press "Add New User Account"
@@ -47,3 +50,13 @@ Feature: An appoved organization can create and manage their own user accounts
     Then I should see "Ops Fire Manager"
     And I should see "Ops Fire Senior Manager"
     And I should not see "Ops Sky Manager"
+
+  Scenario: I can remove only a user account
+    Given the following accounts exist:
+      | Name                    | Organization               |
+      | Ops Fire Manager        | Name: Ottawa Fire Services |
+      | Ops Fire Senior Manager | Name: Ottawa Fire Services |
+      | Ops Fire Super Manager  | Name: Ottawa Fire Services |
+    And I am on the accounts organization administration page
+    When I press "Remove"
+    Then I should see "2 User Accounts"
