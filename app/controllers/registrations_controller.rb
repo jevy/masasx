@@ -42,7 +42,7 @@ class RegistrationsController < ApplicationController
       @organization.complete_primary_contact!
       redirect_to secondary_contact_path(@organization)
     else
-      flash.now[:error] = @organization.errors.full_messages.to_sentence
+      flash.now[:error] = @organization.errors.messages.values.to_sentence
       render :primary_contact
     end
   end
@@ -52,7 +52,7 @@ class RegistrationsController < ApplicationController
       @organization.complete_secondary_contact!
       redirect_to references_path(@organization)
     else
-      flash.now[:error] = @organization.errors.full_messages.to_sentence
+      flash.now[:error] = @organization.errors.messages.values.to_sentence
       render :secondary_contact
     end
   end
@@ -62,7 +62,7 @@ class RegistrationsController < ApplicationController
       @organization.complete_references!
       redirect_to thanks_path(@organization)
     else
-      flash.now[:error] = @organization.errors.full_messages.to_sentence
+      flash.now[:error] = @organization.errors.messages.values.to_sentence
       render :references
     end
   end
