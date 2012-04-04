@@ -57,98 +57,92 @@ describe Organization do
 
   end
 
-  describe '#complete_agreement!' do
+  context 'statuses' do
 
-    it "changes the status to 'organization' " do
-      @organization = Organization.new
-
-      @organization.complete_agreement!
-
-      @organization.status.should eql('organization')
+    before do
+      @organization = Factory(:organization)
     end
 
-  end
+    describe '#complete_agreement!' do
 
-  describe '#complete_organization!' do
+      it "changes the status to 'organization' " do
+        @organization.complete_agreement!
 
-    it "changes the status to 'primary_contact' " do
-      @organization = Organization.new
+        @organization.status.should eql('organization')
+      end
 
-      @organization.status = 'organization'
-
-      @organization.complete_organization!
-
-      @organization.status.should eql('primary_contact')
     end
 
-  end
+    describe '#complete_organization!' do
 
-  describe '#complete_primary_contact!' do
+      it "changes the status to 'primary_contact' " do
+        @organization.status = 'organization'
 
-    it "changes the status to 'secondary_contact' " do
-      @organization = Organization.new
+        @organization.complete_organization!
 
-      @organization.status = 'primary_contact'
+        @organization.status.should eql('primary_contact')
+      end
 
-      @organization.complete_primary_contact!
-
-      @organization.status.should eql('secondary_contact')
     end
 
-  end
+    describe '#complete_primary_contact!' do
 
-  describe '#complete_secondary_contact!' do
+      it "changes the status to 'secondary_contact' " do
+        @organization.status = 'primary_contact'
 
-    it "changes the status to 'references' " do
-      @organization = Organization.new
+        @organization.complete_primary_contact!
 
-      @organization.status = 'secondary_contact'
+        @organization.status.should eql('secondary_contact')
+      end
 
-      @organization.complete_secondary_contact!
-
-      @organization.status.should eql('references')
     end
 
-  end
+    describe '#complete_secondary_contact!' do
 
-  describe '#complete_references!' do
+      it "changes the status to 'references' " do
+        @organization.status = 'secondary_contact'
 
-    it "changes the status to 'completed' " do
-      @organization = Organization.new
+        @organization.complete_secondary_contact!
 
-      @organization.status = 'references'
+        @organization.status.should eql('references')
+      end
 
-      @organization.complete_references!
-
-      @organization.status.should eql('completed')
     end
 
-  end
+    describe '#complete_references!' do
 
-  describe '#approve!' do
+      it "changes the status to 'completed' " do
+        @organization.status = 'references'
 
-    it "changes to status to 'approved'" do
-      @organization = Organization.new
+        @organization.complete_references!
 
-      @organization.status = 'completed'
+        @organization.status.should eql('completed')
+      end
 
-      @organization.approve!
-
-      @organization.status.should eql('approved')
     end
 
-  end
+    describe '#approve!' do
 
-  describe '#reject!' do
+      it "changes to status to 'approved'" do
+        @organization.status = 'completed'
 
-    it "changes to status to 'rejected'" do
-      @organization = Organization.new
+        @organization.approve!
 
-      @organization.status = 'completed'
+        @organization.status.should eql('approved')
+      end
 
-      @organization.reject!
+    end
 
-      @organization.status.should eql('rejected')
+    describe '#reject!' do
+
+      it "changes to status to 'rejected'" do
+        @organization.status = 'completed'
+
+        @organization.reject!
+
+        @organization.status.should eql('rejected')
+      end
+
     end
 
   end
