@@ -23,8 +23,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <% for account in @accounts %>
+    <% for account in @accounts %>
+      <tr>
         <td><%= link_to account.name, edit_admin_account_path(account) %></td>
         <td><%= account.access_code %></td>
         <% for service in MasasService.all %>
@@ -38,7 +38,7 @@
             <%= link_to 'Edit Permissions', permissions_admin_account_path(account), class: 'btn' %>
           </div>
         </td>
-      <% end %>
-    </tr>
+      </tr>
+    <% end %>
   </tbody>
 </table>
