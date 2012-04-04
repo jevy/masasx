@@ -21,7 +21,7 @@ class Organization < ActiveRecord::Base
     self.agreements ||= []
   end
 
-  aasm column: :status do
+  aasm column: :status, skip_validation_on_save: true do
     state :agreement, initial: true
     state :organization
     state :primary_contact
@@ -61,8 +61,12 @@ class Organization < ActiveRecord::Base
 
   end
 
-  with_options if: -> user { user.status == 'agreement' } do |f|
+  with_options if: -> organization { organization.status == 'agreement' } do |f|
     f.validate :accept_agreements
+  end
+
+  with_options if: -> organization { organization.status == 'organization' } do |f|
+    f.validates :name, presence: {message: 'Name required'}
   end
 
   private
