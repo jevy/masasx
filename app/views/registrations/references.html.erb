@@ -19,9 +19,9 @@
 
   <%= f.input :references_language, label: 'Language', collection: Language.all %>
 
-  <%= f.input :references, label: 'References' %>
+  <%= f.input :references, label: 'References', input_html: { class:'xxlarge', rows: 5 }  %>
 
-  <%= f.input :questions, label: 'Comments/Questions' %>
+  <%= f.input :questions, label: 'Comments/Questions', input_html: { class:'xxlarge', rows: 5 }%>
 
   <%= f.button :submit, 'Next', class: 'btn-primary' %>
 <% end %>
