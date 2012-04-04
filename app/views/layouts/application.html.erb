@@ -24,6 +24,7 @@
           <%= render partial: 'common/sidebar' %>
         </div><!--/span-->
         <div class="span9">
+          <%= content_tag(:h1, yield(:title)) if content_for?(:title) %>
           <%= render partial: 'common/flashes' %>
           <%= yield %>
         </div>

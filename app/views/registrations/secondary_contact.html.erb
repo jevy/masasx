@@ -13,8 +13,6 @@
   <li><a>Step 4</a></li>
 </ul>
 
-<h1>Secondary Contact</h1>
-
 <%= simple_form_for @organization, url: update_secondary_contact_path, html: { class: 'form-horizontal' } do |f| %>
 
   <%= f.fields_for :secondary_organization_administrator do |administrator| %>

@@ -15,8 +15,6 @@
   </li>
 </ul>
 
-<h1>References</h1>
-
 <%= simple_form_for @organization, url: update_references_path  do |f| %>
 
   <%= f.input :references_language, label: 'Language', collection: Language.all %>
