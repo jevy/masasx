@@ -69,6 +69,10 @@ class Organization < ActiveRecord::Base
     f.validates :name, presence: {message: 'Name required'}
   end
 
+  with_options if: -> organization { organization.status == 'references' } do |f|
+    f.validates :references, presence: {message: 'References required'}
+  end
+
   private
   def accept_agreements
     if self.agreements.reject(&:blank?).size < 3
