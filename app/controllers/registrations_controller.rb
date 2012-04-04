@@ -33,7 +33,7 @@ class RegistrationsController < ApplicationController
       redirect_to primary_contact_path(@organization)
     else
       flash.now[:error] = @organization.errors.full_messages.to_sentence
-      render organization_path(@organization)
+      render :organization
     end
   end
 
@@ -43,7 +43,7 @@ class RegistrationsController < ApplicationController
       redirect_to secondary_contact_path(@organization)
     else
       flash.now[:error] = @organization.errors.full_messages.to_sentence
-      render primary_contact_path(@organization)
+      render :primary_contact
     end
   end
 
@@ -53,7 +53,7 @@ class RegistrationsController < ApplicationController
       redirect_to references_path(@organization)
     else
       flash.now[:error] = @organization.errors.full_messages.to_sentence
-      render secondary_contact_path(@organization)
+      render :secondary_contact
     end
   end
 
@@ -63,7 +63,7 @@ class RegistrationsController < ApplicationController
       redirect_to thanks_path(@organization)
     else
       flash.now[:error] = @organization.errors.full_messages.to_sentence
-      render references_path(@organization)
+      render :references
     end
   end
 
