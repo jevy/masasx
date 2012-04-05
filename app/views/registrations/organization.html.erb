@@ -1,11 +1,21 @@
 <% title 'Step 2 - Organization Information' %>
 
+<% content_for :sidebar do -%>
+  <p>
+  For which entity is this application being made? This is the information
+  displayed when logged in or associated with posted information (only
+  official and releasable information should be used, do not use personal
+  information). Preferably, an access code is provided to a
+  group/department/section, and less often to an individual.
+  </p>
+<% end -%>
+
 <ul class="nav nav-pills">
   <li>
   <%= link_to 'Step 1', registration_path  %>
   </li>
   <li class="active">
-    <%= link_to 'Step 2', organization_path  %>
+  <%= link_to 'Step 2', organization_path  %>
   </li>
   <li><a>Step 3</a></li>
   <li><a>Step 4</a></li>
