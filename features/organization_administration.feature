@@ -51,7 +51,7 @@ Feature: An appoved organization can create and manage their own user accounts
     And I should see "Ops Fire Senior Manager"
     And I should not see "Ops Sky Manager"
 
-  Scenario: I can remove only a user account
+  Scenario: I can remove a user account
     Given the following accounts exist:
       | Name                    | Organization               |
       | Ops Fire Manager        | Name: Ottawa Fire Services |
