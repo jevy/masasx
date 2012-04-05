@@ -60,3 +60,19 @@ Feature: An appoved organization can create and manage their own user accounts
     And I am on the accounts organization administration page
     When I press "Remove"
     Then I should see "2 User Accounts"
+
+  Scenario: I can disable an enabled user account
+    Given the following account exist:
+      | Name             | Organization               | Enabled |
+      | Ops Fire Manager | Name: Ottawa Fire Services | true    |
+    And I am on the accounts organization administration page
+    When I press "Disable"
+    Then I should see "Enable"
+
+  Scenario: I can enable a disabled user account
+    Given the following account exist:
+      | Name             | Organization               | Enabled |
+      | Ops Fire Manager | Name: Ottawa Fire Services | false   |
+    And I am on the accounts organization administration page
+    When I press "Enable"
+    Then I should see "Disable"

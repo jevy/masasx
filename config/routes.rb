@@ -31,6 +31,7 @@ Masasx::Application.routes.draw do
     resources :accounts do
       member do
         get 'permissions'
+        get 'toggle_enabled'
         put 'update_permissions'
       end
     end

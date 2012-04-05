@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120404141746) do
+ActiveRecord::Schema.define(:version => 20120405080537) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
     t.string   "access_code"
     t.string   "permissions_store"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "organization_id"
+    t.boolean  "enabled",           :default => true
   end
 
   create_table "contacts", :force => true do |t|

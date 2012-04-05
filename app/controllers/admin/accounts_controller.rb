@@ -44,4 +44,10 @@ class Admin::AccountsController < Admin::AdminController
     redirect_to admin_accounts_path, notice: 'Account successfully created!'
   end
 
+  def toggle_enabled
+    @account = Account.find params[:id]
+    @account.toggle! :enabled
+    redirect_to admin_accounts_path, notice: "Account successfully #{@account.enabled? ? 'enabled' : 'disabled'}!"
+  end
+
 end
