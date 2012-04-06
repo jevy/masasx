@@ -51,6 +51,22 @@ Then /^I should be on the organization page$/ do
   end
 end
 
+Then /^I should be on the (\w*) contact page$/ do |contact|
+  within('head title') do
+    page.should have_content("Step 3 - #{contact.capitalize} Contact Information")
+  end
+end
+
+Then /^I should see the (\w*) contact page completed$/ do |contact|
+  page.find_field('Name').value.should eql("John #{contact} Doe")
+  page.find_field('Title').value.should eql("Head of #{contact}")
+  page.find_field('Language').value.should eql('English')
+  page.find_field('Office e-mail').value.should  eql("john.doe.#{contact}@example.com")
+  page.find_field('Mobile e-mail').value.should  eql("john.doe.#{contact}@mobile.com")
+  page.find_field('Office Phone').value.should   eql('555-111-111-111')
+  page.find_field('Mobile Phone').value.should   eql('555-222-222-222')
+end
+
 Then /^I should see the organization page completed$/ do
   page.find_field('Organization Name').value.should  eql('Awesome Organization')
   page.find_field('Department').value.should         eql('Awesome Deparment')
