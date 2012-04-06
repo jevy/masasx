@@ -43,6 +43,19 @@ Feature: A brand new organization may apply for an account
     Then I should be on the primary contact page
     And I should see the primary contact page completed
 
+  Scenario: A brand new organization can navigate to the secondary contact page from the references page
+    Given I complete the agreement page
+    And I follow "Next"
+    And I complete the organization page
+    And I follow "Next"
+    And I complete the primary Contact page
+    And I follow "Next"
+    And I complete the secondary Contact page
+    And I follow "Next"
+    When I follow "Previous"
+    Then I should be on the secondary contact page
+    And I should see the secondary contact page completed
+
   Scenario: A brand new organization does not complete the agreement page
     Given I do not complete the agreement page
     When I follow "Next"

@@ -35,5 +35,6 @@
 
   <%= f.input :questions, label: 'Comments/Questions', input_html: { class:'xxlarge', rows: 5 }%>
 
+  <%= link_to 'Previous', previous_step_path(@organization), class: 'btn'  %>
   <%= f.button :submit, 'Next', class: 'btn-primary' %>
 <% end %>
