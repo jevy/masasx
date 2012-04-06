@@ -15,7 +15,7 @@ FactoryGirl.define do
   end
 
   factory :organization_pending_approval, parent: :organization do
-    status 'completed'
+    status 'pending_approval'
     association :primary_organization_administrator,   factory: :organization_admin
     association :secondary_organization_administrator, factory: :organization_admin
   end

@@ -14,7 +14,7 @@ gem 'twitter-bootstrap-rails'
 
 gem 'devise'
 
-gem 'aasm'
+gem 'state_machine'
 
 gem 'rb-readline'
 

@@ -1,7 +1,5 @@
 class Organization < ActiveRecord::Base
 
-  include AASM
-
   has_one :primary_organization_administrator,   class_name: 'OrganizationAdmin'
   has_one :secondary_organization_administrator, class_name: 'OrganizationAdmin'
 
@@ -10,67 +8,55 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :primary_organization_administrator
   accepts_nested_attributes_for :secondary_organization_administrator
 
-  scope :pending_approval, where(status: 'completed')
+  scope :pending_approval,  where(status: 'pending_approval')
+  scope :approved,          where(status: 'approved')
+  scope :rejected,          where(status: 'rejected')
 
   attr_accessor :agreements
 
-  after_initialize :init_status
+  after_initialize :init_agreements
 
-  def init_status
-    self.status     ||= 'agreement'
+  def init_agreements
     self.agreements ||= []
   end
 
-  aasm column: :status, skip_validation_on_save: true do
-    state :agreement, initial: true
-    state :organization
-    state :primary_contact
-    state :secondary_contact
-    state :references
-    state :completed
-    state :approved
-    state :rejected
+  state_machine :status, initial: :agreement do
 
-    event :complete_agreement do
-      transitions to: :organization, from: :agreement
+    event :next do
+      transition agreement: :organization,
+        organization: :primary_contact,
+        primary_contact: :secondary_contact,
+        secondary_contact: :references,
+        references: :pending_approval
     end
 
-    event :complete_organization do
-      transitions to: :primary_contact, from: :organization
-    end
-
-    event :complete_primary_contact do
-      transitions to: :secondary_contact, from: :primary_contact
-    end
-
-    event :complete_secondary_contact do
-      transitions to: :references, from: :secondary_contact
-    end
-
-    event :complete_references do
-      transitions to: :completed, from: :references
+    event :previous do
+      transition organization: :agreement,
+        primary_contact: :organization,
+        secondary_contact: :primary_contact,
+        references: :secondary_contact
     end
 
     event :approve do
-      transitions to: :approved, from: :completed
+      transition pending_approval: :approved
     end
 
     event :reject do
-      transitions to: :rejected, from: :completed
+      transition pending_approval: :rejected
     end
 
   end
 
-  with_options if: -> organization { organization.status == 'agreement' } do |f|
+  with_options if: -> organization { organization.status?(:agreement) } do |f|
     f.validate :accept_agreements
   end
 
-  with_options if: -> organization { organization.status == 'organization' } do |f|
-    f.validates :name, presence: {message: 'Name required'}
+  with_options if: -> organization { organization.status?(:organization) } do |f|
+    f.validates :name, presence: { message: 'Name required' }
   end
 
-  with_options if: -> organization { organization.status == 'references' } do |f|
-    f.validates :references, presence: {message: 'References required'}
+  with_options if: -> organization { organization.status?(:references) } do |f|
+    f.validates :references, presence: { message: 'References required' }
   end
 
   private

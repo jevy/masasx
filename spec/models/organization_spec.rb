@@ -57,92 +57,152 @@ describe Organization do
 
   end
 
-  context 'statuses' do
+  describe '#next!' do
 
     before do
       @organization = Factory(:organization)
     end
 
-    describe '#complete_agreement!' do
+    context 'from agreement to organization' do
 
       it "changes the status to 'organization' " do
-        @organization.complete_agreement!
+        @organization.next!
 
         @organization.status.should eql('organization')
       end
 
     end
 
-    describe '#complete_organization!' do
+    context 'from organization to primary_contact' do
 
       it "changes the status to 'primary_contact' " do
         @organization.status = 'organization'
 
-        @organization.complete_organization!
+        @organization.next!
 
         @organization.status.should eql('primary_contact')
       end
 
     end
 
-    describe '#complete_primary_contact!' do
+    context 'from primary_contact to secondary_contact' do
 
       it "changes the status to 'secondary_contact' " do
         @organization.status = 'primary_contact'
 
-        @organization.complete_primary_contact!
+        @organization.next!
 
         @organization.status.should eql('secondary_contact')
       end
 
     end
 
-    describe '#complete_secondary_contact!' do
+    context 'from secondary_contact to references' do
 
       it "changes the status to 'references' " do
         @organization.status = 'secondary_contact'
 
-        @organization.complete_secondary_contact!
+        @organization.next!
 
         @organization.status.should eql('references')
       end
 
     end
 
-    describe '#complete_references!' do
+    context 'from references to pending_approval' do
 
-      it "changes the status to 'completed' " do
+      it "changes the status to 'pending_approval' " do
         @organization.status = 'references'
 
-        @organization.complete_references!
+        @organization.next!
 
-        @organization.status.should eql('completed')
+        @organization.status.should eql('pending_approval')
       end
 
     end
 
-    describe '#approve!' do
+  end
 
-      it "changes to status to 'approved'" do
-        @organization.status = 'completed'
+  describe '#previous!' do
 
-        @organization.approve!
+    before do
+      @organization = Factory(:organization)
+    end
 
-        @organization.status.should eql('approved')
+    context 'from organization to agreement' do
+
+      it "changes the status to 'agreement' " do
+        @organization.status = 'organization'
+
+        @organization.previous!
+
+        @organization.status.should eql('agreement')
       end
 
     end
 
-    describe '#reject!' do
+    context 'from primary_contact to organization' do
 
-      it "changes to status to 'rejected'" do
-        @organization.status = 'completed'
+      it "changes the status to 'organization'" do
+        @organization.status = 'primary_contact'
 
-        @organization.reject!
+        @organization.previous!
 
-        @organization.status.should eql('rejected')
+        @organization.status.should eql('organization')
       end
 
+    end
+
+    context 'from secondary_contact to primary_contact' do
+
+      it "changes the status to 'primary_contact'" do
+        @organization.status = 'secondary_contact'
+
+        @organization.previous!
+
+        @organization.status.should eql('primary_contact')
+      end
+
+    end
+
+    context 'from references to secondary_contact' do
+
+      it "changes the status to 'secondary_contact'" do
+        @organization.status = 'references'
+
+        @organization.previous!
+
+        @organization.status.should eql('secondary_contact')
+      end
+
+    end
+
+  end
+
+  describe '#approve!' do
+
+    it "changes to status to 'approved'" do
+      @organization = Factory(:organization)
+
+      @organization.status = 'pending_approval'
+
+      @organization.approve!
+
+      @organization.status.should eql('approved')
+    end
+
+  end
+
+  describe '#reject!' do
+
+    it "changes to status to 'rejected'" do
+      @organization = Factory(:organization)
+
+      @organization.status = 'pending_approval'
+
+      @organization.reject!
+
+      @organization.status.should eql('rejected')
     end
 
   end

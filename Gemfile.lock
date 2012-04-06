@@ -1,8 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (3.0.3)
-      activerecord
     actionmailer (3.2.2)
       actionpack (= 3.2.2)
       mail (~> 2.4.0)
@@ -203,6 +201,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    state_machine (1.1.2)
     term-ansicolor (1.0.7)
     therubyracer (0.9.10)
       libv8 (~> 3.3.10)
@@ -228,7 +227,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm
   capistrano
   carrierwave
   ci_reporter
@@ -255,5 +253,6 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   simple_form
   spork (> 0.9.0.rc)
+  state_machine
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
