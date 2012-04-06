@@ -45,6 +45,22 @@ Then /^I should be on the agreement page$/ do
   end
 end
 
+Then /^I should be on the organization page$/ do
+  within('head title') do
+    page.should have_content('Step 2 - Organization')
+  end
+end
+
+Then /^I should see the organization page completed$/ do
+  page.find_field('Organization Name').value.should  eql('Awesome Organization')
+  page.find_field('Department').value.should         eql('Awesome Deparment')
+  page.find_field('Division').value.should           eql('Awesome Division')
+  page.find_field('Sub Division').value.should       eql('Awesome Sub Division')
+  page.find_field('Address Line 1').value.should     eql('Nowhere, 42')
+  page.find_field('Telephone').value.should          eql('555-42-42-42')
+  page.find_field('Website').value.should            eql('http://www.example.com')
+end
+
 Then /^I should see the agreement page completed$/ do
   page.should have_checked_field('I accept the MASAS Information eXchange (MASAS-X) Pilot Participation Agreement.')
   page.should have_checked_field('I am not a member of the media.')
