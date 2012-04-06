@@ -6,4 +6,4 @@
 
 <p><%= @rejected_organizations.count %> Organizations rejected</p>
 
-<p><%= link_to 'Review Pending Applications', admin_organizations_path(status: 'completed'), class: 'btn btn-primary' %></p>
+<p><%= link_to 'Review Pending Applications', admin_organizations_path(status: 'pending_approval'), class: 'btn btn-primary' %></p>

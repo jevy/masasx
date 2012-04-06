@@ -10,18 +10,18 @@
 
 <ul class="nav nav-pills">
   <li>
-  <%= link_to 'Step 1', registration_path  %>
+  Step 1
   </li>
   <li>
-  <%= link_to 'Step 2', organization_path(@user)  %>
+  Step 2
   </li>
   <li class="active">
-  <%= link_to 'Step 3', secondary_contact_path(@user)  %>
+  Step 3
   </li>
   <li><a>Step 4</a></li>
 </ul>
 
-<%= simple_form_for @organization, url: update_secondary_contact_path do |f| %>
+<%= simple_form_for @organization, url: next_step_path, method: :put do |f| %>
 
   <%= f.fields_for :secondary_organization_administrator do |administrator| %>
 
@@ -33,7 +33,7 @@
 
       <%= contact.input :language, label: 'Language', collection: Language.all %>
 
-      <%= contact.input :office_email, label: 'Office e-mail' %>
+      <%= administrator.input :email, label: 'Office e-mail' %>
 
       <%= contact.input :mobile_email, label: 'Mobile e-mail' %>
 

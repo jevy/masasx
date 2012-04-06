@@ -9,8 +9,6 @@ class OrganizationAdmin < ActiveRecord::Base
 
   validates :email, presence: { message: 'Email address required' }
 
-  def email
-    contact_info.present? ? contact_info.office_email : read_attribute(:email)
-  end
+  delegate :email,:email=, to: :contact_info, prefix: :office
 
 end

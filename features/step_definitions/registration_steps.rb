@@ -40,5 +40,13 @@ Given /^I complete the References page$/ do
 end
 
 Then /^I should be on the agreement page$/ do
-  URI.parse(current_url).path.should eql(accept_agreement_path)
+  within('head title') do
+    page.should have_content('Step 1 - Agreements')
+  end
+end
+
+Then /^I should see the agreement page completed$/ do
+  page.should have_checked_field('I accept the MASAS Information eXchange (MASAS-X) Pilot Participation Agreement.')
+  # check('I am not a member of the media.')
+  # check('I certify that I am a bona fide member of the Canadian Emergency Management community and have a valid reason to join the MASAS-X community.')
 end

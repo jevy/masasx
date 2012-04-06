@@ -17,10 +17,10 @@ class Organization < ActiveRecord::Base
   after_initialize :init_agreements
 
   def init_agreements
-    self.agreements ||= []
+    self.agreements = self.persisted? ? Agreement.all : []
   end
 
-  state_machine :status, initial: :agreement do
+  state_machine :status, initial: :agreement, action: :save_state, use_transactions: false do
 
     event :next do
       transition agreement: :organization,
@@ -47,7 +47,11 @@ class Organization < ActiveRecord::Base
 
   end
 
-  with_options if: -> organization { organization.status?(:agreement) } do |f|
+  def save_state
+    save(validate: false)
+  end
+
+  with_options if: -> organization { organization.persisted? && organization.status?(:agreement) } do |f|
     f.validate :accept_agreements
   end
 

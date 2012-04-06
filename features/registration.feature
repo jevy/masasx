@@ -16,11 +16,18 @@ Feature: A brand new organization may apply for an account
     And I follow "Next"
     Then I should see "Thank you for applying to become a MASAS member."
 
+   Scenario: A brand new organization can navigate to the agreement page from the organization page
+    Given I complete the agreement page
+    And I follow "Next"
+    When I follow "Previous"
+    Then I should be on the agreement page
+    And I should see the agreement page completed
+
   Scenario: A brand new organization does not complete the agreement page
     Given I do not complete the agreement page
     When I follow "Next"
     Then I should be on the agreement page
-    And I should see "You must accept all the agreements."
+    And I should see "All the agreements must be accepted"
 
   Scenario: A new organization does not enter the organization name
     Given I complete the agreement page

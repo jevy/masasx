@@ -47,7 +47,7 @@ describe Organization do
   context 'agreement validations' do
 
     before do
-      @organization = Organization.new
+      @organization = Factory(:organization)
     end
 
     it 'is invalid without accepting the agreements' do

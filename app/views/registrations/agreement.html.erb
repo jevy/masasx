@@ -7,17 +7,16 @@
 
 <ul class="nav nav-pills">
   <li class="active">
-  <%= link_to 'Step 1', registration_path  %>
+  Step 1
   </li>
   <li><a>Step 2</a></li>
   <li><a>Step 3</a></li>
   <li><a>Step 4</a></li>
 </ul>
 
-<%= simple_form_for @organization, url: accept_agreement_path do |f| %>
+<%= simple_form_for @organization, url: next_step_path(@organization), method: :put do |f| %>
 
-  <%= f.input :agreements, collection: agreements_options, as: :check_boxes %>
+  <%= f.input :agreements, collection: Agreement.all, as: :check_boxes %>
 
-  <%= f.button :submit, 'Cancel' %>
   <%= f.button :submit, 'Next', class: 'btn-primary' %>
 <% end %>
