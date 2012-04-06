@@ -47,6 +47,6 @@ end
 
 Then /^I should see the agreement page completed$/ do
   page.should have_checked_field('I accept the MASAS Information eXchange (MASAS-X) Pilot Participation Agreement.')
-  # check('I am not a member of the media.')
-  # check('I certify that I am a bona fide member of the Canadian Emergency Management community and have a valid reason to join the MASAS-X community.')
+  page.should have_checked_field('I am not a member of the media.')
+  page.should have_checked_field('I certify that I am a bona fide member of the Canadian Emergency Management community and have a valid reason to join the MASAS-X community.')
 end
