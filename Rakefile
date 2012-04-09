@@ -6,9 +6,3 @@ require File.expand_path('../config/application', __FILE__)
 require 'ci/reporter/rake/rspec' if Rails.env.test?
 
 Masasx::Application.load_tasks
-
-desc 'Run rake spec and rake cucumber:all'
-task :all do
-  Rake::Task['spec'].invoke
-  Rake::Task['cucumber:all'].invoke
-end
