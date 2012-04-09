@@ -47,7 +47,7 @@ describe Organization do
   context 'agreement validations' do
 
     before do
-      @organization = Factory(:organization)
+      @organization = FactoryGirl.create(:organization)
     end
 
     it 'is invalid without accepting the agreements' do
@@ -60,7 +60,7 @@ describe Organization do
   describe '#next!' do
 
     before do
-      @organization = Factory(:organization)
+      @organization = FactoryGirl.create(:organization)
     end
 
     context 'from agreement to organization' do
@@ -126,7 +126,7 @@ describe Organization do
   describe '#previous!' do
 
     before do
-      @organization = Factory(:organization)
+      @organization = FactoryGirl.create(:organization)
     end
 
     context 'from organization to agreement' do
@@ -182,7 +182,7 @@ describe Organization do
   describe '#approve!' do
 
     it "changes to status to 'approved'" do
-      @organization = Factory(:organization)
+      @organization = FactoryGirl.create(:organization)
 
       @organization.status = 'pending_approval'
 
@@ -196,7 +196,7 @@ describe Organization do
   describe '#reject!' do
 
     it "changes to status to 'rejected'" do
-      @organization = Factory(:organization)
+      @organization = FactoryGirl.create(:organization)
 
       @organization.status = 'pending_approval'
 
@@ -210,9 +210,9 @@ describe Organization do
   context 'administrators' do
 
     before do
-      @organization = Factory.build(:organization)
-      @organization.primary_organization_administrator_attributes   = Factory.attributes_for(:organization_admin, email: 'primary@example.com', contact_info: Factory.build(:contact, name: 'Luca Pette', office_email: 'luca@pette.com'))
-      @organization.secondary_organization_administrator_attributes = Factory.attributes_for(:organization_admin, email: 'secondary@example.com')
+      @organization = FactoryGirl.build(:organization)
+      @organization.primary_organization_administrator_attributes   = FactoryGirl.attributes_for(:organization_admin, email: 'primary@example.com', contact_info: FactoryGirl.build(:contact, name: 'Luca Pette', office_email: 'luca@pette.com'))
+      @organization.secondary_organization_administrator_attributes = FactoryGirl.attributes_for(:organization_admin, email: 'secondary@example.com')
     end
 
     it 'are created when organization is created' do

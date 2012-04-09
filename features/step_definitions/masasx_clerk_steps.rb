@@ -1,5 +1,5 @@
 Given /^I am logged\-in as a MasasxClerk$/ do
-  masasx_clerk = Factory(:masasx_clerk, password: 'mypassword')
+  masasx_clerk = FactoryGirl.create(:masasx_clerk, password: 'mypassword')
 
   visit new_masasx_clerk_session_path
   fill_in 'Email',    with: masasx_clerk.email

@@ -1,5 +1,5 @@
 Given /^I am logged-in as an Organization Administrator for "([^"]*)"$/ do |organization_name|
-  organization_admin = Factory(:organization_admin, organization: Organization.find_by_name(organization_name), password: 'mypassword')
+  organization_admin = FactoryGirl.create(:organization_admin, organization: Organization.find_by_name(organization_name), password: 'mypassword')
 
   visit new_organization_admin_session_path
   fill_in 'Email',    with: organization_admin.email
