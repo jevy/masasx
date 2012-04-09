@@ -207,27 +207,6 @@ describe Organization do
 
   end
 
-  context 'administrators' do
-
-    before do
-      @organization = FactoryGirl.build(:organization)
-      @organization.primary_organization_administrator_attributes   = FactoryGirl.attributes_for(:organization_admin, email: 'primary@example.com', contact_info: FactoryGirl.build(:contact, name: 'Luca Pette', office_email: 'luca@pette.com'))
-      @organization.secondary_organization_administrator_attributes = FactoryGirl.attributes_for(:organization_admin, email: 'secondary@example.com')
-    end
-
-    it 'are created when organization is created' do
-      @organization.save
-      OrganizationAdmin.count.should eql 2
-    end
-
-    it 'have the correct contact info' do
-      @organization.save
-      OrganizationAdmin.first.contact_info.name.should eql 'Luca Pette'
-      OrganizationAdmin.first.contact_info.office_email.should eql 'luca@pette.com'
-    end
-
-  end
-
   describe '.pending_approval' do
 
     before do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120409090903) do
+ActiveRecord::Schema.define(:version => 20120409150434) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -21,20 +21,6 @@ ActiveRecord::Schema.define(:version => 20120409090903) do
     t.datetime "updated_at",                          :null => false
     t.integer  "organization_id"
     t.boolean  "enabled",           :default => true
-  end
-
-  create_table "contacts", :force => true do |t|
-    t.string   "name"
-    t.string   "title"
-    t.string   "language"
-    t.string   "office_email"
-    t.string   "mobile_email"
-    t.string   "office_phone"
-    t.string   "mobile_phone"
-    t.integer  "contactable_id"
-    t.string   "contactable_type"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
   end
 
   create_table "masasx_clerks", :force => true do |t|
@@ -71,6 +57,13 @@ ActiveRecord::Schema.define(:version => 20120409090903) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "role"
+    t.string   "name"
+    t.string   "title"
+    t.string   "language"
+    t.string   "office_email"
+    t.string   "mobile_email"
+    t.string   "office_phone"
+    t.string   "mobile_phone"
   end
 
   add_index "organization_admins", ["email"], :name => "index_organization_admins_on_email", :unique => true

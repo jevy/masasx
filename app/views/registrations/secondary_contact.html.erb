@@ -14,23 +14,19 @@
 
   <%= f.fields_for :secondary_organization_administrator do |administrator| %>
 
-    <%= administrator.fields_for :contact_info do |contact| %>
+    <%= administrator.input :name, label: 'Name' %>
 
-      <%= contact.input :name, label: 'Name' %>
+    <%= administrator.input :title, label: 'Title' %>
 
-      <%= contact.input :title, label: 'Title' %>
+    <%= administrator.input :language, label: 'Language', collection: Language.all %>
 
-      <%= contact.input :language, label: 'Language', collection: Language.all %>
+    <%= administrator.input :email, label: 'Office e-mail' %>
 
-      <%= administrator.input :email, label: 'Office e-mail' %>
+    <%= administrator.input :mobile_email, label: 'Mobile e-mail' %>
 
-      <%= contact.input :mobile_email, label: 'Mobile e-mail' %>
+    <%= administrator.input :office_phone, label: 'Office Phone' %>
 
-      <%= contact.input :office_phone, label: 'Office Phone' %>
-
-      <%= contact.input :mobile_phone, label: 'Mobile Phone' %>
-
-    <% end %>
+    <%= administrator.input :mobile_phone, label: 'Mobile Phone' %>
 
   <% end %>
 
