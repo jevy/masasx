@@ -51,9 +51,15 @@ Then /^I should be on the organization page$/ do
   end
 end
 
-Then /^I should be on the (\w*) contact page$/ do |contact|
+Then /^I should be on the primary contact page$/ do
   within('head title') do
-    page.should have_content("Step 3 - #{contact.capitalize} Contact Information")
+    page.should have_content('Step 3 - Primary Contact Information')
+  end
+end
+
+Then /^I should be on the secondary contact page$/ do
+  within('head title') do
+    page.should have_content('Step 4 - Secondary Contact Information')
   end
 end
 

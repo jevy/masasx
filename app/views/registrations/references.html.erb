@@ -1,4 +1,4 @@
-<% title 'Step 4 - References Information' %>
+<% title 'Step 5 - References Information' %>
 
 <% content_for :sidebar do -%>
   <p>
@@ -12,20 +12,7 @@
   </p>
 <% end -%>
 
-<ul class="nav nav-pills">
-  <li>
-  <a>Step 1</a>
-  </li>
-  <li>
-  <a>Step 2</a>
-  </li>
-  <li>
-  <a>Step 3</a>
-  </li>
-  <li class="active">
-  <a>Step 4</a>
-  </li>
-</ul>
+<%= render partial: 'steps' %>
 
 <%= simple_form_for @organization, url: next_step_path, method: :put  do |f| %>
 

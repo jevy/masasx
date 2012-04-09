@@ -1,6 +1,7 @@
 class RegistrationsController < ApplicationController
 
   before_filter :find_organization, except: :start
+  before_filter :assign_current_step, except: :pending_approval
 
   def start
     @organization = Organization.new
@@ -38,6 +39,16 @@ class RegistrationsController < ApplicationController
 
   def find_organization
     @organization = Organization.find params[:id]
+  end
+
+  def assign_current_step
+   @current_step = find_current_step
+  end
+
+  def find_current_step
+    return 1 unless @organization
+    steps = [:agreement, :organization, :primary_contact, :secondary_contact, :references]
+    steps.find_index(current_step)+1
   end
 
 end
