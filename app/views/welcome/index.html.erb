@@ -1,2 +1,13 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<% title 'MASAS' %>
+
+<p>The Multi-Agency Situational Awareness System (MASAS) initiative makes it
+possible to share location-based situational awareness information and alerts,
+between first response and emergency management agencies, using open standards
+and an open architecture.  This site is maintained for a technical community.
+If you are looking for MASAS information more suited to users of the MASAS
+Information eXchange (MASAS-X), please visit www.MASAS-X.ca. To participate
+in the MASAS developer community you will need to
+<%= link_to 'register', registration_path  %> for an account. To gain access to the "sandbox"
+development environment(s), send an email to
+<%= mail_to 'developer-request@masas-x-sics.ca' %> stating who you are and who you
+represent. </p>
