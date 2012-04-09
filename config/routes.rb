@@ -28,6 +28,8 @@ Masasx::Application.routes.draw do
       end
     end
     get '/dashboard' => 'dashboard#index', as: :dashboard
+    root to: 'dashboard#index', constraints: lambda { |request| request.session['warden.user.organization_admin.key'].present? }
+    root to: 'accounts#index',  constraints: lambda { |request| request.session['warden.user.masasx_clerk.key'].present? }
     root to: 'home#index'
   end
 
