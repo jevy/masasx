@@ -36,7 +36,9 @@
 
   <% end %>
 
-  <%= link_to 'Previous', previous_step_path(@organization), class: 'btn'  %>
-  <%= f.button :submit, 'Next', class: 'btn-primary' %>
+  <div class="form-actions">
+    <%= link_to 'Previous', previous_step_path(@organization), class: 'btn'  %>
+    <%= f.button :submit, 'Next', class: 'btn-primary' %>
+  </div>
 
 <% end %>

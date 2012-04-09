@@ -11,5 +11,8 @@
 
   <%= f.input :agreements, collection: Agreement.all, as: :check_boxes %>
 
-  <%= f.button :submit, 'Next', class: 'btn-primary' %>
+  <div class="form-actions">
+    <%= link_to 'Cancel', root_path, class: 'btn' %>
+    <%= f.button :submit, 'Next', class: 'btn-primary' %>
+  </div>
 <% end %>
