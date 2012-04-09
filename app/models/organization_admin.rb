@@ -1,7 +1,7 @@
 class OrganizationAdmin < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :contact_info, :contact_info_attributes
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :contact_info, :contact_info_attributes, :role
 
   belongs_to :organization
   has_one :contact_info, as: :contactable, class_name: 'Contact'

@@ -16,20 +16,20 @@ FactoryGirl.define do
 
   factory :organization_pending_approval, parent: :organization do
     status 'pending_approval'
-    association :primary_organization_administrator,   factory: :organization_admin
-    association :secondary_organization_administrator, factory: :organization_admin
+    association :primary_organization_administrator,   factory: :organization_admin, role: 'Primary'
+    association :secondary_organization_administrator, factory: :organization_admin, role: 'Secondary'
   end
 
   factory :organization_approved, parent: :organization do
     status 'approved'
-    association :primary_organization_administrator,   factory: :organization_admin
-    association :secondary_organization_administrator, factory: :organization_admin
+    association :primary_organization_administrator,   factory: :organization_admin, role: 'Primary'
+    association :secondary_organization_administrator, factory: :organization_admin, role: 'Secondary'
   end
 
   factory :organization_rejected, parent: :organization do
     status 'rejected'
-    association :primary_organization_administrator,   factory: :organization_admin
-    association :secondary_organization_administrator, factory: :organization_admin
+    association :primary_organization_administrator,   factory: :organization_admin, role: 'Primary'
+    association :secondary_organization_administrator, factory: :organization_admin, role: 'Secondary'
   end
 
 end

@@ -24,11 +24,11 @@ class RegistrationsController < ApplicationController
   end
 
   def primary_contact
-    @organization.build_primary_organization_administrator.build_contact_info unless @organization.primary_organization_administrator
+    @organization.build_primary_organization_administrator(role: 'Primary').build_contact_info unless @organization.primary_organization_administrator
   end
 
   def secondary_contact
-    @organization.build_secondary_organization_administrator.build_contact_info unless @organization.secondary_organization_administrator
+    @organization.build_secondary_organization_administrator(role: 'Secondary').build_contact_info unless @organization.secondary_organization_administrator
   end
 
   private

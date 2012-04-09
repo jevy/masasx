@@ -1,7 +1,7 @@
 class Organization < ActiveRecord::Base
 
-  has_one :primary_organization_administrator,   class_name: 'OrganizationAdmin'
-  has_one :secondary_organization_administrator, class_name: 'OrganizationAdmin'
+  has_one :primary_organization_administrator,   class_name: 'OrganizationAdmin', conditions: { role: 'Primary'   }
+  has_one :secondary_organization_administrator, class_name: 'OrganizationAdmin', conditions: { role: 'Secondary' }
 
   has_many :accounts
 
