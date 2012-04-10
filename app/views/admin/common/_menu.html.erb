@@ -14,6 +14,7 @@
             <li><%= link_to 'Logout', destroy_organization_admin_session_path, method: :delete  %></li>
           <% end %>
           <% if masasx_clerk_signed_in? %>
+            <li><%= link_to 'Organizations', admin_organizations_path %></li>
             <li><%= link_to 'Logout', destroy_masasx_clerk_session_path, method: :delete  %></li>
           <% end %>
         </ul>
