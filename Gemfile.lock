@@ -195,6 +195,10 @@ GEM
     simple_form (2.0.1)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
+    simplecov (0.6.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.5.3)
+    simplecov-html (0.5.3)
     slop (2.4.4)
     spork (1.0.0rc2)
     sprockets (2.1.2)
@@ -252,6 +256,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   simple_form
+  simplecov
   spork (> 0.9.0.rc)
   state_machine
   twitter-bootstrap-rails

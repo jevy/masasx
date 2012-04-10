@@ -30,6 +30,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'cucumber-rails', '~> 1.0', require: false
+  gem 'simplecov', require: false
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'growl', require: RUBY_PLATFORM.include?('darwin') && 'growl'
