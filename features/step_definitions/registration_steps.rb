@@ -28,7 +28,7 @@ Given /^I complete the organization page$/ do
   fill_in 'Website',            with: 'http://www.example.com'
 end
 
-Given /^I complete the (\w+) Contact page$/ do |contact|
+Given /^I complete the (\w+) Contact page(.*)$/ do |contact, authority|
   fill_in 'Name',           with: "John #{contact} Doe"
   fill_in 'Title',          with: "Head of #{contact}"
   select 'English',         from: 'Language'
@@ -36,6 +36,7 @@ Given /^I complete the (\w+) Contact page$/ do |contact|
   fill_in 'Mobile e-mail',  with: "john.doe.#{contact}@mobile.com"
   fill_in 'Office Phone',   with: '555-111-111-111'
   fill_in 'Mobile Phone',   with: '555-222-222-222'
+  check 'Executive' if authority.present?
 end
 
 Given /^I complete the References page$/ do
