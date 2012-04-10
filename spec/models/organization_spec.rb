@@ -16,6 +16,16 @@ describe Organization do
 
   it { should respond_to(:address_line_1) }
 
+  it { should respond_to(:address_line_2) }
+
+  it { should respond_to(:city) }
+
+  it { should respond_to(:state) }
+
+  it { should respond_to(:country) }
+
+  it { should respond_to(:postal_code) }
+
   it { should respond_to(:telephone) }
 
   it { should respond_to(:website) }

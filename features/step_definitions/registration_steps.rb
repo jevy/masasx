@@ -19,7 +19,12 @@ Given /^I complete the organization page$/ do
   fill_in 'Division',           with: 'Awesome Division'
   fill_in 'Sub Division',       with: 'Awesome Sub Division'
   fill_in 'Address Line 1',     with: 'Nowhere, 42'
+  fill_in 'Address Line 2',     with: 'NoBuilding Center - 42 floor'
+  fill_in 'City',               with: 'Nocity'
+  fill_in 'State/Prov',         with: 'Nostate'
+  fill_in 'Country',            with: 'Nowhere'
   fill_in 'Telephone',          with: '555-42-42-42'
+  fill_in 'Postal code',        with: '424242'
   fill_in 'Website',            with: 'http://www.example.com'
 end
 
