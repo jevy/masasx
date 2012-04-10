@@ -7,6 +7,13 @@ Given /^I am logged\-in as a MasasxClerk$/ do
   click_on 'Sign in'
 end
 
+Given /^the following (\w+) contact for the organization "([^"]*)" exists:$/ do |role, organization_name, table|
+  organization_admin              = OrganizationAdmin.new(table.hashes.first)
+  organization_admin.role         = role.capitalize
+  organization_admin.organization = Organization.where(name: organization_name).first
+  organization_admin.save
+end
+
 When /^I am on the MasasxClerk admin dashboard page$/ do
   visit admin_dashboard_path
 end

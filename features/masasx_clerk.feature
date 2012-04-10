@@ -30,17 +30,53 @@ Feature: MasasxClerk should be able to manage the entire system
     Then I should be on the MasasxClerk admin dashboard page
     And I should see "1 Organizations rejected"
 
-  Scenario: MasasxClerk should be able to view the applicant's submitted application details
-    Given the following organization pending approval exists:
-      | Name              | Department         | Division       | Telephone    | website            |
-      | Organization Name | Awesome Department | Great Division | 555-42-42-42 | http://example.com |
+  Scenario Outline: MasasxClerk should be able to view the applicant's submitted application details
+    Given an organization pending approval exists with a <field> of "<value>"
     And I am on the MasasxClerk admin dashboard page
     And I press "Review Pending Applications"
     When I press "View"
-    Then I should see "Awesome Department"
-    And I should see "Great Division"
+    Then I should see "<value>"
+
+    Examples:
+      | field        | value                  |
+      | name         | Organization Name      |
+      | department   | Awesome Department     |
+      | division     | Great Division         |
+      | sub division | Great Sub-division     |
+      | telephone    | 555-42-42-42           |
+      | website      | http://www.example.com |
+      | references   | Jevin told me          |
+      | questions    | What's up?             |
+
+  Scenario: MasasxClerk should be able to view the applicant's submitted primary contact details
+    Given an organization pending approval exists with a name of "Organization Name"
+    And the following primary contact for the organization "Organization Name" exists:
+      | name        | email               | title  | mobile_email       | office_phone | mobile_phone |
+      | Ops Manager | someguy@example.com | Mister | mobile@example.com | 555-42-42-42 | 555-24-24-24 |
+    And I am on the MasasxClerk admin dashboard page
+    And I press "Review Pending Applications"
+    When I press "View"
+    Then I should see "Ops Manager"
+    And I should see "someguy@example.com"
+    And I should see "Mister"
+    And I should see "mobile@example.com"
     And I should see "555-42-42-42"
-    And I should see "http://example.com"
+    And I should see "555-24-24-24"
+
+  Scenario: MasasxClerk should be able to view the applicant's submitted secondary contact details
+    Given an organization pending approval exists with a name of "Organization Name"
+    And the following secondary contact for the organization "Organization Name" exists:
+      | name         | email                     | title         | mobile_email                | office_phone | mobile_phone |
+      | Ops Operator | somesecondary@example.com | Mister Second | mobilesecondary@example.com | 555-43-43-43 | 555-23-23-23 |
+    And I am on the MasasxClerk admin dashboard page
+    And I press "Review Pending Applications"
+    When I press "View"
+    Then I should see "Ops Operator"
+    And I should see "somesecondary@example.com"
+    And I should see "Mister Second"
+    And I should see "mobilesecondary@example.com"
+    And I should see "555-43-43-43"
+    And I should see "555-23-23-23"
 
   Scenario: MasasxClerk should be able to return to the review pending applications page from application details page
     Given an organization pending approval exists with a name of "Organization Name"

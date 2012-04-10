@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Status</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -11,9 +12,10 @@
     <% for organization in @organizations %>
       <tr>
         <td><%= organization.name %></td>
+        <td><%= organization.status %></td>
         <td>
           <div class="btn-toolbar">
-            <%= link_to 'View', [:admin, organization], class: 'btn' %>
+            <%= link_to 'View', [:admin, organization], class: 'btn btn-primary' %>
             <%= link_to 'Approve', approve_admin_organization_path(organization), class: 'btn'  %>
             <%= link_to 'Reject',  reject_admin_organization_path(organization), class: 'btn'  %>
           </div>

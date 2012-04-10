@@ -1,8 +1,66 @@
 <% title 'Organization Details' %>
 
-<p>Department name: <%= @organization.department %></p>
-<p>Division: <%= @organization.division %></p>
-<p>Telephone: <%= @organization.telephone %></p>
-<p>Website: <%= @organization.website %></p>
+<h2>Organization Details:</h2>
 
-<p><%= link_to 'Back to review applications', admin_organizations_path(status: 'completed')  %></p>
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>Department name</th>
+    <th>Division</th>
+    <th>Sub Division</th>
+    <th>Telephone</th>
+    <th>Website</th>
+    <th>References</th>
+    <th>Questions</th>
+  </thead>
+  <tr>
+    <td><%= @organization.name %></td>
+    <td><%= @organization.department %></td>
+    <td><%= @organization.division %></td>
+    <td><%= @organization.sub_division %></td>
+    <td><%= @organization.telephone %></td>
+    <td><%= @organization.website %></td>
+    <td><%= @organization.references %></td>
+    <td><%= @organization.questions %></td>
+  </tr>
+</table>
+
+<h2>Contacts Details:</h2>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <th>Role</th>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Office e-mail</th>
+    <th>Mobile e-mail</th>
+    <th>Office Phone</th>
+    <th>Mobile Phone</th>
+  </thead>
+  <tbody>
+    <% if @organization.primary_organization_administrator %>
+      <tr>
+        <td><%= @organization.primary_organization_administrator.role %></td>
+        <td><%= @organization.primary_organization_administrator.name %></td>
+        <td><%= @organization.primary_organization_administrator.title %></td>
+        <td><%= @organization.primary_organization_administrator.email %></td>
+        <td><%= @organization.primary_organization_administrator.mobile_email %></td>
+        <td><%= @organization.primary_organization_administrator.office_phone %></td>
+        <td><%= @organization.primary_organization_administrator.mobile_phone %></td>
+      </tr>
+    <% end %>
+    <% if @organization.secondary_organization_administrator %>
+      <tr>
+        <td><%= @organization.secondary_organization_administrator.role %></td>
+        <td><%= @organization.secondary_organization_administrator.name %></td>
+        <td><%= @organization.secondary_organization_administrator.title %></td>
+        <td><%= @organization.secondary_organization_administrator.email %></td>
+        <td><%= @organization.secondary_organization_administrator.mobile_email %></td>
+        <td><%= @organization.secondary_organization_administrator.office_phone %></td>
+        <td><%= @organization.secondary_organization_administrator.mobile_phone %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back to review applications', admin_organizations_path(status: 'completed'), class: 'btn btn-primary'  %>
