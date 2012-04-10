@@ -38,15 +38,21 @@ Feature: MasasxClerk should be able to manage the entire system
     Then I should see "<value>"
 
     Examples:
-      | field        | value                  |
-      | name         | Organization Name      |
-      | department   | Awesome Department     |
-      | division     | Great Division         |
-      | sub division | Great Sub-division     |
-      | telephone    | 555-42-42-42           |
-      | website      | http://www.example.com |
-      | references   | Jevin told me          |
-      | questions    | What's up?             |
+      | field          | value                  |
+      | name           | Organization Name      |
+      | department     | Awesome Department     |
+      | division       | Great Division         |
+      | sub division   | Great Sub-division     |
+      | telephone      | 555-42-42-42           |
+      | website        | http://www.example.com |
+      | references     | Jevin told me          |
+      | questions      | What's up?             |
+      | address line 1 | Line 1                 |
+      | address line 2 | Line 2                 |
+      | city           | My city                |
+      | country        | My Country             |
+      | state          | My state               |
+      | postal code    | 424242                 |
 
   Scenario: MasasxClerk should be able to view the applicant's submitted primary contact details
     Given an organization pending approval exists with a name of "Organization Name"
