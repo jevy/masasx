@@ -28,6 +28,14 @@ class Organization < ActiveRecord::Base
     organization_admins.find { |admin| admin.executive? || admin.role == 'Authority' }.present?
   end
 
+  def has_primary_executive?
+    self.primary_organization_administrator ? self.primary_organization_administrator.executive  : false
+  end
+
+  def has_secondary_executive?
+    self.secondary_organization_administrator ? self.secondary_organization_administrator.executive  : false
+  end
+
   state_machine :status, initial: :agreement, action: :save_state, use_transactions: false do
 
     event :next do
@@ -46,12 +54,10 @@ class Organization < ActiveRecord::Base
       transition secondary_contact: :primary_contact
       transition authority: :secondary_contact
       transition references: :secondary_contact, if: -> organization do
-        executive = organization.organization_admins.find { |a| a.executive }
-        executive ? %w{Primary Secondary}.include?(executive.role) : false
+        organization.has_primary_executive? || organization.has_secondary_executive?
       end
       transition references: :authority, unless: -> organization do
-        executive = organization.organization_admins.find { |a| a.executive }
-        executive ? %w{Primary Secondary}.include?(executive.role) : false
+        organization.has_primary_executive? || organization.has_secondary_executive?
       end
     end
 

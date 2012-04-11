@@ -343,6 +343,54 @@ describe Organization do
 
   end
 
+  describe '#has_primary_executive?' do
+
+    context 'when the primary contact is executive' do
+
+      it 'returns true' do
+        @organization = FactoryGirl.create(:organization, primary_organization_administrator: FactoryGirl.create(:organization_admin_executive))
+
+        @organization.should have_primary_executive
+      end
+
+    end
+
+    context 'when the primary contact is not executive' do
+
+      it 'returns false' do
+        @organization = FactoryGirl.create(:organization, primary_organization_administrator: FactoryGirl.create(:organization_admin))
+
+        @organization.should_not have_primary_executive
+      end
+
+    end
+
+  end
+
+  describe '#has_secondary_executive?' do
+
+    context 'when the secondary contact is executive' do
+
+      it 'returns true' do
+        @organization = FactoryGirl.create(:organization, secondary_organization_administrator: FactoryGirl.create(:organization_admin_executive))
+
+        @organization.should have_secondary_executive
+      end
+
+    end
+
+    context 'when the secondary contact is not executive' do
+
+      it 'returns false' do
+        @organization = FactoryGirl.create(:organization, secondary_organization_administrator: FactoryGirl.create(:organization_admin))
+
+        @organization.should_not have_secondary_executive
+      end
+
+    end
+
+  end
+
   describe '.pending_approval' do
 
     before do
