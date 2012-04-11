@@ -33,11 +33,9 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'database_cleaner'
   gem 'factory_girl_rails'
-  gem 'growl', require: RUBY_PLATFORM.include?('darwin') && 'growl'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'libnotify', require: RUBY_PLATFORM.include?('linux') && 'libnotify'
   gem 'rb-fchange', require: false
   gem 'rb-fsevent', require: false
   gem 'rb-inotify', require: false

@@ -1,3 +1,5 @@
+notification :off
+
 guard 'spork', rspec_env: { 'RAILS_ENV' => 'test' }, cucumber: false, wait: 60 do
   watch('config/application.rb')
   watch('config/environment.rb')
