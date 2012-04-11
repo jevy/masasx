@@ -1,7 +1,6 @@
 class RegistrationsController < ApplicationController
 
   before_filter :find_organization, except: :start
-  before_filter :assign_current_step, except: :pending_approval
 
   def start
     @organization = Organization.new
@@ -32,6 +31,13 @@ class RegistrationsController < ApplicationController
     @organization.build_secondary_organization_administrator(role: 'Secondary') unless @organization.secondary_organization_administrator
   end
 
+  def authority
+    unless @organization.authority_organization_administrator
+      @organization.build_authority_organization_administrator(role: 'Authority')
+      flash.now[:notice]="You require an authority contact in your application."
+    end
+  end
+
   private
   def current_step
     @organization.status_name
@@ -39,16 +45,6 @@ class RegistrationsController < ApplicationController
 
   def find_organization
     @organization = Organization.find params[:id]
-  end
-
-  def assign_current_step
-   @current_step = find_current_step
-  end
-
-  def find_current_step
-    return 1 unless @organization
-    steps = [:agreement, :organization, :primary_contact, :secondary_contact, :references]
-    steps.find_index(current_step)+1
   end
 
 end

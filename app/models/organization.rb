@@ -1,12 +1,16 @@
 class Organization < ActiveRecord::Base
 
+  has_many :organization_admins
   has_one :primary_organization_administrator,   class_name: 'OrganizationAdmin', conditions: { role: 'Primary'   }
   has_one :secondary_organization_administrator, class_name: 'OrganizationAdmin', conditions: { role: 'Secondary' }
+  has_one :authority_organization_administrator, class_name: 'OrganizationAdmin',
+    conditions: OrganizationAdmin.arel_table[:role].eq('Authority').or(OrganizationAdmin.arel_table[:executive].eq(true))
 
   has_many :accounts
 
   accepts_nested_attributes_for :primary_organization_administrator
   accepts_nested_attributes_for :secondary_organization_administrator
+  accepts_nested_attributes_for :authority_organization_administrator
 
   scope :pending_approval,  where(status: 'pending_approval')
   scope :approved,          where(status: 'approved')
@@ -20,21 +24,34 @@ class Organization < ActiveRecord::Base
     self.agreements = self.persisted? ? Agreement.all : []
   end
 
+  def has_executive?
+    organization_admins.find { |admin| admin.executive? || admin.role == 'Authority' }.present?
+  end
+
   state_machine :status, initial: :agreement, action: :save_state, use_transactions: false do
 
     event :next do
-      transition agreement: :organization,
-        organization: :primary_contact,
-        primary_contact: :secondary_contact,
-        secondary_contact: :references,
-        references: :pending_approval
+      transition agreement: :organization
+      transition organization: :primary_contact
+      transition primary_contact: :secondary_contact
+      transition secondary_contact: :references, if: -> organization { organization.has_executive?  }
+      transition secondary_contact: :authority,  unless: -> organization { organization.has_executive?  }
+      transition references: :pending_approval
     end
 
     event :previous do
-      transition organization: :agreement,
-        primary_contact: :organization,
-        secondary_contact: :primary_contact,
-        references: :secondary_contact
+      transition organization: :agreement
+      transition primary_contact: :organization
+      transition secondary_contact: :primary_contact
+      transition authority: :secondary_contact
+      transition references: :secondary_contact, if: -> organization do
+        executive = organization.organization_admins.find { |a| a.executive }
+        executive ? %w{Primary Secondary}.include?(executive.role) : false
+      end
+      transition references: :authority, unless: -> organization do
+        executive = organization.organization_admins.find { |a| a.executive }
+        executive ? %w{Primary Secondary}.include?(executive.role) : false
+      end
     end
 
     event :approve do

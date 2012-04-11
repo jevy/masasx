@@ -1,0 +1,31 @@
+<% title 'Step 5 - Authority Contact Information' %>
+
+<%= render partial: 'steps' %>
+
+<%= simple_form_for @organization, url: next_step_path, method: :put do |f| %>
+
+  <%= f.fields_for :authority_organization_administrator do |administrator| %>
+
+    <%= administrator.input :name, label: 'Name' %>
+
+    <%= administrator.input :title, label: 'Title' %>
+
+    <%= administrator.input :language, label: 'Language', collection: Language.all %>
+
+    <%= administrator.input :email, label: 'Office e-mail' %>
+
+    <%= administrator.input :mobile_email, label: 'Mobile e-mail' %>
+
+    <%= administrator.input :office_phone, label: 'Office Phone' %>
+
+    <%= administrator.input :mobile_phone, label: 'Mobile Phone' %>
+
+    <%= administrator.input :executive, label: 'Executive' %>
+
+  <% end %>
+
+  <div class="form-actions">
+    <%= link_to 'Previous', previous_step_path(@organization), class: 'btn'  %>
+    <%= f.button :submit, 'Next', class: 'btn-primary' %>
+  </div>
+<% end %>
