@@ -1,8 +1,10 @@
-require 'simplecov'
-SimpleCov.start
-
 require 'rubygems'
 require 'spork'
+
+unless Spork.using_spork?
+  require 'simplecov'
+  SimpleCov.start
+end
 
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
