@@ -30,6 +30,18 @@
 
     <%= administrator.input :executive, label: 'Executive', disabled: @organization.has_executive? %>
 
+    <%= administrator.input :address_line_1, label: 'Address Line 1' %>
+
+    <%= administrator.input :address_line_2, label: 'Address Line 2' %>
+
+    <%= administrator.input :city, label: 'City' %>
+
+    <%= administrator.input :state, label: 'State/Prov' %>
+
+    <%= administrator.input :country, label: 'Country', as: :string %>
+
+    <%= administrator.input :postal_code, label: 'Postal code' %>
+
   <% end %>
 
   <div class="form-actions">

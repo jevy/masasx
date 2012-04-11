@@ -36,6 +36,12 @@ Given /^I complete the (\w+) Contact page(.*)$/ do |contact, authority|
   fill_in 'Mobile e-mail',  with: "john.doe.#{contact}@mobile.com"
   fill_in 'Office Phone',   with: '555-111-111-111'
   fill_in 'Mobile Phone',   with: '555-222-222-222'
+  fill_in 'Address Line 1',     with: "#{contact} Nowhere, 42"
+  fill_in 'Address Line 2',     with: "#{contact} NoBuilding Center - 42 floor"
+  fill_in 'City',               with: "#{contact} Nocity"
+  fill_in 'State/Prov',         with: "#{contact} Nostate"
+  fill_in 'Country',            with: "#{contact} Nowhere"
+  fill_in 'Postal code',        with: "#{contact} 424242"
   check 'Executive' if authority.present?
 end
 

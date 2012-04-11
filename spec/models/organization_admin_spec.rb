@@ -18,4 +18,17 @@ describe OrganizationAdmin do
 
   it { should respond_to(:executive) }
 
+  it { should respond_to(:address_line_1) }
+
+  it { should respond_to(:address_line_2) }
+
+  it { should respond_to(:city) }
+
+  it { should respond_to(:state) }
+
+  it { should respond_to(:country) }
+
+  it { should respond_to(:postal_code) }
+
+
 end

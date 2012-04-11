@@ -16,21 +16,33 @@
 
   <%= f.fields_for :primary_organization_administrator do |administrator| %>
 
-      <%= administrator.input :name, label: 'Name' %>
+    <%= administrator.input :name, label: 'Name' %>
 
-      <%= administrator.input :title, label: 'Title' %>
+    <%= administrator.input :title, label: 'Title' %>
 
-      <%= administrator.input :language, label: 'Language', collection: Language.all %>
+    <%= administrator.input :language, label: 'Language', collection: Language.all %>
 
-      <%= administrator.input :email, label: 'Office e-mail' %>
+    <%= administrator.input :email, label: 'Office e-mail' %>
 
-      <%= administrator.input :mobile_email, label: 'Mobile e-mail' %>
+    <%= administrator.input :mobile_email, label: 'Mobile e-mail' %>
 
-      <%= administrator.input :office_phone, label: 'Office Phone' %>
+    <%= administrator.input :office_phone, label: 'Office Phone' %>
 
-      <%= administrator.input :mobile_phone, label: 'Mobile Phone' %>
+    <%= administrator.input :mobile_phone, label: 'Mobile Phone' %>
 
-      <%= administrator.input :executive, label: 'Executive' %>
+    <%= administrator.input :executive, label: 'Executive' %>
+
+    <%= administrator.input :address_line_1, label: 'Address Line 1' %>
+
+    <%= administrator.input :address_line_2, label: 'Address Line 2' %>
+
+    <%= administrator.input :city, label: 'City' %>
+
+    <%= administrator.input :state, label: 'State/Prov' %>
+
+    <%= administrator.input :country, label: 'Country', as: :string %>
+
+    <%= administrator.input :postal_code, label: 'Postal code' %>
 
   <% end %>
 
