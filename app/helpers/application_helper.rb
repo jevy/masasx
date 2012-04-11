@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def title(page_title, show_title = true)
     content_for(:title) { h(page_title.to_s) }
     @show_title = show_title
@@ -15,9 +16,4 @@ module ApplicationHelper
     ]
   end
 
-  def on_dom_ready(javascript)
-    content_for(:head) do
-      javascript_tag("$(function() {#{javascript}})")
-    end
-  end
 end
