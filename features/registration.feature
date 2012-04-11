@@ -44,6 +44,36 @@ Feature: A brand new organization may apply for an account
     And I follow "Next"
     Then I should see "Thank you for applying to become a MASAS member."
 
+  Scenario: During signup, an organization comes back to the secondary contact to set it as the authority
+    Given I complete the agreement page
+    And I follow "Next"
+    And I complete the organization page
+    And I follow "Next"
+    And I complete the Primary Contact page
+    And I follow "Next"
+    And I complete the Secondary Contact page
+    And I follow "Next"
+    When I follow "Previous"
+    And I complete the Secondary Contact page as the authority
+    And I follow "Next"
+    Then I should be on the References page
+
+  Scenario: During signup, an organization comes back to the primary contact to set it as the authority
+    Given I complete the agreement page
+    And I follow "Next"
+    And I complete the organization page
+    And I follow "Next"
+    And I complete the Primary Contact page
+    And I follow "Next"
+    And I complete the Secondary Contact page
+    And I follow "Next"
+    When I follow "Previous"
+    And I follow "Previous"
+    And I complete the Primary Contact page as the authority
+    And I follow "Next"
+    And I follow "Next"
+   Then I should be on the References page
+
   Scenario: A brand new organization signs up for an account and tries to submit without an authority contact
     Given I complete the agreement page
     When I follow "Next"

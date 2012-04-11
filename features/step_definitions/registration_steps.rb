@@ -53,25 +53,31 @@ end
 
 Then /^I should be on the agreement page$/ do
   within('head title') do
-    page.should have_content('Step 1 - Agreements')
+    page.should have_content('Agreements')
   end
 end
 
 Then /^I should be on the organization page$/ do
   within('head title') do
-    page.should have_content('Step 2 - Organization')
+    page.should have_content('Organization')
   end
 end
 
 Then /^I should be on the primary contact page$/ do
   within('head title') do
-    page.should have_content('Step 3 - Primary Contact Information')
+    page.should have_content('Primary Contact Information')
   end
 end
 
 Then /^I should be on the secondary contact page$/ do
   within('head title') do
-    page.should have_content('Step 4 - Secondary Contact Information')
+    page.should have_content('Secondary Contact Information')
+  end
+end
+
+Then /^I should be on the References page$/ do
+  within('head title') do
+    page.should have_content('References Information')
   end
 end
 
