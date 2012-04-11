@@ -94,3 +94,7 @@ Then /^I should see the agreement page completed$/ do
   page.should have_checked_field('I am not a member of the media.')
   page.should have_checked_field('I certify that I am a bona fide member of the Canadian Emergency Management community and have a valid reason to join the MASAS-X community.')
 end
+
+Then /^I should not be able to choose "([^"]*)"$/ do |label|
+  page.find_field(label)[:disabled].should be_true
+end

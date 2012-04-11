@@ -62,7 +62,7 @@ Feature: A brand new organization may apply for an account
     And I follow "Next"
     And I complete the Primary Contact page as the authority
     And I follow "Next"
-    Then I should not be able to choose "Authority contact"
+    Then I should not be able to choose "Executive"
 
    Scenario: A brand new organization can navigate to the agreement page from the organization page
     Given I complete the agreement page
