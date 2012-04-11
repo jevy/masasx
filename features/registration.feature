@@ -147,7 +147,7 @@ Feature: A brand new organization may apply for an account
     And I follow "Next"
     And I complete the organization page
     And I follow "Next"
-    And I complete the Primary Contact page
+    And I complete the Primary Contact page as the authority
     And I follow "Next"
     And I complete the Secondary Contact page
     And I follow "Next"

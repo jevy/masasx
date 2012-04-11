@@ -151,6 +151,18 @@ describe Organization do
 
     end
 
+    context 'from authority to references' do
+
+      it 'changes the status to references' do
+        @organization.status = 'authority'
+
+        @organization.next!
+
+        @organization.status.should eql('references')
+      end
+
+    end
+
     context 'from references to pending_approval' do
 
       it "changes the status to 'pending_approval' " do

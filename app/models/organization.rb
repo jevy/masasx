@@ -36,6 +36,7 @@ class Organization < ActiveRecord::Base
       transition primary_contact: :secondary_contact
       transition secondary_contact: :references, if: -> organization { organization.has_executive?  }
       transition secondary_contact: :authority,  unless: -> organization { organization.has_executive?  }
+      transition authority: :references
       transition references: :pending_approval
     end
 
