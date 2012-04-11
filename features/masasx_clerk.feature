@@ -105,6 +105,8 @@ Feature: MasasxClerk should be able to manage the entire system
     And I follow "Next"
     And I complete the Secondary Contact page
     And I follow "Next"
+    And I complete the Authority Contact page
+    And I follow "Next"
     And I complete the References page
     And I follow "Next"
     When I am on the MasasxClerk admin dashboard page
