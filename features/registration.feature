@@ -182,6 +182,26 @@ Feature: A brand new organization may apply for an account
       | Office Phone  | Phone required         |
       | Name          | Name required          |
 
+  Scenario Outline: A new organization does not enter required values for the authority contact
+    Given I complete the agreement page
+    And I follow "Next"
+    And I complete the organization page
+    And I follow "Next"
+    And I complete the Primary Contact page
+    And I follow "Next"
+    And I complete the Secondary Contact page
+    And I follow "Next"
+    And I complete the Authority Contact page
+    When I leave the "<field>" field blank
+    And I follow "Next"
+    Then I should see "<message>"
+
+    Examples:
+      | field         | message                |
+      | Office e-mail | Email address required |
+      | Office Phone  | Phone required         |
+      | Name          | Name required          |
+
   Scenario: A new organization does not enter any references for the references page
     Given I complete the agreement page
     And I follow "Next"
