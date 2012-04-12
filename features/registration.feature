@@ -148,16 +148,21 @@ Feature: A brand new organization may apply for an account
     And I follow "Next"
     Then I should see "Name required"
 
-  Scenario: A new organization does not enter an email for the primary contact
+  Scenario Outline: A new organization does not enter required values for the primary contact
     Given I complete the agreement page
     And I follow "Next"
     And I complete the organization page
     And I follow "Next"
     And I complete the Primary Contact page
-    When I leave the "Office e-mail" field blank
+    When I leave the "<field>" field blank
     And I follow "Next"
-    Then I should see "Email address required"
-    And I should not see "Password required"
+    Then I should see "<message>"
+
+    Examples:
+      | field         | message                |
+      | Office e-mail | Email address required |
+      | Office Phone  | Phone required         |
+      | Name          | Name required          |
 
   Scenario: A new organization does not enter an email or password for the secondary contact
     Given I complete the agreement page

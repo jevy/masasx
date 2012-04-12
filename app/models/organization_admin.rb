@@ -7,5 +7,7 @@ class OrganizationAdmin < ActiveRecord::Base
   belongs_to :organization
 
   validates :email, presence: { message: 'Email address required' }
+  validates :office_phone, presence: { message: 'Phone required' }
+  validates :name, presence: { message: 'Name required' }
 
 end
