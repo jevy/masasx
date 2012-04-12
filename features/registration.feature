@@ -140,13 +140,23 @@ Feature: A brand new organization may apply for an account
     Then I should be on the agreement page
     And I should see "All the agreements must be accepted"
 
-  Scenario: A new organization does not enter the organization name
+  Scenario Outline: A new organization does not enter the organization name
     Given I complete the agreement page
     And I follow "Next"
     And I complete the organization page
-    When I leave the "Name" field blank
+    When I leave the "<field>" field blank
     And I follow "Next"
-    Then I should see "Name required"
+    Then I should see "<message>"
+
+    Examples:
+      | field          | message                 |
+      | Name           | Name required           |
+      | Telephone      | Telephone required      |
+      | Address Line 1 | Address Line 1 required |
+      | City           | City required           |
+      | State/Prov     | State required          |
+      | Country        | Country required        |
+      | Postal code    | Postal code required    |
 
   Scenario Outline: A new organization does not enter required values for the primary contact
     Given I complete the agreement page

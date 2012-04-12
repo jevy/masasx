@@ -81,6 +81,12 @@ class Organization < ActiveRecord::Base
 
   with_options if: -> organization { organization.status?(:organization) } do |f|
     f.validates :name, presence: { message: 'Name required' }
+    f.validates :telephone, presence: { message: 'Telephone required' }
+    f.validates :address_line_1, presence: { message: 'Address Line 1 required' }
+    f.validates :city, presence: { message: 'City required' }
+    f.validates :state, presence: { message: 'State required' }
+    f.validates :country, presence: { message: 'Country required' }
+    f.validates :postal_code, presence: { message: 'Postal code required' }
   end
 
   with_options if: -> organization { organization.status?(:references) } do |f|
