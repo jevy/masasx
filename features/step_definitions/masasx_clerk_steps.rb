@@ -23,6 +23,6 @@ Then /^I should be on the MasasxClerk admin dashboard page$/ do
 end
 
 Then /^I should be on the MasasxClerk review pending applications page$/ do
-  #TODO test query string
   URI.parse(current_url).path.should eql(admin_organizations_path)
+  URI.parse(current_url).query.should eql('status=pending_approval')
 end
