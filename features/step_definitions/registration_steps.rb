@@ -110,3 +110,7 @@ end
 Then /^I should not be able to choose "([^"]*)"$/ do |label|
   page.find_field(label)[:disabled].should be_true
 end
+
+Then /^"([^"]*)" should be checked$/ do |label|
+  page.should have_checked_field(label)
+end

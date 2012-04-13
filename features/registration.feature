@@ -85,6 +85,18 @@ Feature: A brand new organization may apply for an account
     And I follow "Next"
     Then I should see "You require an authority contact in your application."
 
+  Scenario: During signup, an organization should have the authority contact marked as executive
+    Given I complete the agreement page
+    When I follow "Next"
+    And I complete the organization page
+    And I follow "Next"
+    And I complete the Primary Contact page
+    And I follow "Next"
+    And I complete the Secondary Contact page
+    And I follow "Next"
+    Then "Executive" should be checked
+    And I should not be able to choose "Executive"
+
   Scenario: A brand new organization signs up for an account with the primary contact as the authority, should not have the option to set the secondary as an authority contact
     Given I complete the agreement page
     When I follow "Next"

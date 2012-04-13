@@ -33,7 +33,7 @@ class RegistrationsController < ApplicationController
 
   def authority
     unless @organization.authority_organization_administrator
-      @organization.build_authority_organization_administrator(role: 'Authority')
+      @organization.build_authority_organization_administrator(role: 'Authority', executive: true)
       flash.now[:notice]="You require an authority contact in your application."
     end
   end
