@@ -1,6 +1,6 @@
 <ul class="nav nav-pills">
   <% for step in Navigator.steps(@organization) %>
-    <li class="<%= 'active' if @organization.status?(step) %>">
+    <li class="<%= @organization.status?(step) ? 'active' : 'disabled-nav' %>">
     <a><%= step.to_s.humanize %></a>
     </li>
   <% end %>

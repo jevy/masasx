@@ -7,3 +7,10 @@ body {
   padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
 }
 
+li.disabled-nav a {
+  color: #999 !important;
+}
+
+li.disabled-nav a:hover {
+  background-color: white !important;
+}
