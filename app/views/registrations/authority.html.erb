@@ -2,6 +2,17 @@
 
 <%= render partial: 'steps' %>
 
+<% content_for :sidebar do -%>
+  <p>
+  Neither the Primary or Secondary Contact have indicated that they are the
+  Authority for the Organization. MASAS-X needs to know who the individual is
+  who is authorized to register the Organization with MASAS-X. If the Primary
+  or Secondary Contact have that authority, please use the Previous button at
+  the bottom and check off the Executive Authority for the appropriate
+  contact. Otherwise, please continue to fill out this page.
+  </p>
+<% end -%>
+
 <%= simple_form_for @organization, url: next_step_path, method: :put do |f| %>
 
   <%= f.fields_for :authority_organization_administrator do |administrator| %>
