@@ -55,28 +55,19 @@
     <th>Mobile e-mail</th>
     <th>Office Phone</th>
     <th>Mobile Phone</th>
+    <th>Executive</th>
   </thead>
   <tbody>
-    <% if @organization.primary_organization_administrator %>
+    <% for administrator in @organization.organization_admins %>
       <tr>
-        <td><%= @organization.primary_organization_administrator.role %></td>
-        <td><%= @organization.primary_organization_administrator.name %></td>
-        <td><%= @organization.primary_organization_administrator.title %></td>
-        <td><%= @organization.primary_organization_administrator.email %></td>
-        <td><%= @organization.primary_organization_administrator.mobile_email %></td>
-        <td><%= @organization.primary_organization_administrator.office_phone %></td>
-        <td><%= @organization.primary_organization_administrator.mobile_phone %></td>
-      </tr>
-    <% end %>
-    <% if @organization.secondary_organization_administrator %>
-      <tr>
-        <td><%= @organization.secondary_organization_administrator.role %></td>
-        <td><%= @organization.secondary_organization_administrator.name %></td>
-        <td><%= @organization.secondary_organization_administrator.title %></td>
-        <td><%= @organization.secondary_organization_administrator.email %></td>
-        <td><%= @organization.secondary_organization_administrator.mobile_email %></td>
-        <td><%= @organization.secondary_organization_administrator.office_phone %></td>
-        <td><%= @organization.secondary_organization_administrator.mobile_phone %></td>
+        <td><%= administrator.role %></td>
+        <td><%= administrator.name %></td>
+        <td><%= administrator.title %></td>
+        <td><%= administrator.email %></td>
+        <td><%= administrator.mobile_email %></td>
+        <td><%= administrator.office_phone %></td>
+        <td><%= administrator.mobile_phone %></td>
+        <td><%= administrator.executive ? 'Yes' : 'No' %></td>
       </tr>
     <% end %>
   </tbody>

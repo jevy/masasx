@@ -57,8 +57,8 @@ Feature: MasasxClerk should be able to manage the entire system
   Scenario: MasasxClerk should be able to view the applicant's submitted primary contact details
     Given an organization pending approval exists with a name of "Organization Name"
     And the following primary contact for the organization "Organization Name" exists:
-      | name        | email               | title  | mobile_email       | office_phone | mobile_phone |
-      | Ops Manager | someguy@example.com | Mister | mobile@example.com | 555-42-42-42 | 555-24-24-24 |
+      | name        | email               | title  | mobile_email       | office_phone | mobile_phone | executive |
+      | Ops Manager | someguy@example.com | Mister | mobile@example.com | 555-42-42-42 | 555-24-24-24 | true      |
     And I am on the MasasxClerk admin dashboard page
     And I press "Review Pending Applications"
     When I press "View"
@@ -68,6 +68,7 @@ Feature: MasasxClerk should be able to manage the entire system
     And I should see "mobile@example.com"
     And I should see "555-42-42-42"
     And I should see "555-24-24-24"
+    And I should see "Yes"
 
   Scenario: MasasxClerk should be able to view the applicant's submitted secondary contact details
     Given an organization pending approval exists with a name of "Organization Name"
