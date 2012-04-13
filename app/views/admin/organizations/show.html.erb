@@ -73,4 +73,8 @@
   </tbody>
 </table>
 
-<%= link_to 'Back to review applications', admin_organizations_path(status: 'pending_approval'), class: 'btn btn-primary'  %>
+<div class="btn-toolbar">
+  <%= link_to 'Approve', approve_admin_organization_path(@organization), class: 'btn btn-success'  %>
+  <%= link_to 'Reject',  reject_admin_organization_path(@organization), class: 'btn btn-danger'  %>
+  <%= link_to 'Back to review applications', admin_organizations_path(status: 'pending_approval'), class: 'btn'  %>
+</div>
