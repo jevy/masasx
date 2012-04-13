@@ -33,6 +33,10 @@
 
     <%= administrator.input :executive, label: 'Executive Authority', disabled: true %>
 
+    <%= administrator.input :role, value: 'Authority', as: :hidden %>
+
+    <%= administrator.input :executive, value: true, as: :hidden %>
+
     <%= administrator.input :address_line_1, label: 'Address Line 1' %>
 
     <%= administrator.input :address_line_2, label: 'Address Line 2' %>
