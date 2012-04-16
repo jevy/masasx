@@ -1,24 +1,20 @@
 <% title 'Organizations' %>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% for organization in @organizations %>
-      <tr>
-        <td><%= organization.name %></td>
-        <td><%= organization.status %></td>
-        <td>
-          <div class="btn-toolbar">
-            <%= link_to 'View', [:admin, organization], class: 'btn btn-primary' %>
-          </div>
-        </td>
-      </tr>
-    <% end -%>
-  </tbody>
-</table>
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#pending" data-toggle="tab">Pending (<%= @pending_organizations.count %>)</a></li>
+    <li><a href="#approved" data-toggle="tab">Approved (<%= @approved_organizations.count %>)</a></li>
+    <li><a href="#rejected" data-toggle="tab">Rejected (<%= @rejected_organizations.count %>)</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="pending">
+      <%= render partial: 'organizations', locals: {organizations: @pending_organizations} %>
+    </div>
+    <div class="tab-pane" id="approved">
+      <%= render partial: 'organizations', locals: {organizations: @approved_organizations} %>
+    </div>
+    <div class="tab-pane" id="rejected">
+      <%= render partial: 'organizations', locals: {organizations: @rejected_organizations} %>
+    </div>
+  </div>
+</div>

@@ -5,37 +5,59 @@ Feature: MasasxClerk should be able to manage the entire system
 
   Scenario: MasasxClerk should see the number of pending Organization applications
     Given an organization pending approval exists with a name of "Organization Name"
-    When I am on the MasasxClerk admin dashboard page
-    Then I should see "1 Organizations pending approval"
+    When I am on the Organizations admin page
+    Then I should see "Pending (1)"
 
-  Scenario: MasasxClerk should be able to review all the Organization's application
+  Scenario: MasasxClerk should see the number of approved Organization applications
+    Given an organization approved exists with a name of "Organization Name"
+    When I am on the Organizations admin page
+    Then I should see "Approved (1)"
+
+  Scenario: MasasxClerk should see the number of rejected Organization applications
+    Given an organization rejected exists with a name of "Organization Name"
+    When I am on the Organizations admin page
+    Then I should see "Rejected (1)"
+
+  Scenario: MasasxClerk should be able to review all the pending Organization's application
     Given an organization pending approval exists with a name of "Organization Name"
-    When I am on the MasasxClerk admin dashboard page
-    And I press "Review Pending Applications"
+    When I am on the Organizations admin page
+    And I press "Pending"
+    Then I should see "Organization Name"
+
+  Scenario: MasasxClerk should be able to review all the approved Organization's application
+    Given an organization approved exists with a name of "Organization Name"
+    When I am on the Organizations admin page
+    And I press "Approved"
+    Then I should see "Organization Name"
+
+  Scenario: MasasxClerk should be able to review all the rejected Organization's application
+    Given an organization rejected exists with a name of "Organization Name"
+    When I am on the Organizations admin page
+    And I press "Rejected"
     Then I should see "Organization Name"
 
   Scenario: MasasxClerk should be able to approve an Organization's application
     Given an organization pending approval exists with a name of "Organization Name"
-    And I am on the MasasxClerk admin dashboard page
-    And I press "Review Pending Applications"
+    And I am on the Organizations admin page
+    And I press "Pending"
     And I press "View"
     When I press "Approve"
-    Then I should be on the MasasxClerk admin dashboard page
-    And I should see "1 Organizations approved"
+    Then I should be on the Organizations admin page
+    And I should see "Approved (1)"
 
   Scenario: MasasxClerk should be able to reject an Organization's application
     Given an organization pending approval exists with a name of "Organization Name"
-    And I am on the MasasxClerk admin dashboard page
-    And I press "Review Pending Applications"
+    And I am on the Organizations admin page
+    And I press "Pending"
     And I press "View"
     When I press "Reject"
-    Then I should be on the MasasxClerk admin dashboard page
-    And I should see "1 Organizations rejected"
+    Then I should be on the Organizations admin page
+    And I should see "Rejected (1)"
 
   Scenario Outline: MasasxClerk should be able to view the applicant's submitted application details
     Given an organization pending approval exists with a <field> of "<value>"
-    And I am on the MasasxClerk admin dashboard page
-    And I press "Review Pending Applications"
+    And I am on the Organizations admin page
+    And I press "Pending"
     When I press "View"
     Then I should see "<value>"
 
@@ -72,8 +94,8 @@ Feature: MasasxClerk should be able to manage the entire system
       | country        | A country          |
       | state          | A state            |
       | postal_code    | 424242             |
-    And I am on the MasasxClerk admin dashboard page
-    And I press "Review Pending Applications"
+    And I am on the Organizations admin page
+    And I press "Pending"
     When I press "View"
     Then I should see "Ops Manager"
     And I should see "some@example.com"
@@ -103,8 +125,8 @@ Feature: MasasxClerk should be able to manage the entire system
       | country        | secondary country           |
       | state          | secondary state             |
       | postal_code    | 424242                      |
-    And I am on the MasasxClerk admin dashboard page
-    And I press "Review Pending Applications"
+    And I am on the Organizations admin page
+    And I press "Pending"
     When I press "View"
     Then I should see "Ops Secondary Manager"
     And I should see "somesecondary@example.com"
@@ -118,16 +140,8 @@ Feature: MasasxClerk should be able to manage the entire system
     And I should see "secondary state"
     And I should see "424242"
 
-  Scenario: MasasxClerk should be able to return to the review pending applications page from application details page
-    Given an organization pending approval exists with a name of "Organization Name"
-    And I am on the MasasxClerk admin dashboard page
-    And I press "Review Pending Applications"
-    And I press "View"
-    When I press "Back to review applications"
-    Then I should be on the MasasxClerk review pending applications page
-
-  Scenario: After I login, I should be taken to the admin dashboard
-    Then I should be on the MasasxClerk admin dashboard page
+  Scenario: After I login, I should be taken to the organizations admin page
+    Then I should be on the Organizations admin page
 
   Scenario: End to end registration test
     Given I am on the signup page
@@ -143,5 +157,5 @@ Feature: MasasxClerk should be able to manage the entire system
     And I follow "Next"
     And I complete the References page
     And I follow "Next"
-    When I am on the MasasxClerk admin dashboard page
-    Then I should see "1 Organizations pending approval"
+    When I am on the Organizations admin page
+    Then I should see "Pending (1)"

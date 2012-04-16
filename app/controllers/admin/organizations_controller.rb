@@ -2,7 +2,9 @@ class Admin::OrganizationsController < Admin::AdminController
   before_filter :authenticate_masasx_clerk!
 
   def index
-    @organizations = params[:status].present? ? Organization.where(status: params[:status]) : Organization.all
+    @pending_organizations  = Organization.pending_approval
+    @approved_organizations = Organization.approved
+    @rejected_organizations = Organization.rejected
   end
 
   def show
@@ -14,7 +16,7 @@ class Admin::OrganizationsController < Admin::AdminController
 
     @organization.approve!
 
-    redirect_to admin_dashboard_path, notice: 'Organization successfully approved!'
+    redirect_to admin_organizations_path, notice: 'Organization successfully approved!'
   end
 
   def reject
@@ -22,7 +24,7 @@ class Admin::OrganizationsController < Admin::AdminController
 
     @organization.reject!
 
-    redirect_to admin_dashboard_path, notice: 'Organization successfully rejected!'
+    redirect_to admin_organizations_path, notice: 'Organization successfully rejected!'
   end
 
 end

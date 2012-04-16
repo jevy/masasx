@@ -15,15 +15,10 @@ Given /^the following (\w+) contact for the organization "([^"]*)" exists:$/ do 
   organization_admin.save
 end
 
-When /^I am on the MasasxClerk admin dashboard page$/ do
-  visit admin_dashboard_path
+When /^I am on the Organizations admin page$/ do
+  visit admin_organizations_path
 end
 
-Then /^I should be on the MasasxClerk admin dashboard page$/ do
-  URI.parse(current_url).path.should eql(admin_dashboard_path)
-end
-
-Then /^I should be on the MasasxClerk review pending applications page$/ do
+Then /^I should be on the Organizations admin page$/ do
   URI.parse(current_url).path.should eql(admin_organizations_path)
-  URI.parse(current_url).query.should eql('status=pending_approval')
 end

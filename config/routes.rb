@@ -29,12 +29,12 @@ Masasx::Application.routes.draw do
       end
     end
     get '/dashboard' => 'dashboard#index', as: :dashboard
-    root to: 'accounts#index', constraints: lambda { |request| request.session['warden.user.organization_admin.key'].present? }
-    root to: 'dashboard#index',  constraints: lambda { |request| request.session['warden.user.masasx_clerk.key'].present? }
+    root to: 'accounts#index',       constraints: lambda { |request| request.session['warden.user.organization_admin.key'].present? }
+    root to: 'organizations#index',  constraints: lambda { |request| request.session['warden.user.masasx_clerk.key'].present? }
     root to: 'home#index'
   end
 
   root to: 'welcome#index'
-  match '/admin/dashboard' => 'dashboard#index', as: :masasx_clerk_root
-  match '/admin/accounts'  => 'accounts#index',  as: :organization_admin_root
+  match '/admin/organizations' => 'organizations#index', as: :masasx_clerk_root
+  match '/admin/accounts'      => 'accounts#index',      as: :organization_admin_root
 end

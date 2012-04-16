@@ -34,7 +34,7 @@ describe ApplicationHelper do
 
   end
 
-  describe '#show_address', :focus do
+  describe '#show_address' do
 
     before do
       class FakeModel
