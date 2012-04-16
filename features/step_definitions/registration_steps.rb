@@ -46,7 +46,6 @@ Given /^I complete the (\w+) Contact page(.*)$/ do |contact, authority|
 end
 
 Given /^I complete the References page$/ do
-  select 'English',              from: 'Language'
   fill_in 'References',          with: 'A nice guy told me'
   fill_in 'Comments/Questions',  with: 'What is the meaning of 42?'
 end

@@ -16,8 +16,6 @@
 
 <%= simple_form_for @organization, url: next_step_path, method: :put  do |f| %>
 
-  <%= f.input :references_language, label: 'Language', collection: Language.all %>
-
   <%= f.input :references, label: 'References', input_html: { class:'xxlarge', rows: 5 }  %>
 
   <%= f.input :questions, label: 'Comments/Questions', input_html: { class:'xxlarge', rows: 5 }%>

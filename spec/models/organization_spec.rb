@@ -34,8 +34,6 @@ describe Organization do
 
   it { should respond_to(:secondary_organization_administrator) }
 
-  it { should respond_to(:references_language) }
-
   it { should respond_to(:references) }
 
   it { should respond_to(:questions) }
