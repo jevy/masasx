@@ -81,7 +81,6 @@ class Organization < ActiveRecord::Base
 
   with_options if: -> organization { organization.status?(:organization) } do |f|
     f.validates :name, presence: { message: 'Name required' }
-    f.validates :telephone, presence: { message: 'Telephone required' }
     f.validates :address_line_1, presence: { message: 'Address Line 1 required' }
     f.validates :city, presence: { message: 'City required' }
     f.validates :state, presence: { message: 'State required' }

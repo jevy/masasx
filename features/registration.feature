@@ -163,7 +163,6 @@ Feature: A brand new organization may apply for an account
     Examples:
       | field          | message                 |
       | Name           | Name required           |
-      | Telephone      | Telephone required      |
       | Address Line 1 | Address Line 1 required |
       | City           | City required           |
       | State/Prov     | State required          |
