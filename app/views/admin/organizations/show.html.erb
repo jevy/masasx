@@ -10,6 +10,7 @@
     <th>Sub Division</th>
     <th>Telephone</th>
     <th>Website</th>
+    <th>Address</th>
     <th>References</th>
     <th>Questions</th>
   </thead>
@@ -20,27 +21,9 @@
     <td><%= @organization.sub_division %></td>
     <td><%= @organization.telephone %></td>
     <td><%= @organization.website %></td>
+    <td><%= show_address @organization %></td>
     <td><%= @organization.references %></td>
     <td><%= @organization.questions %></td>
-  </tr>
-</table>
-
-<table class="table">
-  <thead>
-    <th>Address Line 1</th>
-    <th>Address Line 2</th>
-    <th>City</th>
-    <th>Country</th>
-    <th>State</th>
-    <th>Postal code</th>
-  </thead>
-  <tr>
-    <td><%= @organization.address_line_1 %></td>
-    <td><%= @organization.address_line_2 %></td>
-    <td><%= @organization.city %></td>
-    <td><%= @organization.country %></td>
-    <td><%= @organization.state %></td>
-    <td><%= @organization.postal_code %></td>
   </tr>
 </table>
 
@@ -56,6 +39,7 @@
     <th>Office Phone</th>
     <th>Mobile Phone</th>
     <th>Executive</th>
+    <th>Address</th>
   </thead>
   <tbody>
     <% for administrator in @organization.organization_admins %>
@@ -68,6 +52,7 @@
         <td><%= administrator.office_phone %></td>
         <td><%= administrator.mobile_phone %></td>
         <td><%= administrator.executive ? 'Yes' : 'No' %></td>
+        <td><%= show_address administrator %></td>
       </tr>
     <% end %>
   </tbody>

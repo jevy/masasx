@@ -16,4 +16,12 @@ module ApplicationHelper
     ]
   end
 
+  def show_address model
+    secondary_fields_values = [:city, :state, :country, :postal_code].map{ |field| model.send(field) }.compact
+    output = model.address_line_1
+    output << "<br/>#{model.address_line_2}" if model.address_line_2
+    output << "<br/>#{secondary_fields_values.join(', ') }" unless secondary_fields_values.empty?
+    content_tag :span, output.html_safe
+  end
+
 end

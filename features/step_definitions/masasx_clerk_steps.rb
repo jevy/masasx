@@ -8,7 +8,8 @@ Given /^I am logged\-in as a MasasxClerk$/ do
 end
 
 Given /^the following (\w+) contact for the organization "([^"]*)" exists:$/ do |role, organization_name, table|
-  organization_admin              = OrganizationAdmin.new(table.hashes.first)
+  attributes                      = table.hashes.inject({}) { |hash, element| hash[element['field']] = element['value']; hash  }
+  organization_admin              = OrganizationAdmin.new(attributes)
   organization_admin.role         = role.capitalize
   organization_admin.organization = Organization.where(name: organization_name).first
   organization_admin.save

@@ -58,34 +58,65 @@ Feature: MasasxClerk should be able to manage the entire system
 
   Scenario: MasasxClerk should be able to view the applicant's submitted primary contact details
     Given an organization pending approval exists with a name of "Organization Name"
-    And the following primary contact for the organization "Organization Name" exists:
-      | name        | email               | title  | mobile_email       | office_phone | mobile_phone | executive |
-      | Ops Manager | someguy@example.com | Mister | mobile@example.com | 555-42-42-42 | 555-24-24-24 | true      |
+    And the following secondary contact for the organization "Organization Name" exists:
+      | field          | value              |
+      | name           | Ops Manager        |
+      | email          | some@example.com   |
+      | title          | Mister             |
+      | mobile_email   | mobile@example.com |
+      | office_phone   | 555-42-42-42       |
+      | mobile_phone   | 555-24-24-24       |
+      | executive      | true               |
+      | address_line_1 | Nowhere, 42        |
+      | city           | A city             |
+      | country        | A country          |
+      | state          | A state            |
+      | postal_code    | 424242             |
     And I am on the MasasxClerk admin dashboard page
     And I press "Review Pending Applications"
     When I press "View"
     Then I should see "Ops Manager"
-    And I should see "someguy@example.com"
+    And I should see "some@example.com"
     And I should see "Mister"
     And I should see "mobile@example.com"
     And I should see "555-42-42-42"
     And I should see "555-24-24-24"
     And I should see "Yes"
+    And I should see "Nowhere, 42"
+    And I should see "A city"
+    And I should see "A country"
+    And I should see "A state"
+    And I should see "424242"
 
   Scenario: MasasxClerk should be able to view the applicant's submitted secondary contact details
     Given an organization pending approval exists with a name of "Organization Name"
     And the following secondary contact for the organization "Organization Name" exists:
-      | name         | email                     | title         | mobile_email                | office_phone | mobile_phone |
-      | Ops Operator | somesecondary@example.com | Mister Second | mobilesecondary@example.com | 555-43-43-43 | 555-23-23-23 |
+      | field          | value                       |
+      | name           | Ops Secondary Manager       |
+      | email          | somesecondary@example.com   |
+      | title          | Secondary                   |
+      | mobile_email   | mobilesecondary@example.com |
+      | office_phone   | 555-42-42-42                |
+      | mobile_phone   | 555-24-24-24                |
+      | address_line_1 | Nowhere, 42                 |
+      | city           | secondary city              |
+      | country        | secondary country           |
+      | state          | secondary state             |
+      | postal_code    | 424242                      |
     And I am on the MasasxClerk admin dashboard page
     And I press "Review Pending Applications"
     When I press "View"
-    Then I should see "Ops Operator"
+    Then I should see "Ops Secondary Manager"
     And I should see "somesecondary@example.com"
-    And I should see "Mister Second"
+    And I should see "Secondary"
     And I should see "mobilesecondary@example.com"
-    And I should see "555-43-43-43"
-    And I should see "555-23-23-23"
+    And I should see "555-42-42-42"
+    And I should see "555-24-24-24"
+    And I should see "Nowhere, 42"
+    And I should see "secondary city"
+    And I should see "secondary country"
+    And I should see "secondary state"
+    And I should see "424242"
 
   Scenario: MasasxClerk should be able to return to the review pending applications page from application details page
     Given an organization pending approval exists with a name of "Organization Name"
