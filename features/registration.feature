@@ -14,7 +14,7 @@ Feature: A brand new organization may apply for an account
     And I follow "Next"
     And I complete the References page
     And I follow "Next"
-    Then I should see "Thank you for applying to become a MASAS member."
+    Then I should see "Your application has been received and a confirmation email has been sent to the Primary Contact"
 
   Scenario: A brand new organization signs up for an account with the secondary contact as the authority
     Given I complete the agreement page
@@ -27,7 +27,7 @@ Feature: A brand new organization may apply for an account
     And I follow "Next"
     And I complete the References page
     And I follow "Next"
-    Then I should see "Thank you for applying to become a MASAS member."
+    Then I should see "Your application has been received and a confirmation email has been sent to the Primary Contact"
 
   Scenario: A brand new organization signs up for an account with neither contact as the authority
     Given I complete the agreement page
@@ -42,7 +42,7 @@ Feature: A brand new organization may apply for an account
     And I follow "Next"
     And I complete the References page
     And I follow "Next"
-    Then I should see "Thank you for applying to become a MASAS member."
+    Then I should see "Your application has been received and a confirmation email has been sent to the Primary Contact"
 
   Scenario: During signup, an organization comes back to the secondary contact to set it as the authority
     Given I complete the agreement page

@@ -22,7 +22,11 @@
     <div class="container-fluid">
       <%= yield :container %>
 
-      <%= render partial: 'common/footer' %>
+      <div class="row-fluid">
+        <div class="span12">
+          <%= render partial: 'common/footer' %>
+        </div>
+      </div>
 
     </div>
 

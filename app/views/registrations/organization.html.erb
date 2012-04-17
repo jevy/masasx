@@ -1,14 +1,11 @@
 <% title 'Organization Information' %>
 
-<% content_for :sidebar do -%>
-  <p>
-  For which entity is this application being made? This is the information
-  displayed when logged in or associated with posted information (only
-  official and releasable information should be used, do not use personal
-  information). Preferably, an access code is provided to a
-  group/department/section, and less often to an individual.
-  </p>
-<% end -%>
+<% content_for :sidebar do -%> <p>Access may be granted to the entire
+  organization, a specific department, a division or sub-division, group, and in
+  some cases a role. Generally, access is not granted to an individual. The
+  information included on this page will be associated with any information
+  shared by this account through MASAS-X, and should not therefore include
+  information of a personal nature.</p> <% end -%>
 
 <%= render partial: 'steps' %>
 
@@ -37,8 +34,7 @@
 
   <%= f.input :website %>
 
-  <div class="form-actions">
-    <%= link_to 'Previous', previous_step_path(@organization), class: 'btn'  %>
-    <%= f.button :submit, 'Next', class: 'btn-primary' %>
-  </div>
+  <div class="form-actions"> <%= link_to 'Previous',
+    previous_step_path(@organization), class: 'btn'  %> <%= f.button :submit,
+    'Next', class: 'btn-primary' %> </div> 
 <% end %>
