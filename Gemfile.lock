@@ -28,6 +28,7 @@ GEM
     activesupport (3.2.2)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    addressable (2.2.8)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
@@ -59,7 +60,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
+    columnize (0.3.6)
     commonjs (0.2.5)
+    crack (0.3.1)
     cucumber (1.1.9)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
@@ -71,6 +74,12 @@ GEM
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
     database_cleaner (0.7.1)
+    debugger (1.6.1)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -78,6 +87,7 @@ GEM
       warden (~> 1.1.1)
     diff-lcs (1.1.3)
     erubis (2.7.0)
+    excon (0.25.1)
     execjs (1.3.0)
       multi_json (~> 1.0)
     factory_girl (3.1.0)
@@ -85,6 +95,10 @@ GEM
     factory_girl_rails (3.1.0)
       factory_girl (~> 3.1.0)
       railties (>= 3.0.0)
+    faraday (0.8.4)
+      multipart-post (~> 1.1)
+    faraday_middleware (0.9.0)
+      faraday (>= 0.7.4, < 0.9)
     ffi (1.0.11)
     gherkin (2.9.0)
       json (>= 1.4.6)
@@ -118,6 +132,7 @@ GEM
     method_source (0.7.1)
     mime-types (1.17.2)
     multi_json (1.2.0)
+    multipart-post (1.1.5)
     mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -221,8 +236,12 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    vcr (2.2.5)
     warden (1.1.1)
       rack (>= 1.0)
+    webmock (1.8.11)
+      addressable (>= 2.2.7)
+      crack (>= 0.1.7)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -231,13 +250,18 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano
+  capybara
   carrierwave
   ci_reporter
   coffee-rails (~> 3.2.1)
   cucumber-rails (~> 1.0)
   database_cleaner
+  debugger
   devise
+  excon
   factory_girl_rails
+  faraday
+  faraday_middleware
   guard
   guard-rspec
   guard-spork
@@ -259,3 +283,5 @@ DEPENDENCIES
   state_machine
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
+  vcr
+  webmock
