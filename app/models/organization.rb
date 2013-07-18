@@ -61,6 +61,7 @@ class Organization < ActiveRecord::Base
       end
     end
 
+    before_transition on: :approve, do: -> organization { Directory.add_organization(organization) }
     event :approve do
       transition pending_approval: :approved
     end

@@ -276,6 +276,8 @@ describe Organization do
   describe '#approve!' do
 
     it "changes to status to 'approved'" do
+      Directory.stub(:add_organization).and_return(:true)
+
       @organization = FactoryGirl.create(:organization)
 
       @organization.status = 'pending_approval'
@@ -283,6 +285,16 @@ describe Organization do
       @organization.approve!
 
       @organization.status.should eql('approved')
+    end
+
+    it "submits the organization to the Directory" do
+      @organization = FactoryGirl.create(:organization)
+
+      Directory.should_receive(:add_organization).with(@organization).once
+
+      @organization.status = 'pending_approval'
+
+      @organization.approve!
     end
 
   end
