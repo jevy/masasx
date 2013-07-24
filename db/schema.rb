@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120416153140) do
+ActiveRecord::Schema.define(:version => 20130724191146) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20120416153140) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "role"
-    t.string   "name"
+    t.string   "last_name"
     t.string   "title"
     t.string   "language"
     t.string   "office_email"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20120416153140) do
     t.string   "state"
     t.string   "country"
     t.string   "postal_code"
+    t.string   "first_name"
   end
 
   add_index "organization_admins", ["email"], :name => "index_organization_admins_on_email", :unique => true

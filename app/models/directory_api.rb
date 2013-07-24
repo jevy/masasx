@@ -29,8 +29,8 @@ class DirectoryApi
 
   def self.create_contact(contact)
     body = {
-      'firstName' => contact.name,
-      'lastName' => '',
+      'firstName' => contact.first_name,
+      'lastName' => contact.last_name,
       'title' => contact.title,
       'language' => contact.language,
       'email' => contact.office_email,
@@ -39,7 +39,11 @@ class DirectoryApi
     response = connection.post("/masas/contacts") do |request|
       request.body = body
     end
-    response.success? ? true : false
+    response.success? ? parse_uuid(response.body) : false
+  end
+
+  def self.parse_uuid(returned_body)
+      ActiveSupport::JSON.decode(returned_body)['MasasUUID']
   end
 
 end

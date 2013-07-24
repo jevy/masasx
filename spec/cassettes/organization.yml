@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ois.cloop.co/masas/organizations
+    body:
+      encoding: UTF-8
+      string: ! '{"OrgName":"Awesome organization","address-line1":"Nowhere 42","province-state":"Ontario","country":"CA","postal-code":"K1J
+        1A6"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Date:
+      - Wed, 24 Jul 2013 19:48:46 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '759'
+      Connection:
+      - close
+      Content-Type:
+      - text/html; charset=UTF-8
+    body:
+      encoding: US-ASCII
+      string: ! "\n    <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n    <html>\n
+        \       <head>\n            <title>Error: 500 Internal Server Error</title>\n
+        \           <style type=\"text/css\">\n              html {background-color:
+        #eee; font-family: sans;}\n              body {background-color: #fff; border:
+        1px solid #ddd;\n                    padding: 15px; margin: 15px;}\n              pre
+        {background-color: #eee; border: 1px solid #ddd; padding: 5px;}\n            </style>\n
+        \       </head>\n        <body>\n            <h1>Error: 500 Internal Server
+        Error</h1>\n            <p>Sorry, the requested URL <tt>&#039;https://ois.cloop.co/masas/organizations&#039;</tt>\n
+        \              caused an error:</p>\n            <pre>Internal Server Error</pre>\n
+        \       </body>\n    </html>\n"
+    http_version: 
+  recorded_at: Wed, 24 Jul 2013 19:48:48 GMT
+recorded_with: VCR 2.2.5

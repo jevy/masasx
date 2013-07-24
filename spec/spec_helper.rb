@@ -1,8 +1,8 @@
 require 'rubygems'
 require 'spork'
 require 'capybara/rspec'
-#require 'vcr'
-require 'webmock/rspec'
+require 'vcr'
+#require 'webmock/rspec'
 
 unless Spork.using_spork?
   require 'simplecov'
@@ -34,15 +34,15 @@ Spork.prefork do
 
   ActiveSupport::Dependencies.clear if Spork.using_spork?
 
-  #VCR.configure do |c|
-  #  c.cassette_library_dir = 'spec/cassettes'
-  #  c.hook_into :webmock
-  #  c.configure_rspec_metadata!
-  #end
+  VCR.configure do |c|
+   c.cassette_library_dir = 'spec/cassettes'
+   c.hook_into :webmock
+   c.configure_rspec_metadata!
+  end
 
-  #RSpec.configure do |c|
-  #  c.treat_symbols_as_metadata_keys_with_true_values = true
-  #end
+  RSpec.configure do |c|
+   c.treat_symbols_as_metadata_keys_with_true_values = true
+  end
 end
 
 Spork.each_run do

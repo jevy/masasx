@@ -17,7 +17,9 @@
 
   <%= f.fields_for :authority_organization_administrator do |administrator| %>
 
-    <%= administrator.input :name, label: 'Name' %>
+    <%= administrator.input :first_name, label: 'First Name' %>
+
+    <%= administrator.input :last_name, label: 'Last Name' %>
 
     <%= administrator.input :title, label: 'Title' %>
 
