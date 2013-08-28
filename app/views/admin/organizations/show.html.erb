@@ -30,7 +30,8 @@
 <table class="table table-bordered table-striped">
   <thead>
     <th>Role</th>
-    <th>Name</th>
+    <th>First Name</th>
+    <th>Last Name</th>
     <th>Title</th>
     <th>Office e-mail</th>
     <th>Mobile e-mail</th>
@@ -43,7 +44,8 @@
     <% for administrator in @organization.organization_admins %>
       <tr>
         <td><%= administrator.role %></td>
-        <td><%= administrator.name %></td>
+        <td><%= administrator.first_name %></td>
+        <td><%= administrator.last_name %></td>
         <td><%= administrator.title %></td>
         <td><%= administrator.email %></td>
         <td><%= administrator.mobile_email %></td>

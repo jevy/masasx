@@ -29,7 +29,8 @@ Given /^I complete the organization page$/ do
 end
 
 Given /^I complete the (\w+) Contact page(.*)$/ do |contact, authority|
-  fill_in 'Name',           with: "John #{contact} Doe"
+  fill_in 'First Name',           with: "John"
+  fill_in 'Last Name',           with: "#{contact} Doe"
   fill_in 'Title',          with: "Head of #{contact}"
   select 'English',         from: 'Language'
   fill_in 'Office e-mail',  with: "john.doe.#{contact}@example.com"
@@ -81,7 +82,8 @@ Then /^I should be on the References page$/ do
 end
 
 Then /^I should see the (\w*) contact page completed$/ do |contact|
-  page.find_field('Name').value.should eql("John #{contact} Doe")
+  page.find_field('First Name').value.should eql("John")
+  page.find_field('Last Name').value.should eql("#{contact} Doe")
   page.find_field('Title').value.should eql("Head of #{contact}")
   page.find_field('Language').value.should eql('English')
   page.find_field('Office e-mail').value.should  eql("john.doe.#{contact}@example.com")

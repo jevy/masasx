@@ -3,11 +3,13 @@ FactoryGirl.define do
     sequence :email do |n|
       "email_#{n}@example.com"
     end
+    title 'president'
+    language 'en'
     password 'my_password'
     password_confirmation { |organization_admin| organization_admin.password }
     first_name 'First Name'
     last_name 'Last Name'
-    office_phone '555-42-42-42'
+    office_phone '555-342-1233'
     address_line_1 '123 Main St.'
     city 'Ottawa'
     state 'Ontario'

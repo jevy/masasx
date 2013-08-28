@@ -11,17 +11,27 @@ FactoryGirl.define do
     references 'We are good.'
     questions 'What is the meaning of 42?'
     agreements [1, 2, 3]
+    postal_code 'K1J 234'
+    country 'CA'
   end
 
-  factory :organization_pending_approval, parent: :organization do
+  factory :organization_with_contacts, parent: :organization do
+    after_create do |organization|
+      FactoryGirl.create(:organization_admin, organization: organization, role: 'Primary', last_name: 'The admin')
+      FactoryGirl.create(:organization_admin, organization: organization, role: 'Secondary', last_name: 'Not as important')
+      FactoryGirl.create(:organization_admin, organization: organization, role: 'Authority', last_name: 'Important person')
+    end
+  end
+
+  factory :organization_pending_approval, parent: :organization_with_contacts do
     status 'pending_approval'
   end
 
-  factory :organization_approved, parent: :organization do
+  factory :organization_approved, parent: :organization_with_contacts do
     status 'approved'
   end
 
-  factory :organization_rejected, parent: :organization do
+  factory :organization_rejected, parent: :organization_with_contacts do
     status 'rejected'
   end
 

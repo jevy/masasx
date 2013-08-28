@@ -36,6 +36,7 @@ Feature: MasasxClerk should be able to manage the entire system
     And I press "Rejected"
     Then I should see "Organization Name"
 
+    @opendjrequest
   Scenario: MasasxClerk should be able to approve an Organization's application
     Given an organization pending approval exists with a name of "Organization Name"
     And I am on the Organizations admin page
@@ -82,7 +83,8 @@ Feature: MasasxClerk should be able to manage the entire system
     Given an organization pending approval exists with a name of "Organization Name"
     And the following secondary contact for the organization "Organization Name" exists:
       | field          | value              |
-      | name           | Ops Manager        |
+      | first_name     | Ops                |
+      | last_name      | Secondary Manager  |
       | email          | some@example.com   |
       | title          | Mister             |
       | mobile_email   | mobile@example.com |
@@ -97,7 +99,7 @@ Feature: MasasxClerk should be able to manage the entire system
     And I am on the Organizations admin page
     And I press "Pending"
     When I press "View"
-    Then I should see "Ops Manager"
+    Then I should see "Secondary Manager"
     And I should see "some@example.com"
     And I should see "Mister"
     And I should see "mobile@example.com"
@@ -114,7 +116,8 @@ Feature: MasasxClerk should be able to manage the entire system
     Given an organization pending approval exists with a name of "Organization Name"
     And the following secondary contact for the organization "Organization Name" exists:
       | field          | value                       |
-      | name           | Ops Secondary Manager       |
+      | first_name     | Ops                         |
+      | last_name      | Secondary Manager           |
       | email          | somesecondary@example.com   |
       | title          | Secondary                   |
       | mobile_email   | mobilesecondary@example.com |
