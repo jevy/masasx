@@ -2,296 +2,6 @@
 http_interactions:
 - request:
     method: post
-    uri: https://ois.cloop.co/masas/organizations
-    body:
-      encoding: UTF-8
-      string: ! '{"OrgName":"Awesome organization","address-line1":"Nowhere 42","province-state":"Ontario","country":"CA","postal-code":"K1J
-        1A6"}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Date:
-      - Wed, 28 Aug 2013 14:03:26 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '751'
-      Connection:
-      - close
-      Content-Type:
-      - text/html; charset=UTF-8
-    body:
-      encoding: US-ASCII
-      string: ! "\n    <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n    <html>\n
-        \       <head>\n            <title>Error: 404 Not Found</title>\n            <style
-        type=\"text/css\">\n              html {background-color: #eee; font-family:
-        sans;}\n              body {background-color: #fff; border: 1px solid #ddd;\n
-        \                   padding: 15px; margin: 15px;}\n              pre {background-color:
-        #eee; border: 1px solid #ddd; padding: 5px;}\n            </style>\n        </head>\n
-        \       <body>\n            <h1>Error: 404 Not Found</h1>\n            <p>Sorry,
-        the requested URL <tt>&#039;https://ois.cloop.co/masas/organizations&#039;</tt>\n
-        \              caused an error:</p>\n            <pre>Not found: &#039;/organizations&#039;</pre>\n
-        \       </body>\n    </html>\n"
-    http_version: 
-  recorded_at: Wed, 28 Aug 2013 14:03:29 GMT
-- request:
-    method: post
-    uri: https://ois.continuumloop.com/masas/organizations
-    body:
-      encoding: UTF-8
-      string: ! '{"OrgName":"Awesome organization","address-line1":"Nowhere 42","province-state":"Ontario","country":"CA","postal-code":"K1J
-        1A6"}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Date:
-      - Wed, 28 Aug 2013 14:27:58 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '760'
-      Connection:
-      - close
-      Content-Type:
-      - text/html; charset=UTF-8
-    body:
-      encoding: US-ASCII
-      string: ! "\n    <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n    <html>\n
-        \       <head>\n            <title>Error: 404 Not Found</title>\n            <style
-        type=\"text/css\">\n              html {background-color: #eee; font-family:
-        sans;}\n              body {background-color: #fff; border: 1px solid #ddd;\n
-        \                   padding: 15px; margin: 15px;}\n              pre {background-color:
-        #eee; border: 1px solid #ddd; padding: 5px;}\n            </style>\n        </head>\n
-        \       <body>\n            <h1>Error: 404 Not Found</h1>\n            <p>Sorry,
-        the requested URL <tt>&#039;https://ois.continuumloop.com/masas/organizations&#039;</tt>\n
-        \              caused an error:</p>\n            <pre>Not found: &#039;/organizations&#039;</pre>\n
-        \       </body>\n    </html>\n"
-    http_version: 
-  recorded_at: Wed, 28 Aug 2013 14:28:00 GMT
-- request:
-    method: post
-    uri: https://ois.continuumloop.com/masas/organizations/
-    body:
-      encoding: UTF-8
-      string: ! '{"OrgName":"Awesome organization","address-line1":"Nowhere 42","province-state":"Ontario","country":"CA","postal-code":"K1J
-        1A6"}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 400
-      message: Bad Request
-    headers:
-      Date:
-      - Wed, 28 Aug 2013 15:15:12 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '263'
-      Connection:
-      - close
-      Content-Type:
-      - text/html; charset=UTF-8
-    body:
-      encoding: US-ASCII
-      string: ! '[<ValidationError: "u''PrimaryContactURI'' is a required property">,
-        <ValidationError: "u''SecondaryContactURI'' is a required property">, <ValidationError:
-        "u''ExecutiveContactURI'' is a required property">, <ValidationError: "u''AdminAccount''
-        is a required property">]'
-    http_version: 
-  recorded_at: Wed, 28 Aug 2013 15:15:15 GMT
-- request:
-    method: post
-    uri: https://ois.continuumloop.com/masas/contacts/
-    body:
-      encoding: UTF-8
-      string: ! '{"firstName":"Jevin","lastName":"Maltais","title":"President","language":"en","email":"jevin@quickjack.ca","office-phone":"613-265-5389"}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 28 Aug 2013 16:51:07 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '53'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: US-ASCII
-      string: ! '{"MasasUUID": "08db891e-1002-11e3-9097-0401041e8a01"}'
-    http_version: 
-  recorded_at: Wed, 28 Aug 2013 16:51:08 GMT
-- request:
-    method: post
-    uri: https://ois.continuumloop.com/masas/contacts/
-    body:
-      encoding: UTF-8
-      string: ! '{"firstName":"My","lastName":"Backup","title":"President","language":"en","email":"someoneelse@quickjack.ca","office-phone":"613-265-5389"}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 28 Aug 2013 16:51:07 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '53'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: US-ASCII
-      string: ! '{"MasasUUID": "09214bb6-1002-11e3-96b3-0401041e8a01"}'
-    http_version: 
-  recorded_at: Wed, 28 Aug 2013 16:51:09 GMT
-- request:
-    method: post
-    uri: https://ois.continuumloop.com/masas/contacts/
-    body:
-      encoding: UTF-8
-      string: ! '{"firstName":"Someone","lastName":"Important","title":"President","language":"en","email":"important@quickjack.ca","office-phone":"613-265-5389"}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 28 Aug 2013 16:51:08 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '53'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: US-ASCII
-      string: ! '{"MasasUUID": "098f804a-1002-11e3-94fe-0401041e8a01"}'
-    http_version: 
-  recorded_at: Wed, 28 Aug 2013 16:51:10 GMT
-- request:
-    method: post
-    uri: https://ois.continuumloop.com/masas/organizations/
-    body:
-      encoding: UTF-8
-      string: ! '{"OrgName":"Awesome organization","address-line1":"Nowhere 42","province-state":"Ontario","country":"CA","postal-code":"K1J
-        1A6","PrimaryContactURI":"08db891e-1002-11e3-9097-0401041e8a01","SecondaryContactURI":"09214bb6-1002-11e3-96b3-0401041e8a01","ExecutiveContactURI":"08db891e-1002-11e3-9097-0401041e8a01"}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 400
-      message: Bad Request
-    headers:
-      Date:
-      - Wed, 28 Aug 2013 16:51:09 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '61'
-      Connection:
-      - close
-      Content-Type:
-      - text/html; charset=UTF-8
-    body:
-      encoding: US-ASCII
-      string: ! '[<ValidationError: "u''AdminAccount'' is a required property">]'
-    http_version: 
-  recorded_at: Wed, 28 Aug 2013 16:51:10 GMT
-- request:
-    method: post
-    uri: https://ois.continuumloop.com/masas/organizations/
-    body:
-      encoding: UTF-8
-      string: ! '{"OrgName":"Awesome organization","address-line1":"Nowhere 42","province-state":"Ontario","country":"CA","postal-code":"K1J
-        1A6","PrimaryContactURI":"08db891e-1002-11e3-9097-0401041e8a01","SecondaryContactURI":"09214bb6-1002-11e3-96b3-0401041e8a01","ExecutiveContactURI":"08db891e-1002-11e3-9097-0401041e8a01","AdminAccount":{"UserName":"jmaltais","ContactURI":"08db891e-1002-11e3-9097-0401041e8a01","Password":"somestaticpasswd","AccessCode":"somestaticaccesscode"}}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 28 Aug 2013 17:21:00 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '53'
-      Connection:
-      - close
-      Content-Type:
-      - text/html; charset=UTF-8
-    body:
-      encoding: US-ASCII
-      string: ! '{"MasasUUID": "3550a160-1006-11e3-96b3-0401041e8a01"}'
-    http_version: 
-  recorded_at: Wed, 28 Aug 2013 17:21:01 GMT
-- request:
-    method: post
     uri: https://ois.continuumloop.com/masas/contacts/
     body:
       encoding: UTF-8
@@ -309,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 28 Aug 2013 21:06:14 GMT
+      - Thu, 12 Sep 2013 12:44:35 GMT
       Server:
       - Apache/2.2.15 (CentOS)
       Content-Length:
@@ -320,9 +30,9 @@ http_interactions:
       - application/json
     body:
       encoding: US-ASCII
-      string: ! '{"MasasUUID": "ac948f74-1025-11e3-96b3-0401041e8a01"}'
+      string: ! '{"MasasUUID": "1427640c-1ba9-11e3-9b17-0401041e8a01"}'
     http_version: 
-  recorded_at: Wed, 28 Aug 2013 21:06:16 GMT
+  recorded_at: Thu, 12 Sep 2013 12:44:39 GMT
 - request:
     method: post
     uri: https://ois.continuumloop.com/masas/contacts/
@@ -342,7 +52,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 28 Aug 2013 21:06:15 GMT
+      - Thu, 12 Sep 2013 12:44:35 GMT
       Server:
       - Apache/2.2.15 (CentOS)
       Content-Length:
@@ -353,9 +63,9 @@ http_interactions:
       - application/json
     body:
       encoding: US-ASCII
-      string: ! '{"MasasUUID": "acd752fa-1025-11e3-94fe-0401041e8a01"}'
+      string: ! '{"MasasUUID": "1473f8c6-1ba9-11e3-9947-0401041e8a01"}'
     http_version: 
-  recorded_at: Wed, 28 Aug 2013 21:06:16 GMT
+  recorded_at: Thu, 12 Sep 2013 12:44:40 GMT
 - request:
     method: post
     uri: https://ois.continuumloop.com/masas/contacts/
@@ -375,7 +85,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 28 Aug 2013 21:06:15 GMT
+      - Thu, 12 Sep 2013 12:44:36 GMT
       Server:
       - Apache/2.2.15 (CentOS)
       Content-Length:
@@ -386,16 +96,51 @@ http_interactions:
       - application/json
     body:
       encoding: US-ASCII
-      string: ! '{"MasasUUID": "ad104452-1025-11e3-9989-0401041e8a01"}'
+      string: ! '{"MasasUUID": "14c4b6f8-1ba9-11e3-9e53-0401041e8a01"}'
     http_version: 
-  recorded_at: Wed, 28 Aug 2013 21:06:16 GMT
+  recorded_at: Thu, 12 Sep 2013 12:44:40 GMT
 - request:
     method: post
     uri: https://ois.continuumloop.com/masas/organizations/
     body:
       encoding: UTF-8
       string: ! '{"OrgName":"Awesome organization","address-line1":"Nowhere 42","province-state":"Ontario","country":"CA","postal-code":"K1J
-        1A6","PrimaryContactURI":"ac948f74-1025-11e3-96b3-0401041e8a01","SecondaryContactURI":"acd752fa-1025-11e3-94fe-0401041e8a01","ExecutiveContactURI":"ac948f74-1025-11e3-96b3-0401041e8a01","AdminAccount":{"UserName":"jmaltais","ContactURI":"ac948f74-1025-11e3-96b3-0401041e8a01","Password":"somestaticpasswd","AccessCode":"somestaticaccesscode"}}'
+        1A6","PrimaryContactURI":"1427640c-1ba9-11e3-9b17-0401041e8a01","SecondaryContactURI":"1473f8c6-1ba9-11e3-9947-0401041e8a01","ExecutiveContactURI":"1427640c-1ba9-11e3-9b17-0401041e8a01","AdminAccount":{"UserName":"jmaltais","ContactURI":"1427640c-1ba9-11e3-9b17-0401041e8a01","Password":"somestaticpasswd","AccessCode":"somestaticaccesscode"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Sep 2013 12:44:36 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '53'
+      Connection:
+      - close
+      Content-Type:
+      - text/html; charset=UTF-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"MasasUUID": "15150d24-1ba9-11e3-a166-0401041e8a01"}'
+    http_version: 
+  recorded_at: Thu, 12 Sep 2013 12:44:41 GMT
+- request:
+    method: post
+    uri: https://ois.continuumloop.com/masas/organizations/
+    body:
+      encoding: UTF-8
+      string: ! '{"OrgName":"Awesome organization","address-line1":"Nowhere 42","province-state":"Ontario","country":"CA","postal-code":"K1J
+        1A6","PrimaryContactURI":"primary_uri","SecondaryContactURI":"secondary_uri","ExecutiveContactURI":"primary_uri","AdminAccount":{"UserName":"fthe
+        admin","ContactURI":"primary_uri","Password":"somestaticpasswd","AccessCode":"somestaticaccesscode"}}'
     headers:
       Content-Type:
       - application/json
@@ -409,153 +154,19 @@ http_interactions:
       message: Conflict
     headers:
       Date:
-      - Wed, 28 Aug 2013 21:06:15 GMT
+      - Thu, 12 Sep 2013 12:53:34 GMT
       Server:
       - Apache/2.2.15 (CentOS)
       Content-Length:
-      - '119'
+      - '135'
       Connection:
       - close
       Content-Type:
       - text/html; charset=UTF-8
     body:
       encoding: US-ASCII
-      string: The entry uid=jmaltais,ou=accounts,dc=ois,dc=cloop,dc=co cannot be added
-        because an entry with that name already exists
+      string: The entry ou=Awesome organization,ou=organizations,dc=ois,dc=cloop,dc=co
+        cannot be added because an entry with that name already exists
     http_version: 
-  recorded_at: Wed, 28 Aug 2013 21:06:17 GMT
-- request:
-    method: post
-    uri: https://ois.continuumloop.com/masas/contacts/
-    body:
-      encoding: UTF-8
-      string: ! '{"firstName":"Jevin","lastName":"Maltais","title":"President","language":"en","email":"email_1@example.com","office-phone":"613-265-5389"}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 28 Aug 2013 21:07:42 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '53'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: US-ASCII
-      string: ! '{"MasasUUID": "e11420c0-1025-11e3-93b0-0401041e8a01"}'
-    http_version: 
-  recorded_at: Wed, 28 Aug 2013 21:07:44 GMT
-- request:
-    method: post
-    uri: https://ois.continuumloop.com/masas/contacts/
-    body:
-      encoding: UTF-8
-      string: ! '{"firstName":"My","lastName":"Backup","title":"President","language":"en","email":"email_2@example.com","office-phone":"613-265-5389"}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 28 Aug 2013 21:07:56 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '53'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: US-ASCII
-      string: ! '{"MasasUUID": "e9387eb8-1025-11e3-9a74-0401041e8a01"}'
-    http_version: 
-  recorded_at: Wed, 28 Aug 2013 21:07:57 GMT
-- request:
-    method: post
-    uri: https://ois.continuumloop.com/masas/contacts/
-    body:
-      encoding: UTF-8
-      string: ! '{"firstName":"Someone","lastName":"Important","title":"President","language":"en","email":"email_3@example.com","office-phone":"613-265-5389"}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 28 Aug 2013 21:07:59 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '53'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: US-ASCII
-      string: ! '{"MasasUUID": "eb70b7d6-1025-11e3-9097-0401041e8a01"}'
-    http_version: 
-  recorded_at: Wed, 28 Aug 2013 21:08:01 GMT
-- request:
-    method: post
-    uri: https://ois.continuumloop.com/masas/organizations/
-    body:
-      encoding: UTF-8
-      string: ! '{"OrgName":"Awesome organization","address-line1":"Nowhere 42","province-state":"Ontario","country":"CA","postal-code":"K1J
-        1A6","PrimaryContactURI":"e11420c0-1025-11e3-93b0-0401041e8a01","SecondaryContactURI":"e9387eb8-1025-11e3-9a74-0401041e8a01","ExecutiveContactURI":"e11420c0-1025-11e3-93b0-0401041e8a01","AdminAccount":{"UserName":"jmaltais","ContactURI":"e11420c0-1025-11e3-93b0-0401041e8a01","Password":"somestaticpasswd","AccessCode":"somestaticaccesscode"}}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 409
-      message: Conflict
-    headers:
-      Date:
-      - Wed, 28 Aug 2013 21:08:03 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '119'
-      Connection:
-      - close
-      Content-Type:
-      - text/html; charset=UTF-8
-    body:
-      encoding: US-ASCII
-      string: The entry uid=jmaltais,ou=accounts,dc=ois,dc=cloop,dc=co cannot be added
-        because an entry with that name already exists
-    http_version: 
-  recorded_at: Wed, 28 Aug 2013 21:08:05 GMT
+  recorded_at: Thu, 12 Sep 2013 12:53:39 GMT
 recorded_with: VCR 2.2.5

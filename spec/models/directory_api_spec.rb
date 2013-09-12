@@ -4,7 +4,7 @@ describe DirectoryApi do
 
   describe 'create_organization' do
     before do
-      @organization = FactoryGirl.create(:organization_pending_approval,
+      @organization = FactoryGirl.create(:organization_with_contacts,
                                          name: 'Awesome organization',
                                          address_line_1: 'Nowhere 42',
                                          country: 'CA',
@@ -21,7 +21,7 @@ describe DirectoryApi do
         "postal-code" => "K1J 1A6"
       }
       VCR.use_cassette('organization', :record => :new_episodes, :match_requests_on => [:method, :uri, :body]) do
-        DirectoryApi.create_organization(@organization).should be_true
+        DirectoryApi.create_organization(@organization, "primary_uri", "secondary_uri", "authority_uri", AdminAccount.new(@organization.primary_organization_administrator)).should be_true
       end
     end
   end
@@ -69,7 +69,7 @@ describe DirectoryApi do
 
     it "returns false if call wasn't a success" do
       returned_body = '{"success": false}'
-      DirectoryApi.parse_uuid(returned_body).should be_nil
+      lambda {DirectoryApi.parse_uuid(returned_body)}.should raise_error
     end
 
   end
