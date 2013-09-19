@@ -9,21 +9,23 @@ describe DirectoryApi do
                                          address_line_1: 'Nowhere 42',
                                          country: 'CA',
                                          postal_code: 'K1J 1A6')
+
     end
 
     it 'sends the JSON data to the Directory' do
-      json_hash =
-      {
-        "OrgName" => "Awesome organization",
-        "address-line1" => "Nowhere 42",
-        "province-state" => "Ontario",
-        "country" => "CA",
-        "postal-code" => "K1J 1A6"
-      }
       VCR.use_cassette('organization', :record => :new_episodes, :match_requests_on => [:method, :uri, :body]) do
         DirectoryApi.create_organization(@organization, "primary_uri", "secondary_uri", "authority_uri", AdminAccount.new(@organization.primary_organization_administrator)).should be_true
       end
     end
+
+    it 'raises an error if a conflict exists' do
+      stub_request(:post, "https://ois.continuumloop.com/masas/organizations/").to_return(status: 409)
+      VCR.turned_off {
+        expect { DirectoryApi.create_organization(@organization, "primary_uri", "secondary_uri", "authority_uri", AdminAccount.new(@organization.primary_organization_administrator))}.should raise_error DirectoryApiException
+      }
+    end
+
+
   end
 
   describe 'create_contact' do

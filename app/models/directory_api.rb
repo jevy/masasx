@@ -2,6 +2,8 @@ require 'logger'
 # we need a 3rd-party extension for some extra middleware:
 require 'faraday_middleware'
 
+class DirectoryApiException < RuntimeError; end
+
 class DirectoryApi
   URL = "https://ois.continuumloop.com"
 
@@ -35,7 +37,15 @@ class DirectoryApi
     response = connection.post("/masas/organizations/") do |request|
       request.body = body
     end
-    response.success? ? true : false
+
+    if response.success?
+      return true
+    elsif response.status == 409
+      raise DirectoryApiException, "Organization or Admin Contact already exists"
+    else
+      raise RuntimeError, "Unknown issue posting organization to Directory"
+    end
+
   end
 
   def self.create_contact(contact)

@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 12 Sep 2013 12:44:35 GMT
+      - Fri, 13 Sep 2013 14:44:59 GMT
       Server:
       - Apache/2.2.15 (CentOS)
       Content-Length:
@@ -30,9 +30,9 @@ http_interactions:
       - application/json
     body:
       encoding: US-ASCII
-      string: ! '{"MasasUUID": "1427640c-1ba9-11e3-9b17-0401041e8a01"}'
+      string: ! '{"MasasUUID": "10df3b28-1c83-11e3-890b-0401041e8a01"}'
     http_version: 
-  recorded_at: Thu, 12 Sep 2013 12:44:39 GMT
+  recorded_at: Fri, 13 Sep 2013 14:45:01 GMT
 - request:
     method: post
     uri: https://ois.continuumloop.com/masas/contacts/
@@ -52,7 +52,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 12 Sep 2013 12:44:35 GMT
+      - Fri, 13 Sep 2013 14:45:00 GMT
       Server:
       - Apache/2.2.15 (CentOS)
       Content-Length:
@@ -63,9 +63,9 @@ http_interactions:
       - application/json
     body:
       encoding: US-ASCII
-      string: ! '{"MasasUUID": "1473f8c6-1ba9-11e3-9947-0401041e8a01"}'
+      string: ! '{"MasasUUID": "11312082-1c83-11e3-8021-0401041e8a01"}'
     http_version: 
-  recorded_at: Thu, 12 Sep 2013 12:44:40 GMT
+  recorded_at: Fri, 13 Sep 2013 14:45:02 GMT
 - request:
     method: post
     uri: https://ois.continuumloop.com/masas/contacts/
@@ -85,7 +85,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 12 Sep 2013 12:44:36 GMT
+      - Fri, 13 Sep 2013 14:45:00 GMT
       Server:
       - Apache/2.2.15 (CentOS)
       Content-Length:
@@ -96,16 +96,16 @@ http_interactions:
       - application/json
     body:
       encoding: US-ASCII
-      string: ! '{"MasasUUID": "14c4b6f8-1ba9-11e3-9e53-0401041e8a01"}'
+      string: ! '{"MasasUUID": "116d27f8-1c83-11e3-8623-0401041e8a01"}'
     http_version: 
-  recorded_at: Thu, 12 Sep 2013 12:44:40 GMT
+  recorded_at: Fri, 13 Sep 2013 14:45:02 GMT
 - request:
     method: post
     uri: https://ois.continuumloop.com/masas/organizations/
     body:
       encoding: UTF-8
       string: ! '{"OrgName":"Awesome organization","address-line1":"Nowhere 42","province-state":"Ontario","country":"CA","postal-code":"K1J
-        1A6","PrimaryContactURI":"1427640c-1ba9-11e3-9b17-0401041e8a01","SecondaryContactURI":"1473f8c6-1ba9-11e3-9947-0401041e8a01","ExecutiveContactURI":"1427640c-1ba9-11e3-9b17-0401041e8a01","AdminAccount":{"UserName":"jmaltais","ContactURI":"1427640c-1ba9-11e3-9b17-0401041e8a01","Password":"somestaticpasswd","AccessCode":"somestaticaccesscode"}}'
+        1A6","PrimaryContactURI":"10df3b28-1c83-11e3-890b-0401041e8a01","SecondaryContactURI":"11312082-1c83-11e3-8021-0401041e8a01","ExecutiveContactURI":"10df3b28-1c83-11e3-890b-0401041e8a01","AdminAccount":{"UserName":"jmaltais","ContactURI":"10df3b28-1c83-11e3-890b-0401041e8a01","Password":"somestaticpasswd","AccessCode":"somestaticaccesscode"}}'
     headers:
       Content-Type:
       - application/json
@@ -119,7 +119,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 12 Sep 2013 12:44:36 GMT
+      - Fri, 13 Sep 2013 14:45:01 GMT
       Server:
       - Apache/2.2.15 (CentOS)
       Content-Length:
@@ -130,9 +130,9 @@ http_interactions:
       - text/html; charset=UTF-8
     body:
       encoding: US-ASCII
-      string: ! '{"MasasUUID": "15150d24-1ba9-11e3-a166-0401041e8a01"}'
+      string: ! '{"MasasUUID": "11a490d0-1c83-11e3-927c-0401041e8a01"}'
     http_version: 
-  recorded_at: Thu, 12 Sep 2013 12:44:41 GMT
+  recorded_at: Fri, 13 Sep 2013 14:45:03 GMT
 - request:
     method: post
     uri: https://ois.continuumloop.com/masas/organizations/
@@ -154,7 +154,7 @@ http_interactions:
       message: Conflict
     headers:
       Date:
-      - Thu, 12 Sep 2013 12:53:34 GMT
+      - Fri, 13 Sep 2013 14:45:01 GMT
       Server:
       - Apache/2.2.15 (CentOS)
       Content-Length:
@@ -168,5 +168,5 @@ http_interactions:
       string: The entry ou=Awesome organization,ou=organizations,dc=ois,dc=cloop,dc=co
         cannot be added because an entry with that name already exists
     http_version: 
-  recorded_at: Thu, 12 Sep 2013 12:53:39 GMT
+  recorded_at: Fri, 13 Sep 2013 14:45:03 GMT
 recorded_with: VCR 2.2.5

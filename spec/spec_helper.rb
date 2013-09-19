@@ -2,7 +2,7 @@ require 'rubygems'
 require 'spork'
 require 'capybara/rspec'
 require 'vcr'
-#require 'webmock/rspec'
+require 'webmock/rspec'
 
 unless Spork.using_spork?
   require 'simplecov'
