@@ -4,24 +4,36 @@ describe DirectoryApi do
 
   describe 'create_organization' do
     before do
-      @organization = FactoryGirl.create(:organization_with_contacts,
-                                         name: 'Awesome organization',
+      @organization = FactoryGirl.create(:organization,
+                                         name: 'Awesome organization 333',
                                          address_line_1: 'Nowhere 42',
                                          country: 'CA',
                                          postal_code: 'K1J 1A6')
-
+        FactoryGirl.create(:organization_admin, organization: @organization, role: 'Primary', last_name: 'Theadmin333', uuid: 'someuuid')
+        FactoryGirl.create(:organization_admin, organization: @organization, role: 'Secondary', last_name: 'Not as important333', uuid: 'someuuid')
+        FactoryGirl.create(:organization_admin, organization: @organization, role: 'Authority', last_name: 'Important person333', uuid: 'someuuid')
     end
 
     it 'sends the JSON data to the Directory' do
       VCR.use_cassette('organization', :record => :new_episodes, :match_requests_on => [:method, :uri, :body]) do
-        DirectoryApi.create_organization(@organization, "primary_uri", "secondary_uri", "authority_uri", AdminAccount.new(@organization.primary_organization_administrator)).should be_true
+        DirectoryApi.create_organization(@organization,
+                                         @organization.primary_organization_administrator,
+                                         @organization.secondary_organization_administrator,
+                                         @organization.authority_organization_administrator,
+                                         AdminAccount.new(@organization.primary_organization_administrator)
+                                        ).should be_true
       end
     end
 
     it 'raises an error if a conflict exists' do
       stub_request(:post, "https://ois.continuumloop.com/masas/organizations/").to_return(status: 409)
       VCR.turned_off {
-        expect { DirectoryApi.create_organization(@organization, "primary_uri", "secondary_uri", "authority_uri", AdminAccount.new(@organization.primary_organization_administrator))}.should raise_error DirectoryApiException
+        expect { DirectoryApi.create_organization(@organization,
+                                                  @organization.primary_organization_administrator,
+                                                  @organization.secondary_organization_administrator,
+                                                  @organization.authority_organization_administrator,
+                                                  AdminAccount.new(@organization.primary_organization_administrator))
+               }.should raise_error DirectoryApiException
       }
     end
 
@@ -31,7 +43,7 @@ describe DirectoryApi do
   describe 'create_contact' do
     before do
       @organization = FactoryGirl.create(:organization_pending_approval,
-                                         name: 'Awesome organization',
+                                         name: 'Awesome organization444',
                                          address_line_1: 'Nowhere 42',
                                          country: 'CA',
                                          postal_code: 'K1J 1A6')
@@ -40,22 +52,13 @@ describe DirectoryApi do
     it 'sends the JSON data to the Directory for a primary admin' do
       admin = FactoryGirl.create(:organization_admin,
                          first_name: 'Jevin',
-                         last_name: 'Maltais',
+                         last_name: 'Maltais444',
                          title: 'President',
                          language: 'en',
                          office_email: 'jevin@quickjack.ca',
                          office_phone: '613-265-5389',
                          organization: @organization,
                          role: 'Primary')
-      json_hash =
-      {
-        "firstName" => "Jevin",
-        "lastName" => "Maltais",
-        "title" => "President",
-        "language" => "en",
-        "email" => "jevin@quickjack.ca",
-        "office-phone" => "613-265-5389"
-      }
       VCR.use_cassette('primary_admin', :record => :new_episodes, :match_requests_on => [:method, :uri, :body]) do
         # UUID regex
         DirectoryApi.create_contact(admin).should match /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/

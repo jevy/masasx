@@ -5,7 +5,7 @@ http_interactions:
     uri: https://ois.continuumloop.com/masas/contacts/
     body:
       encoding: UTF-8
-      string: ! '{"firstName":"Jevin","lastName":"Maltais","title":"President","language":"en","email":"email_9@example.com","office-phone":"613-265-5389"}'
+      string: ! '{"firstName":"Jevin","lastName":"Maltais","title":"President","language":"en","email":"email_3@example.com","office-phone":"613-265-5389"}'
     headers:
       Content-Type:
       - application/json
@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 12 Sep 2013 12:44:34 GMT
+      - Thu, 26 Sep 2013 18:49:59 GMT
       Server:
       - Apache/2.2.15 (CentOS)
       Content-Length:
@@ -30,15 +30,15 @@ http_interactions:
       - application/json
     body:
       encoding: US-ASCII
-      string: ! '{"MasasUUID": "13c71106-1ba9-11e3-99e7-0401041e8a01"}'
+      string: ! '{"MasasUUID": "71efbfc4-26dc-11e3-8eef-0401041e8a01"}'
     http_version: 
-  recorded_at: Thu, 12 Sep 2013 12:44:38 GMT
+  recorded_at: Thu, 26 Sep 2013 18:50:14 GMT
 - request:
     method: post
     uri: https://ois.continuumloop.com/masas/contacts/
     body:
       encoding: UTF-8
-      string: ! '{"firstName":"Jevin","lastName":"Maltais","title":"President","language":"en","email":"email_33@example.com","office-phone":"613-265-5389"}'
+      string: ! '{"firstName":"Jevin","lastName":"Maltais444","title":"President","language":"en","email":"email_26@example.com","office-phone":"613-265-5389"}'
     headers:
       Content-Type:
       - application/json
@@ -52,7 +52,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 12 Sep 2013 12:44:37 GMT
+      - Thu, 26 Sep 2013 18:50:03 GMT
       Server:
       - Apache/2.2.15 (CentOS)
       Content-Length:
@@ -63,40 +63,7 @@ http_interactions:
       - application/json
     body:
       encoding: US-ASCII
-      string: ! '{"MasasUUID": "1562bb8c-1ba9-11e3-b9de-0401041e8a01"}'
+      string: ! '{"MasasUUID": "743f1dce-26dc-11e3-8618-0401041e8a01"}'
     http_version: 
-  recorded_at: Thu, 12 Sep 2013 12:44:41 GMT
-- request:
-    method: post
-    uri: https://ois.continuumloop.com/masas/contacts/
-    body:
-      encoding: UTF-8
-      string: ! '{"firstName":"Jevin","lastName":"Maltais","title":"President","language":"en","email":"email_23@example.com","office-phone":"613-265-5389"}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept:
-      - ! '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 12 Sep 2013 12:54:21 GMT
-      Server:
-      - Apache/2.2.15 (CentOS)
-      Content-Length:
-      - '53'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-    body:
-      encoding: US-ASCII
-      string: ! '{"MasasUUID": "719bc53c-1baa-11e3-927c-0401041e8a01"}'
-    http_version: 
-  recorded_at: Thu, 12 Sep 2013 12:54:26 GMT
+  recorded_at: Thu, 26 Sep 2013 18:50:18 GMT
 recorded_with: VCR 2.2.5

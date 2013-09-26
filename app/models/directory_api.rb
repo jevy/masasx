@@ -15,21 +15,20 @@ class DirectoryApi
     end
   end
 
-  def self.create_organization(organization, primary_uri, secondary_uri, authority_uri, admin_account)
+  def self.create_organization(organization, primary, secondary, executive, admin_account)
     body =
       {
         'OrgName' => organization.name,
         'address-line1' => organization.address_line_1,
-        'province-state' => 'Ontario',
+        'province-state' => organization.state,
         'country' => organization.country,
         'postal-code' => organization.postal_code,
-        'PrimaryContactURI' => primary_uri,
-        'SecondaryContactURI' => secondary_uri,
-        'ExecutiveContactURI' => primary_uri,
-        'PrimaryContactURI' => primary_uri,
+        'PrimaryContactURI' => primary.uuid,
+        'SecondaryContactURI' => secondary.uuid,
+        'ExecutiveContactURI' => executive.uuid,
         'AdminAccount' =>
            { 'UserName' => admin_account.username,
-             'ContactURI' => primary_uri,
+             'ContactURI' => primary.uuid,
              'Password' => admin_account.password,
              'AccessCode' => admin_account.accesscode
            }
