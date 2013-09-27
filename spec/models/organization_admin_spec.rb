@@ -30,5 +30,15 @@ describe OrganizationAdmin do
 
   it { should respond_to(:postal_code) }
 
+  describe 'email validation' do
+    it 'passes with jevin@quickjack.ca' do
+      OrganizationAdmin.new(email: 'jevin@quickjack.ca').should have(0).errors_on(:email)
+    end
+
+    it 'fails with bob' do
+      OrganizationAdmin.new(email: 'bob').should have(1).errors_on(:email)
+    end
+
+  end
 
 end
