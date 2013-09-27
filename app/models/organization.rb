@@ -87,6 +87,7 @@ class Organization < ActiveRecord::Base
     f.validates :state, presence: { message: 'State required' }
     f.validates :country, presence: { message: 'Country required' }
     f.validates :postal_code, presence: { message: 'Postal code required' }
+    f.validates :website, format: URI::regexp(%w(http https))
   end
 
   with_options if: -> organization { organization.status?(:references) } do |f|

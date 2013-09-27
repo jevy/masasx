@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Directory API', :focus do
+feature 'Directory API' do
 
   before do
     masasx_clerk = FactoryGirl.create(:masasx_clerk, password: 'mypassword')

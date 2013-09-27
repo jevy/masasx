@@ -65,6 +65,33 @@ describe Organization do
 
   end
 
+  describe 'url validation' do
+    before do
+      @org = Organization.new(status: 'organization')
+    end
+
+    it 'passes with http://www.quickjack.ca' do
+      @org.website = 'http://www.quickjack.ca'
+      @org.should have(0).errors_on(:website)
+    end
+
+    it 'passes with https://some.gov.gc.ca' do
+      @org.website = 'http://some.gov.gc.ca'
+      @org.should have(0).errors_on(:website)
+    end
+
+    it 'passes with http://www.quickjack.ca/subsite' do
+      @org.website = 'http://www.quickjack.ca/subsite'
+      @org.should have(0).errors_on(:website)
+    end
+
+    it 'fails with bob' do
+      @org.website = 'bob'
+      @org.should have(1).errors_on(:website)
+    end
+
+  end
+
   describe '#next!' do
 
     before do
