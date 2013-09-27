@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ois.continuumloop.com/masas/contacts/
+    body:
+      encoding: UTF-8
+      string: ! '{"firstName":"First Name","lastName":"Last Name","title":"president","language":"en","email":"email_5@example.com","office-phone":"555-342-1233"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 27 Sep 2013 17:47:56 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '53'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: US-ASCII
+      string: ! '{"MasasUUID": "f139a2b6-279c-11e3-93ec-0401041e8a01"}'
+    http_version: 
+  recorded_at: Fri, 27 Sep 2013 17:48:00 GMT
+- request:
+    method: post
+    uri: https://ois.continuumloop.com/masas/contacts/
+    body:
+      encoding: UTF-8
+      string: ! '{"firstName":"First Name","lastName":"Last Name","title":"president","language":"en","email":"email_6@example.com","office-phone":"555-342-1233"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 27 Sep 2013 17:47:56 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '53'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: US-ASCII
+      string: ! '{"MasasUUID": "f1779918-279c-11e3-9413-0401041e8a01"}'
+    http_version: 
+  recorded_at: Fri, 27 Sep 2013 17:48:00 GMT
+recorded_with: VCR 2.2.5

@@ -7,5 +7,5 @@ VCR.config do |c|
 end
 
 VCR.cucumber_tags do |t|
-  t.tag "@opendjrequest"
+  # t.tag "@opendjrequest"
 end

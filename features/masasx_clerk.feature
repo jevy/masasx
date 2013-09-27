@@ -36,8 +36,8 @@ Feature: MasasxClerk should be able to manage the entire system
     And I press "Rejected"
     Then I should see "Organization Name"
 
-    @opendjrequest
   Scenario: MasasxClerk should be able to approve an Organization's application
+    Given OpenDJ approves all organization requests
     Given an organization pending approval exists with a name of "Organization Name"
     And I am on the Organizations admin page
     And I press "Pending"

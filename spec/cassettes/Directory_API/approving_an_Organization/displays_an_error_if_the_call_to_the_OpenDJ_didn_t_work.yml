@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ois.continuumloop.com/masas/organizations/
+    body:
+      encoding: UTF-8
+      string: ! '{"OrgName":"Awesome ogranization","address-line1":"Nowhere 42","province-state":"Ontario","country":"CA","postal-code":"K1J
+        234","PrimaryContactURI":false,"SecondaryContactURI":false,"ExecutiveContactURI":false,"AdminAccount":{"UserName":"flast
+        name","ContactURI":false,"Password":"somestaticpasswd","AccessCode":"somestaticaccesscode"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Fri, 27 Sep 2013 17:31:26 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '212'
+      Connection:
+      - close
+      Content-Type:
+      - text/html; charset=UTF-8
+    body:
+      encoding: US-ASCII
+      string: ! '[<ValidationError: "False is not of type u''string''">, <ValidationError:
+        "False is not of type u''string''">, <ValidationError: "False is not of type
+        u''string''">, <ValidationError: "False is not of type u''string''">]'
+    http_version: 
+  recorded_at: Fri, 27 Sep 2013 17:31:29 GMT
+recorded_with: VCR 2.2.5

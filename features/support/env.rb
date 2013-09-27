@@ -6,6 +6,7 @@ require 'simplecov'
 # files.
 
 require 'cucumber/rails'
+require 'cucumber/rspec/doubles'
 
 require 'factory_girl/step_definitions'
 

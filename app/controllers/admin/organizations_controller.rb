@@ -17,6 +17,9 @@ class Admin::OrganizationsController < Admin::AdminController
     @organization.approve!
 
     redirect_to admin_organizations_path, notice: 'Organization successfully approved!'
+  rescue DirectoryApiException => e
+    flash[:error] = e.message
+    redirect_to admin_organizations_path
   end
 
   def reject

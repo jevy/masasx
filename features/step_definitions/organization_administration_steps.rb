@@ -31,3 +31,7 @@ end
 Then /^"([^"]*)" should have all the permissions denied$/ do |name|
   page.should_not have_content('Yes')
 end
+
+Given /^OpenDJ approves all organization requests$/ do
+  Directory.stub(:add_organization).and_return(true)
+end

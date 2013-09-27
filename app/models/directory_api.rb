@@ -39,10 +39,8 @@ class DirectoryApi
 
     if response.success?
       return true
-    elsif response.status == 409
-      raise DirectoryApiException, "Organization or Admin Contact already exists"
     else
-      raise RuntimeError, "Unknown issue posting organization to Directory"
+      raise DirectoryApiException, "Message from OpenDJ: #{response.body}"
     end
 
   end
@@ -56,10 +54,17 @@ class DirectoryApi
       'email' => contact.email,
       'office-phone' => contact.office_phone
     }
+
     response = connection.post("/masas/contacts/") do |request|
       request.body = body
     end
-    response.success? ? parse_uuid(response.body) : false
+
+    if response.success?
+      return parse_uuid(response.body)
+    else
+      raise DirectoryApiException, "Message from OpenDJ: #{response.body}"
+    end
+
   end
 
   def self.parse_uuid(returned_body)
