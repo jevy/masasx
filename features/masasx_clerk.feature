@@ -161,6 +161,15 @@ Feature: MasasxClerk should be able to manage the entire system
     And I should see "secondary state"
     And I should see "424242"
 
+  Scenario: MasaxClerk can add notes to the organization's application
+    Given an organization pending approval exists with a name of "Organization Name"
+    And I am on the Organizations admin page
+    And I press "Pending"
+    And I press "View"
+    When I fill in the notes with "This is some updated info"
+    And I press "Update Notes"
+    Then within notes I should see "This is some updated info"
+
   Scenario: After I login, I should be taken to the organizations admin page
     Then I should be on the Organizations admin page
 

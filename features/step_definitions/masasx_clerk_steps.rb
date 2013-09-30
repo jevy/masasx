@@ -54,3 +54,11 @@ Then /^I should see the changes to the Primary contact$/ do
   page.should have_content('Janitor')
   page.should have_content('something@ziggy.com')
 end
+
+When /^I fill in the notes with "([^"]*)"$/ do |arg1|
+  fill_in "Admin notes", with: arg1
+end
+
+Then /^within notes I should see "([^"]*)"$/ do |arg1|
+  find_field('Admin notes').value.should eq arg1
+end

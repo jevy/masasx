@@ -60,6 +60,13 @@
   </tbody>
 </table>
 
+<%= simple_form_for @organization, url: admin_organization_path, method: :put do |f| %>
+  <%= f.input :admin_notes, input_html: { rows: 4 } %>
+  <div class="form-actions">
+    <%= f.button :submit, 'Update Notes', class: 'btn-primary' %>
+  </div>
+<% end %>
+
 <div class="btn-toolbar">
   <%= link_to 'Approve', approve_admin_organization_path(@organization), class: 'btn btn-success'  %>
   <%= link_to 'Reject',  reject_admin_organization_path(@organization), class: 'btn btn-danger'  %>
