@@ -55,6 +55,28 @@ Feature: MasasxClerk should be able to manage the entire system
     Then I should be on the Organizations admin page
     And I should see "Rejected (1)"
 
+  Scenario: MasasxClerk should be able to edit the application's organization details
+    Given an organization pending approval exists with a name of "Organization Name"
+    And I am on the Organizations admin page
+    And I press "Pending"
+    And I press "View"
+    And I press "Edit"
+    When I make changes to the organization
+    And I press "Update"
+    Then I should be on the specific Organizations admin page
+    And I should see the changes to the organization
+
+  Scenario: MasasxClerk should be able to edit the primary contact's info
+    Given an organization with contacts exists with a name of "Organization Name"
+    And I am on the Organizations admin page
+    And I press "Pending"
+    And I press "View"
+    And I press the edit Primary contact button
+    When I make changes to the contact
+    And I press "Update"
+    Then I should be on the specific Organizations admin page
+    And I should see the changes to the Primary contact
+
   Scenario Outline: MasasxClerk should be able to view the applicant's submitted application details
     Given an organization pending approval exists with a <field> of "<value>"
     And I am on the Organizations admin page

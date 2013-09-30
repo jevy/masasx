@@ -21,6 +21,7 @@ Masasx::Application.routes.draw do
         get 'reject'
       end
     end
+    resources :organization_admins, only: [:update, :edit, :show]
     resources :accounts do
       member do
         get 'permissions'

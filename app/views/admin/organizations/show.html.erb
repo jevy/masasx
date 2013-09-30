@@ -25,6 +25,8 @@
   </tr>
 </table>
 
+<%= link_to 'Edit', edit_admin_organization_path(@organization), class: 'btn'  %>
+
 <h3>Contacts Details:</h3>
 
 <table class="table table-bordered table-striped">
@@ -39,6 +41,7 @@
     <th>Mobile Phone</th>
     <th>Executive</th>
     <th>Address</th>
+    <th>Actions</th>
   </thead>
   <tbody>
     <% for administrator in @organization.organization_admins %>
@@ -53,6 +56,7 @@
         <td><%= administrator.mobile_phone %></td>
         <td><%= administrator.executive ? 'Yes' : 'No' %></td>
         <td><%= show_address administrator %></td>
+        <td><%= link_to 'Edit', edit_admin_organization_admin_path(administrator), class: 'btn' %></td>
       </tr>
     <% end %>
   </tbody>

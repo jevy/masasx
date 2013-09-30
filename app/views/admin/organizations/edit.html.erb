@@ -1,0 +1,34 @@
+<% title 'Edit Organization Details' %>
+
+<%= simple_form_for @organization, url: admin_organization_path, method: :put do |f| %>
+  <%= f.input :name, label: 'Organization Name' %>
+
+  <%= f.input :department %>
+
+  <%= f.input :division %>
+
+  <%= f.input :sub_division, label: 'Sub Division' %>
+
+  <%= f.input :address_line_1, label: 'Address Line 1' %>
+
+  <%= f.input :address_line_2, label: 'Address Line 2' %>
+
+  <%= f.input :city, label: 'City' %>
+
+  <%= f.input :state, label: 'State/Prov' %>
+
+  <%= f.input :country, label: 'Country', as: :string %>
+
+  <%= f.input :postal_code, label: 'Postal code' %>
+
+  <%= f.input :telephone %>
+
+  <%= f.input :website %>
+
+  <%= f.input :references %>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Update', class: 'btn-primary' %>
+  </div>
+<% end %>
+

@@ -11,6 +11,16 @@ class Admin::OrganizationsController < Admin::AdminController
     @organization = Organization.find params[:id]
   end
 
+  def edit
+    @organization = Organization.find params[:id]
+  end
+
+  def update
+    @organization = Organization.find params[:id]
+    @organization.update_attributes(params[:organization])
+    redirect_to admin_organization_path(@organization), notice: 'Organization successfully updated!'
+  end
+
   def approve
     @organization = Organization.find params[:id]
 

@@ -20,6 +20,14 @@ FactoryGirl.define do
     status 'pending_approval'
   end
 
+  factory :organization_with_contacts, parent: :organization_pending_approval do
+    after_create do |organization|
+      FactoryGirl.create(:organization_admin, organization: organization, role: 'Primary', last_name: 'The admin')
+      FactoryGirl.create(:organization_admin, organization: organization, role: 'Secondary', last_name: 'Not as important')
+      FactoryGirl.create(:organization_admin, organization: organization, role: 'Authority', last_name: 'Important person')
+    end
+  end
+
   factory :organization_approved, parent: :organization do
     status 'approved'
   end

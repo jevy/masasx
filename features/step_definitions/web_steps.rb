@@ -21,3 +21,7 @@ end
 Given /^I leave the "([^"]*)" field blank$/ do |field|
   fill_in field, with: ""
 end
+
+Then /^show me the page$/ do
+  save_and_open_page
+end

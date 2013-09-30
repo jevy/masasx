@@ -22,3 +22,33 @@ end
 Then /^I should be on the Organizations admin page$/ do
   URI.parse(current_url).path.should eql(admin_organizations_path)
 end
+
+Given /^I press the edit Primary contact button$/ do
+  within(:xpath, "//table[2]/tbody/tr[1]") do
+    click_on "Edit"
+  end
+end
+
+When /^I make changes to the organization$/ do
+  fill_in 'Organization Name', with: 'Some Other Organization'
+  fill_in 'Division', with: 'Some other division'
+end
+
+Then /^I should see the changes to the organization$/ do
+  page.should have_content('Some Other Organization')
+  page.should have_content('Some other division')
+end
+
+Then /^I should be on the specific Organizations admin page$/ do
+  current_path.should match(/\/admin\/organizations\/\d/)
+end
+
+When /^I make changes to the contact$/ do
+  fill_in "First name", with: 'Booga Booga First Name'
+  fill_in "Title", with: 'Janitor'
+end
+
+Then /^I should see the changes to the Primary contact$/ do
+  page.should have_content('Booga Booga First Name')
+  page.should have_content('Janitor')
+end
