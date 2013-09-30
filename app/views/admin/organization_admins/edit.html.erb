@@ -1,17 +1,15 @@
 <% title 'Edit Organization Admin Details' %>
 
 <%= simple_form_for @organization_admin, url: admin_organization_admin_path, method: :put do |f| %>
-  <%= f.input :email %>
-
   <%= f.input :first_name %>
 
   <%= f.input :last_name %>
 
+  <%= f.input :email %>
+
   <%= f.input :role %>
 
   <%= f.input :title %>
-
-  <%= f.input :office_email %>
 
   <%= f.input :office_phone %>
 

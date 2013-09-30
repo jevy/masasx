@@ -181,7 +181,7 @@ Feature: A brand new organization may apply for an account
 
     Examples:
       | field         | message                |
-      | Office e-mail | Email address required |
+      | E-mail        | Email address required |
       | Office Phone  | Phone required         |
       | Name          | Name required          |
 
@@ -199,7 +199,7 @@ Feature: A brand new organization may apply for an account
 
     Examples:
       | field         | message                |
-      | Office e-mail | Email address required |
+      | E-mail        | Email address required |
       | Office Phone  | Phone required         |
       | Name          | Name required          |
 
@@ -219,7 +219,7 @@ Feature: A brand new organization may apply for an account
 
     Examples:
       | field         | message                |
-      | Office e-mail | Email address required |
+      | E-mail        | Email address required |
       | Office Phone  | Phone required         |
       | Name          | Name required          |
 

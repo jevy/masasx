@@ -46,9 +46,11 @@ end
 When /^I make changes to the contact$/ do
   fill_in "First name", with: 'Booga Booga First Name'
   fill_in "Title", with: 'Janitor'
+  fill_in 'Email', with: 'something@ziggy.com'
 end
 
 Then /^I should see the changes to the Primary contact$/ do
   page.should have_content('Booga Booga First Name')
   page.should have_content('Janitor')
+  page.should have_content('something@ziggy.com')
 end

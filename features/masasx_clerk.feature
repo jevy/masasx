@@ -109,7 +109,6 @@ Feature: MasasxClerk should be able to manage the entire system
       | last_name      | Secondary Manager  |
       | email          | some@example.com   |
       | title          | Mister             |
-      | mobile_email   | mobile@example.com |
       | office_phone   | 555-42-42-42       |
       | mobile_phone   | 555-24-24-24       |
       | executive      | true               |
@@ -124,7 +123,6 @@ Feature: MasasxClerk should be able to manage the entire system
     Then I should see "Secondary Manager"
     And I should see "some@example.com"
     And I should see "Mister"
-    And I should see "mobile@example.com"
     And I should see "555-42-42-42"
     And I should see "555-24-24-24"
     And I should see "Yes"
@@ -142,7 +140,6 @@ Feature: MasasxClerk should be able to manage the entire system
       | last_name      | Secondary Manager           |
       | email          | somesecondary@example.com   |
       | title          | Secondary                   |
-      | mobile_email   | mobilesecondary@example.com |
       | office_phone   | 555-42-42-42                |
       | mobile_phone   | 555-24-24-24                |
       | address_line_1 | Nowhere, 42                 |
@@ -156,7 +153,6 @@ Feature: MasasxClerk should be able to manage the entire system
     Then I should see "Ops Secondary Manager"
     And I should see "somesecondary@example.com"
     And I should see "Secondary"
-    And I should see "mobilesecondary@example.com"
     And I should see "555-42-42-42"
     And I should see "555-24-24-24"
     And I should see "Nowhere, 42"
