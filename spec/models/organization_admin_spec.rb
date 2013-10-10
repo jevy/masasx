@@ -8,9 +8,7 @@ describe OrganizationAdmin do
 
   it { should respond_to(:language) }
 
-  it { should respond_to(:office_email) }
-
-  it { should respond_to(:mobile_email) }
+  it { should respond_to(:email) }
 
   it { should respond_to(:office_phone) }
 

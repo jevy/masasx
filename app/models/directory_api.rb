@@ -73,4 +73,8 @@ class DirectoryApi
       result
   end
 
+  def self.delete_contact(contact)
+    raise DirectoryApiException, "Cannot delete contacts.  Bug Darrell to fix this"
+  end
+
 end

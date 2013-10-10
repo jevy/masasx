@@ -17,7 +17,7 @@ describe DirectoryApi do
                          last_name: 'Maltais',
                          title: 'President',
                          language: 'en',
-                         office_email: 'jevin@quickjack.ca',
+                         email: 'jevin@quickjack.ca',
                          office_phone: '613-265-5389',
                          organization: @organization,
                          role: 'Primary')
