@@ -33,7 +33,7 @@ describe DirectoryApi do
                                                   @organization.secondary_organization_administrator,
                                                   @organization.authority_organization_administrator,
                                                   AdminAccount.new(@organization.primary_organization_administrator))
-               }.should raise_error DirectoryApiException
+               }.should raise_error DirectoryApiOrganizationCreationException
       }
     end
 
@@ -63,6 +63,18 @@ describe DirectoryApi do
         # UUID regex
         DirectoryApi.create_contact(admin).should match /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/
       end
+    end
+
+    it 'raises an error if a conflict exists' do
+      stub_request(:post, "https://ois.continuumloop.com/masas/contacts/").to_return(status: 409)
+      VCR.turned_off {
+        expect { DirectoryApi.create_organization(@organization,
+                                                  @organization.primary_organization_administrator,
+                                                  @organization.secondary_organization_administrator,
+                                                  @organization.authority_organization_administrator,
+                                                  AdminAccount.new(@organization.primary_organization_administrator))
+               }.should raise_error DirectoryApiContactCreationException
+      }
     end
   end
 

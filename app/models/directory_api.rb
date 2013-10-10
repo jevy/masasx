@@ -3,6 +3,8 @@ require 'logger'
 require 'faraday_middleware'
 
 class DirectoryApiException < RuntimeError; end
+class DirectoryApiContactCreationException < DirectoryApiException; end
+class DirectoryApiOrganizationCreationException < DirectoryApiException; end
 
 class DirectoryApi
   URL = "https://ois.continuumloop.com"
@@ -40,7 +42,7 @@ class DirectoryApi
     if response.success?
       return true
     else
-      raise DirectoryApiException, "Message from OpenDJ: #{response.body}"
+      raise DirectoryApiOrganizationCreationException, "Message from OpenDJ: #{response.body}"
     end
 
   end
@@ -62,7 +64,7 @@ class DirectoryApi
     if response.success?
       return parse_uuid(response.body)
     else
-      raise DirectoryApiException, "Message from OpenDJ: #{response.body}"
+      raise DirectoryApiContactCreationException, "Message from OpenDJ: #{response.body}"
     end
 
   end
