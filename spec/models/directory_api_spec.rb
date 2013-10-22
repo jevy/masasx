@@ -90,4 +90,17 @@ describe DirectoryApi do
     end
 
   end
+
+  describe 'delete_contact' do
+    it 'sends a DELETE request to the server' do
+      @contact = FactoryGirl.create(:organization_admin, uuid: 'someuuid')
+      stub_request(:delete, "https://ois.continuumloop.com/masas/contacts/someuuid").to_return(status: 200)
+      VCR.turned_off { DirectoryApi.delete_contact(@contact).should be_true }
+    end
+
+    it 'returns false if not uuid exists for the contact' do
+      @contact = FactoryGirl.create(:organization_admin, uuid: nil)
+     DirectoryApi.delete_contact(@contact).should be_false
+    end
+  end
 end

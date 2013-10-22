@@ -76,7 +76,9 @@ class DirectoryApi
   end
 
   def self.delete_contact(contact)
-    raise DirectoryApiException, "Cannot delete contacts.  Bug Darrell to fix this"
+    return false if !contact.uuid
+    connection.delete("/masas/contacts/#{contact.uuid}")
+    true
   end
 
 end
