@@ -86,7 +86,7 @@ describe Directory do
     end
   end
 
-  describe 'failed to create organization', :focus do
+  describe 'failed to create organization' do
     before do
       @organization = double(Organization, has_primary_executive?: false, has_secondary_executive?: false)
       @primary = double(OrganizationAdmin, update_attributes: true)

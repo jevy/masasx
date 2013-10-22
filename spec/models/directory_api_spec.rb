@@ -27,6 +27,7 @@ describe DirectoryApi do
 
     it 'raises an error if a conflict exists' do
       stub_request(:post, "https://ois.continuumloop.com/masas/organizations/").to_return(status: 409)
+      stub_request(:post, "https://ois.continuumloop.com/masas/contacts/").to_return(status: 200)
       VCR.turned_off {
         expect { DirectoryApi.create_organization(@organization,
                                                   @organization.primary_organization_administrator,
@@ -42,7 +43,8 @@ describe DirectoryApi do
 
   describe 'create_contact' do
     before do
-      @organization = FactoryGirl.create(:organization_pending_approval,
+      @organization = FactoryGirl.create(:organization_with_contacts,
+                                         status: 'pending_approval',
                                          name: 'Awesome organization444',
                                          address_line_1: 'Nowhere 42',
                                          country: 'CA',
@@ -68,12 +70,9 @@ describe DirectoryApi do
     it 'raises an error if a conflict exists' do
       stub_request(:post, "https://ois.continuumloop.com/masas/contacts/").to_return(status: 409)
       VCR.turned_off {
-        expect { DirectoryApi.create_organization(@organization,
-                                                  @organization.primary_organization_administrator,
-                                                  @organization.secondary_organization_administrator,
-                                                  @organization.authority_organization_administrator,
-                                                  AdminAccount.new(@organization.primary_organization_administrator))
-               }.should raise_error DirectoryApiContactCreationException
+        expect {
+          DirectoryApi.create_contact(@organization.primary_organization_administrator)
+        }.should raise_error DirectoryApiContactCreationException
       }
     end
   end

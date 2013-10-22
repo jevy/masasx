@@ -62,3 +62,11 @@ end
 Then /^within notes I should see "([^"]*)"$/ do |arg1|
   find_field('Admin notes').value.should eq arg1
 end
+
+Given /^an approved organization exists with a name of "([^"]*)"$/ do |org_name|
+  @organization = FactoryGirl.create(:organization_approved, name: org_name)
+end
+
+Given /^an organization that is pending approval exists with a name of "([^"]*)"$/ do |org_name|
+  @organization = FactoryGirl.create(:organization_pending_approval, name: org_name)
+end

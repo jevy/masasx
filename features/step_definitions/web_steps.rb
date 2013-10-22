@@ -22,6 +22,14 @@ Given /^I leave the "([^"]*)" field blank$/ do |field|
   fill_in field, with: ""
 end
 
+Then /^I should not see an? "([^"]*)" link/ do |link_name|
+  page.should have_no_selector(:xpath, "//a[text()='#{link_name}']")
+end
+
+Then /^I should see an? "([^"]*)" link/ do |link_name|
+  page.should have_selector(:xpath, "//a[text()='#{link_name}']")
+end
+
 Then /^show me the page$/ do
   save_and_open_page
 end

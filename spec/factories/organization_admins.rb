@@ -15,6 +15,7 @@ FactoryGirl.define do
     state 'Ontario'
     country 'CA'
     postal_code 'K1J 1A6'
+    uuid 'SomeUUID'
   end
 
   factory :organization_admin_executive, parent: :organization_admin do

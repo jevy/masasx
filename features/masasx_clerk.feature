@@ -189,3 +189,14 @@ Feature: MasasxClerk should be able to manage the entire system
     And I follow "Next"
     When I am on the Organizations admin page
     Then I should see "Pending (1)"
+
+  Scenario: Users no longer editable if application has been accepted
+    Given an approved organization exists with a name of "Organization Name"
+    When I am on the Organizations admin page
+    And I press "Approved (1)"
+    Then I should not see a "View" link
+
+  Scenario: User can visit the contact edit button if application has been accepted
+    Given an organization that is pending approval exists with a name of "Organization Name"
+    When I am on the Organizations admin page
+    Then I should see a "View" link

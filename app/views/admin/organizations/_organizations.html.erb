@@ -13,7 +13,9 @@
         <td><%= organization.status %></td>
         <td>
           <div class="btn-toolbar">
-            <%= link_to 'View', [:admin, organization], class: 'btn btn-primary' %>
+            <% if organization.status == 'pending_approval' %>
+              <%= link_to 'View', [:admin, organization], class: 'btn' %>
+            <% end %>
           </div>
         </td>
       </tr>
