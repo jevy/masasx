@@ -200,3 +200,9 @@ Feature: MasasxClerk should be able to manage the entire system
     Given an organization that is pending approval exists with a name of "Organization Name"
     When I am on the Organizations admin page
     Then I should see a "View" link
+
+  Scenario: Masasx clerk can sign out
+    When I press "Logout"
+    Then I should see "Email"
+    And I should see "Password"
+

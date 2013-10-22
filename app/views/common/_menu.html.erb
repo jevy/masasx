@@ -11,6 +11,14 @@
         <ul class="nav">
             <li><%= link_to 'Application for Participant Organization', registration_path  %></li>
         </ul>
+        <p class="navbar-text pull-right">
+        <% if current_masasx_clerk %>
+          <%= current_masasx_clerk.email %> |
+            <%= link_to 'Logout', destroy_masasx_clerk_session_path, method: :delete, class: 'navbar-link' %>
+        <% else %>
+          <%= link_to 'Admin Login', new_masasx_clerk_session_path, class: 'navbar-link' %>
+        <% end %>
+        </p>
       </div>
     </div>
   </div>
