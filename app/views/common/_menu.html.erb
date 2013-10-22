@@ -9,7 +9,10 @@
       <%= link_to 'MASAS-X', root_path, class: 'brand'  %>
       <div class="container-fluid nav-collapse">
         <ul class="nav">
-            <li><%= link_to 'Application for Participant Organization', registration_path  %></li>
+            <li><%= link_to 'Application for Participant Organization', registration_path %></li>
+            <% if current_masasx_clerk %>
+              <li><%= link_to 'All Organizations', admin_organizations_path %></li>
+            <% end %>
         </ul>
         <p class="navbar-text pull-right">
         <% if current_masasx_clerk %>
