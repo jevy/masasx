@@ -42,9 +42,7 @@ describe Directory do
     end
 
     it 'sends the JSON data to the Directory' do
-      VCR.use_cassette('organization', :record => :new_episodes, :match_requests_on => [:method, :uri, :body]) do
-        Directory.add_organization(@organization).should be_true
-      end
+      Directory.add_organization(@organization).should be_true
     end
   end
 
@@ -80,9 +78,7 @@ describe Directory do
     end
 
     it 'sends the JSON data to the Directory' do
-      VCR.use_cassette('organization', :record => :new_episodes, :match_requests_on => [:method, :uri, :body]) do
-        Directory.add_organization(@organization).should be_true
-      end
+      Directory.add_organization(@organization).should be_true
     end
   end
 

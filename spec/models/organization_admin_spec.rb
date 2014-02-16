@@ -28,6 +28,10 @@ describe OrganizationAdmin do
 
   it { should respond_to(:postal_code) }
 
+  it "should have a UUID" do
+    FactoryGirl.create(:organization_admin).uuid.should match /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/
+  end
+
   describe 'email validation' do
     it 'passes with jevin@quickjack.ca' do
       OrganizationAdmin.new(email: 'jevin@quickjack.ca').should have(0).errors_on(:email)
@@ -37,6 +41,16 @@ describe OrganizationAdmin do
       OrganizationAdmin.new(email: 'bob').should have(1).errors_on(:email)
     end
 
+  end
+
+  describe 'display_name' do
+    it "Jevin Maltais" do
+      admin = FactoryGirl.create(:organization_admin, first_name: 'Jevin', last_name: 'Maltais').masas_name.should eql "jevin_maltais"
+    end
+
+    it "Marcel Van Wilder" do
+      admin = FactoryGirl.create(:organization_admin, first_name: 'Marcel', last_name: 'Van Wilder').masas_name.should eql "marcel_van_wilder"
+    end
   end
 
 end

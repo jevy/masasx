@@ -45,7 +45,7 @@ class DirectoryApi
       'language' => contact.language,
       'email' => contact.email,
       'office-phone' => contact.office_phone,
-      'MasasUUID' => contact.office_phone
+      'MasasUUID' => contact.uuid
     }
 
     response = connection.put("/contacts/#{contact.office_phone}") do |request|

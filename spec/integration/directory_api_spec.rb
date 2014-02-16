@@ -21,10 +21,8 @@ describe DirectoryApi do
                          office_phone: '613-265-5389',
                          organization: @organization,
                          role: 'Primary')
-      VCR.use_cassette('primary_admin', :record => :new_episodes, :match_requests_on => [:method, :uri, :body]) do
-        # UUID regex
-        DirectoryApi.create_contact(admin).should match /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/
-      end
+      # UUID regex
+      DirectoryApi.create_contact(admin).should match /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/
     end
   end
 

@@ -11,4 +11,14 @@ class OrganizationAdmin < ActiveRecord::Base
   validates :first_name, presence: { message: 'Name required' }
   validates :last_name, presence: { message: 'Name required' }
 
+  before_save :generate_uuid
+
+  def generate_uuid
+    self.uuid = SecureRandom.uuid
+  end
+
+  def masas_name
+   [first_name.downcase,last_name.downcase].join( ' ' ).gsub(' ', '_')
+  end
+
 end

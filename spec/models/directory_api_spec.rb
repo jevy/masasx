@@ -15,27 +15,23 @@ describe DirectoryApi do
     end
 
     it 'sends the JSON data to the Directory' do
-      VCR.use_cassette('organization', :record => :new_episodes, :match_requests_on => [:method, :uri, :body]) do
-        DirectoryApi.create_organization(@organization,
-                                         @organization.primary_organization_administrator,
-                                         @organization.secondary_organization_administrator,
-                                         @organization.authority_organization_administrator,
-                                         AdminAccount.new(@organization.primary_organization_administrator)
-                                        ).should be_true
-      end
+      DirectoryApi.create_organization(@organization,
+                                       @organization.primary_organization_administrator,
+                                       @organization.secondary_organization_administrator,
+                                       @organization.authority_organization_administrator,
+                                       AdminAccount.new(@organization.primary_organization_administrator)
+                                      ).should be_true
     end
 
     it 'raises an error if a conflict exists' do
       stub_request(:post, "https://ois.continuumloop.com/masas/organizations/").to_return(status: 409)
       stub_request(:post, "https://ois.continuumloop.com/masas/contacts/").to_return(status: 200)
-      VCR.turned_off {
-        expect { DirectoryApi.create_organization(@organization,
-                                                  @organization.primary_organization_administrator,
-                                                  @organization.secondary_organization_administrator,
-                                                  @organization.authority_organization_administrator,
-                                                  AdminAccount.new(@organization.primary_organization_administrator))
-               }.should raise_error DirectoryApiOrganizationCreationException
-      }
+      expect { DirectoryApi.create_organization(@organization,
+                                                @organization.primary_organization_administrator,
+                                                @organization.secondary_organization_administrator,
+                                                @organization.authority_organization_administrator,
+                                                AdminAccount.new(@organization.primary_organization_administrator))
+             }.should raise_error DirectoryApiOrganizationCreationException
     end
 
 
@@ -45,8 +41,8 @@ describe DirectoryApi do
     before do
       @organization = FactoryGirl.create(:organization_with_contacts,
                                          status: 'pending_approval',
-                                         name: 'Awesome organization444',
-                                         address_line_1: 'Nowhere 42',
+                                         name: 'Awesome organization',
+                                         address_line_1: '42 Nowhere',
                                          country: 'CA',
                                          postal_code: 'K1J 1A6')
     end
@@ -61,19 +57,15 @@ describe DirectoryApi do
                          office_phone: '613-265-5389',
                          organization: @organization,
                          role: 'Primary')
-      VCR.use_cassette('primary_admin', :record => :new_episodes, :match_requests_on => [:method, :uri, :body]) do
-        # UUID regex
-        DirectoryApi.create_contact(admin).should match /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/
-      end
+      # UUID regex
+      DirectoryApi.create_contact(admin).should match /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/
     end
 
     it 'raises an error if a conflict exists' do
       stub_request(:post, "https://ois.continuumloop.com/masas/contacts/").to_return(status: 409)
-      VCR.turned_off {
-        expect {
-          DirectoryApi.create_contact(@organization.primary_organization_administrator)
-        }.should raise_error DirectoryApiContactCreationException
-      }
+      expect {
+        DirectoryApi.create_contact(@organization.primary_organization_administrator)
+      }.should raise_error DirectoryApiContactCreationException
     end
   end
 
@@ -94,7 +86,6 @@ describe DirectoryApi do
     it 'sends a DELETE request to the server' do
       @contact = FactoryGirl.create(:organization_admin, uuid: 'someuuid')
       stub_request(:delete, "https://ois.continuumloop.com/masas/contacts/someuuid").to_return(status: 200)
-      VCR.turned_off { DirectoryApi.delete_contact(@contact).should be_true }
     end
 
     it 'returns false if not uuid exists for the contact' do
