@@ -37,7 +37,6 @@ group :development, :test do
   gem 'spork', '> 0.9.0.rc'
   gem 'ci_reporter'
   gem 'capybara'
-  gem 'vcr'
   gem 'webmock'
   gem 'debugger'
   gem 'launchy'
