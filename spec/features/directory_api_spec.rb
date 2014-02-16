@@ -11,7 +11,7 @@ feature 'Directory API' do
     click_on 'Sign in'
   end
 
-  context 'approving an Organization', :vcr do
+  context 'approving an Organization' do
 
     before do
       @organization = FactoryGirl.create(:organization_pending_approval)
@@ -28,8 +28,8 @@ feature 'Directory API' do
       page.should have_content('Organization successfully approved!')
     end
 
-    it 'displays an error if contact call to the OpenDJ didn\'t work' do
-      stub_request(:post, "https://ois.continuumloop.com/masas/contacts/").to_return(status: 400, body: "Some contact error")
+    it 'displays an error if contact call to the OpenDJ contacts API didn\'t work' do
+      stub_request(:any, /iam.continuumloop.com:9080\/.*/).to_return(status: 400, body: "Some contact error")
 
       visit '/admin/organizations'
       click_on 'View'
@@ -37,13 +37,5 @@ feature 'Directory API' do
       page.should have_content('Message from OpenDJ: Some contact error')
     end
 
-    it 'displays an error if contact call to the OpenDJ didn\'t work' do
-      stub_request(:post, "https://ois.continuumloop.com/masas/organizations/").to_return(status: 400, body: "Some organization error")
-
-      visit '/admin/organizations'
-      click_on 'View'
-      click_on 'Approve'
-      page.should have_content('Message from OpenDJ: Some organization error')
-    end
   end
 end

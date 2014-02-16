@@ -7,7 +7,7 @@ class DirectoryApiContactCreationException < DirectoryApiException; end
 class DirectoryApiOrganizationCreationException < DirectoryApiException; end
 
 class DirectoryApi
-  URL = "https://ois.continuumloop.com"
+  URL = "http://iam.continuumloop.com:9080"
 
   def self.connection
     Faraday.new(url: URL, ssl: {verify: false}) do |c|
@@ -18,24 +18,14 @@ class DirectoryApi
   end
 
   def self.create_organization(organization, primary, secondary, executive, admin_account)
+    # Missing more stuff
     body =
       {
-        'OrgName' => organization.name,
-        'address-line1' => organization.address_line_1,
-        'province-state' => organization.state,
-        'country' => organization.country,
-        'postal-code' => organization.postal_code,
+        'displayName' => organization.name,
         'PrimaryContactURI' => primary.uuid,
-        'SecondaryContactURI' => secondary.uuid,
-        'ExecutiveContactURI' => executive.uuid,
-        'AdminAccount' =>
-           { 'UserName' => admin_account.username,
-             'ContactURI' => primary.uuid,
-             'Password' => admin_account.password,
-             'AccessCode' => admin_account.accesscode
-           }
+        'SecondaryContactURI' => secondary.uuid
       }
-    response = connection.post("/masas/organizations/") do |request|
+    response = connection.put("/organizations/") do |request|
       request.body = body
     end
 
@@ -54,10 +44,11 @@ class DirectoryApi
       'title' => contact.title,
       'language' => contact.language,
       'email' => contact.email,
-      'office-phone' => contact.office_phone
+      'office-phone' => contact.office_phone,
+      'MasasUUID' => contact.office_phone
     }
 
-    response = connection.post("/masas/contacts/") do |request|
+    response = connection.put("/contacts/#{contact.office_phone}") do |request|
       request.body = body
     end
 
