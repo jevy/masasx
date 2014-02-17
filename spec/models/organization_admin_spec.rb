@@ -43,13 +43,23 @@ describe OrganizationAdmin do
 
   end
 
-  describe 'display_name' do
+  describe 'masas_name' do
     it "Jevin Maltais" do
       admin = FactoryGirl.create(:organization_admin, first_name: 'Jevin', last_name: 'Maltais').masas_name.should eql "jevin_maltais"
     end
 
     it "Marcel Van Wilder" do
       admin = FactoryGirl.create(:organization_admin, first_name: 'Marcel', last_name: 'Van Wilder').masas_name.should eql "marcel_van_wilder"
+    end
+  end
+
+  describe 'display_name' do
+    it "Jevin Maltais" do
+      admin = FactoryGirl.create(:organization_admin, first_name: 'Jevin', last_name: 'Maltais').display_name.should eql "Jevin Maltais"
+    end
+
+    it "Marcel Van Wilder" do
+      admin = FactoryGirl.create(:organization_admin, first_name: 'Marcel', last_name: 'Van wilder').display_name.should eql "Marcel Van Wilder"
     end
   end
 

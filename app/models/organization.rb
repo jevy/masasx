@@ -19,6 +19,7 @@ class Organization < ActiveRecord::Base
   attr_accessor :agreements
 
   after_initialize :init_agreements
+  before_save :generate_uuid
 
   def init_agreements
     self.agreements = self.persisted? ? Agreement.all : []
@@ -72,6 +73,10 @@ class Organization < ActiveRecord::Base
 
   end
 
+  def generate_uuid
+    self.uuid = SecureRandom.uuid
+  end
+
   def save_state
     save(validate: false)
   end
@@ -92,6 +97,10 @@ class Organization < ActiveRecord::Base
 
   with_options if: -> organization { organization.status?(:references) } do |f|
     f.validates :references, presence: { message: 'References required' }
+  end
+
+  def masas_name
+   name.downcase.gsub(' ', '_')
   end
 
   private

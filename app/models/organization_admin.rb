@@ -21,4 +21,8 @@ class OrganizationAdmin < ActiveRecord::Base
    [first_name.downcase,last_name.downcase].join( ' ' ).gsub(' ', '_')
   end
 
+  def display_name
+    "#{first_name} #{last_name}".titleize
+  end
+
 end

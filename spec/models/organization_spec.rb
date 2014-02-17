@@ -40,6 +40,10 @@ describe Organization do
 
   it { should respond_to(:accounts) }
 
+  it "should have a UUID" do
+    FactoryGirl.create(:organization).uuid.should match /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/
+  end
+
   context 'before creating' do
 
     before do
@@ -61,6 +65,13 @@ describe Organization do
     it 'is invalid without accepting the agreements' do
       @organization.agreements = [ 1, 2 ] # Just one accepted
       @organization.should be_invalid
+    end
+
+  end
+
+  describe 'masas_name' do
+    it "is derived from the name" do
+      FactoryGirl.create(:organization, name: 'Awesome Organization').masas_name.should eql 'awesome_organization'
     end
 
   end

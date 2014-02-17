@@ -21,11 +21,14 @@ class DirectoryApi
     # Missing more stuff
     body =
       {
-        'displayName' => organization.name,
-        'PrimaryContactURI' => primary.uuid,
-        'SecondaryContactURI' => secondary.uuid
+          'MasasOrganizationScopes' => ["Federal"],
+          'MasasOrganizationKinds' => "NGO",
+          'MasasUUID' => organization.uuid,
+          'displayName' => organization.name,
+          'MasasOrganizationRole' => ["Police"],
+          'MasasContactURLs' => ["#{primary.masas_name} PRIMARY", "#{secondary.masas_name} SECONDARY"]
       }
-    response = connection.put("/organizations/") do |request|
+    response = connection.put("/organizations/#{organization.masas_name}") do |request|
       request.body = body
     end
 
@@ -41,35 +44,28 @@ class DirectoryApi
     body = {
       'firstName' => contact.first_name,
       'lastName' => contact.last_name,
-      'title' => contact.title,
-      'language' => contact.language,
       'email' => contact.email,
       'office-phone' => contact.office_phone,
-      'MasasUUID' => contact.uuid
+      '_id' => contact.masas_name,
+      'MasasUUID' => contact.uuid,
+      'displayName' => contact.display_name
     }
 
-    response = connection.put("/contacts/#{contact.office_phone}") do |request|
+    response = connection.put("/contacts/#{contact.masas_name}") do |request|
       request.body = body
     end
 
     if response.success?
-      return parse_uuid(response.body)
+      return true
     else
       raise DirectoryApiContactCreationException, "Message from OpenDJ: #{response.body}"
     end
 
   end
 
-  def self.parse_uuid(returned_body)
-      result = ActiveSupport::JSON.decode(returned_body)['MasasUUID']
-      raise RuntimeError, "No UUID returned" if !result
-      result
-  end
-
   def self.delete_contact(contact)
-    return false if !contact.uuid
-    connection.delete("/masas/contacts/#{contact.uuid}")
-    true
+    response = connection.delete("/contacts/#{contact.masas_name}")
+    response.success?
   end
 
 end
