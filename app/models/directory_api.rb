@@ -29,6 +29,9 @@ class DirectoryApi
           'MasasContactURLs' => ["#{primary.masas_name} PRIMARY", "#{secondary.masas_name} SECONDARY"]
       }
     response = connection.put("/organizations/#{organization.masas_name}") do |request|
+      request.headers['X-OpenIDM-Password'] = 'abcd1234'
+      request.headers['X-OpenIDM-Username'] = 'gg_admin'
+      request.headers['If-None-Match'] = '*'
       request.body = body
     end
 
@@ -52,6 +55,9 @@ class DirectoryApi
     }
 
     response = connection.put("/contacts/#{contact.masas_name}") do |request|
+      request.headers['X-OpenIDM-Password'] = 'abcd1234'
+      request.headers['X-OpenIDM-Username'] = 'gg_admin'
+      request.headers['If-None-Match'] = '*'
       request.body = body
     end
 
