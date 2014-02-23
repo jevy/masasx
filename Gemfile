@@ -20,16 +20,20 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development, :test do
+group :development do
   gem 'pry'
   gem 'pry-nav'
-  gem 'cucumber-rails', '~> 1.0', require: false
-  gem 'simplecov', require: false
-  gem 'database_cleaner'
-  gem 'factory_girl_rails'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-spork'
+  gem 'debugger'
+end
+
+group :test do
+  gem 'simplecov', require: false
+  gem 'cucumber-rails', '~> 1.0', require: false
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
   gem 'rb-fchange', require: false
   gem 'rb-fsevent', require: false
   gem 'rb-inotify', require: false
@@ -38,6 +42,5 @@ group :development, :test do
   gem 'ci_reporter'
   gem 'capybara'
   gem 'webmock'
-  gem 'debugger'
   gem 'launchy'
 end
