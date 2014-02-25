@@ -31,12 +31,10 @@ end
 
 When /^I make changes to the organization$/ do
   fill_in 'Organization Name', with: 'Some Other Organization'
-  fill_in 'Division', with: 'Some other division'
 end
 
 Then /^I should see the changes to the organization$/ do
   page.should have_content('Some Other Organization')
-  page.should have_content('Some other division')
 end
 
 Then /^I should be on the specific Organizations admin page$/ do

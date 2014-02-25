@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140217004052) do
+ActiveRecord::Schema.define(:version => 20140225225354) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -80,8 +80,6 @@ ActiveRecord::Schema.define(:version => 20140217004052) do
     t.string   "status"
     t.string   "name"
     t.string   "department"
-    t.string   "division"
-    t.string   "sub_division"
     t.string   "address_line_1"
     t.string   "telephone"
     t.string   "website"

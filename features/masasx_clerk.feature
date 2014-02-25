@@ -88,8 +88,6 @@ Feature: MasasxClerk should be able to manage the entire system
       | field          | value                  |
       | name           | Organization Name      |
       | department     | Awesome Department     |
-      | division       | Great Division         |
-      | sub division   | Great Sub-division     |
       | telephone      | 555-42-42-42           |
       | website        | http://www.example.com |
       | references     | Jevin told me          |

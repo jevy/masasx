@@ -1,7 +1,7 @@
 <% title 'Organization Information' %>
 
 <% content_for :sidebar do -%> <p>Access may be granted to the entire
-  organization, a specific department, a division or sub-division, group, and in
+  organization, a specific department, group, and in
   some cases a role. Generally, access is not granted to an individual. The
   information included on this page will be associated with any information
   shared by this account through MASAS-X, and should not therefore include
@@ -13,10 +13,6 @@
   <%= f.input :name, label: 'Organization Name' %>
 
   <%= f.input :department %>
-
-  <%= f.input :division %>
-
-  <%= f.input :sub_division, label: 'Sub Division' %>
 
   <%= f.input :address_line_1, label: 'Address Line 1' %>
 

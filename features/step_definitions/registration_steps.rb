@@ -16,8 +16,6 @@ end
 Given /^I complete the organization page$/ do
   fill_in 'Organization Name',  with: 'Awesome Organization'
   fill_in 'Department',         with: 'Awesome Deparment'
-  fill_in 'Division',           with: 'Awesome Division'
-  fill_in 'Sub Division',       with: 'Awesome Sub Division'
   fill_in 'Address Line 1',     with: 'Nowhere, 42'
   fill_in 'Address Line 2',     with: 'NoBuilding Center - 42 floor'
   fill_in 'City',               with: 'Nocity'
@@ -93,8 +91,6 @@ end
 Then /^I should see the organization page completed$/ do
   page.find_field('Organization Name').value.should  eql('Awesome Organization')
   page.find_field('Department').value.should         eql('Awesome Deparment')
-  page.find_field('Division').value.should           eql('Awesome Division')
-  page.find_field('Sub Division').value.should       eql('Awesome Sub Division')
   page.find_field('Address Line 1').value.should     eql('Nowhere, 42')
   page.find_field('Telephone').value.should          eql('555-42-42-42')
   page.find_field('Website').value.should            eql('http://www.example.com')
