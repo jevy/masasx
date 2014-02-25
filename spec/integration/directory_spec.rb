@@ -39,7 +39,7 @@ describe Directory do
 
     describe 'because the secondary contact failed' do
       before do
-        DirectoryApi.stub(:create_contact).with(@primary).and_return('a UUID')
+        DirectoryApi.stub(:create_contact).with(@primary).and_return(true)
         @primary.stub(:uuid).and_return('a UUID')
         @secondary.stub(:uuid).and_return(nil)
         @authority.stub(:uuid).and_return(nil)
@@ -66,8 +66,8 @@ describe Directory do
         @primary.stub(:uuid).and_return('a UUID')
         @secondary.stub(:uuid).and_return('a UUID')
         @authority.stub(:uuid).and_return(nil)
-        DirectoryApi.stub(:create_contact).with(@primary).and_return('a UUID')
-        DirectoryApi.stub(:create_contact).with(@secondary).and_return('a UUID')
+        DirectoryApi.stub(:create_contact).with(@primary).and_return(true)
+        DirectoryApi.stub(:create_contact).with(@secondary).and_return(true)
         DirectoryApi.stub(:create_contact).with(@authority).and_raise(DirectoryApiException)
       end
 
@@ -88,9 +88,9 @@ describe Directory do
           @primary.stub(:uuid).and_return('a UUID')
           @secondary.stub(:uuid).and_return('a UUID')
           @authority.stub(:uuid).and_return('a UUID')
-          DirectoryApi.stub(:create_contact).with(@primary).and_return('a UUID')
-          DirectoryApi.stub(:create_contact).with(@secondary).and_return('a UUID')
-          DirectoryApi.stub(:create_contact).with(@authority).and_return('a UUID')
+          DirectoryApi.stub(:create_contact).with(@primary).and_return(true)
+          DirectoryApi.stub(:create_contact).with(@secondary).and_return(true)
+          DirectoryApi.stub(:create_contact).with(@authority).and_return(true)
           DirectoryApi.stub(:create_organization).and_raise(DirectoryApiException)
         end
 
@@ -112,8 +112,8 @@ describe Directory do
           @organization.stub(:authority_organization_administrator).and_return(nil)
           @primary.stub(:uuid).and_return('a UUID')
           @secondary.stub(:uuid).and_return('a UUID')
-          DirectoryApi.stub(:create_contact).with(@primary).and_return('a UUID')
-          DirectoryApi.stub(:create_contact).with(@secondary).and_return('a UUID')
+          DirectoryApi.stub(:create_contact).with(@primary).and_return(true)
+          DirectoryApi.stub(:create_contact).with(@secondary).and_return(true)
           DirectoryApi.stub(:create_organization).and_raise(DirectoryApiException)
         end
 
@@ -135,8 +135,8 @@ describe Directory do
 
       context 'with secondary admin as executive' do
         before do
-          DirectoryApi.stub(:create_contact).with(@primary).and_return('a UUID')
-          DirectoryApi.stub(:create_contact).with(@secondary).and_return('a UUID')
+          DirectoryApi.stub(:create_contact).with(@primary).and_return(true)
+          DirectoryApi.stub(:create_contact).with(@secondary).and_return(true)
           DirectoryApi.stub(:create_organization).and_raise(DirectoryApiException)
           @primary.stub(:uuid).and_return('a UUID')
           @secondary.stub(:uuid).and_return('a UUID')

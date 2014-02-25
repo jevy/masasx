@@ -17,7 +17,7 @@ class DirectoryApi
     end
   end
 
-  def self.create_organization(organization, primary, secondary, executive, admin_account)
+  def self.create_organization(organization, primary, secondary, executive)
     # Missing more stuff
     body =
       {
