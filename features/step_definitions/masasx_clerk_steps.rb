@@ -19,6 +19,22 @@ When /^I am on the Organizations admin page$/ do
   visit admin_organizations_path
 end
 
+When /^I update the Organizations "([^"]*)" to "([^"]*)"$/ do |attribute, new_value|
+  visit edit_admin_organization_path(Organization.last)
+  fill_in attribute, with: new_value
+  click_on "Update"
+end
+
+Then /^in the history, I should see that fire was updated$/ do
+  within(:xpath, "//div[contains(@id,'history')]") do
+    page.should have_content "Fire"
+  end
+end
+
+When /^I am on the Organizations admin page for "([^"]*)"$/ do |organization_name|
+  visit admin_organization_path(Organization.find_by_name(organization_name))
+end
+
 Then /^I should be on the Organizations admin page$/ do
   URI.parse(current_url).path.should eql(admin_organizations_path)
 end

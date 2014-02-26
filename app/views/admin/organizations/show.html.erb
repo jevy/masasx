@@ -63,6 +63,30 @@
   </div>
 <% end %>
 
+<div id="history">
+  <h2>History</h2>
+
+  <table class="table">
+    <thead>
+      <th>Date</th>
+      <th>Change</th>
+    </thead>
+    <tbody>
+    <% @organization.versions.each do |version| %>
+    <tr>
+      <td><%= version.created_at %></td>
+      <td>
+        <% version.changeset.each_pair do |attribute, change_from_to| %>
+          <p><%= "Changed #{attribute} to #{change_from_to[1]}" %></p>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>
+
 <div class="btn-toolbar">
   <%= link_to 'Approve', approve_admin_organization_path(@organization), class: 'btn btn-success'  %>
   <%= link_to 'Reject',  reject_admin_organization_path(@organization), class: 'btn btn-danger'  %>

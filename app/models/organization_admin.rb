@@ -11,7 +11,7 @@ class OrganizationAdmin < ActiveRecord::Base
   validates :first_name, presence: { message: 'Name required' }
   validates :last_name, presence: { message: 'Name required' }
 
-  before_save :generate_uuid
+  before_create :generate_uuid
 
   def generate_uuid
     self.uuid = SecureRandom.uuid

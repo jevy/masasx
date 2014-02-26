@@ -13,6 +13,7 @@ gem 'pg'
 gem 'faraday'
 gem 'excon'
 gem 'faraday_middleware'
+gem 'paper_trail', '~> 3.0.0'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -20,16 +21,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
-  gem 'pry'
-  gem 'pry-nav'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'guard-spork'
-  gem 'debugger'
-end
-
-group :test do
+group :development, :test do
   gem 'simplecov', require: false
   gem 'cucumber-rails', '~> 1.0', require: false
   gem 'database_cleaner'

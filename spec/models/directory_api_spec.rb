@@ -25,8 +25,7 @@ describe DirectoryApi do
       DirectoryApi.create_organization(@organization,
                                        @organization.primary_organization_administrator,
                                        @organization.secondary_organization_administrator,
-                                       @organization.authority_organization_administrator,
-                                       AdminAccount.new(@organization.primary_organization_administrator)
+                                       @organization.authority_organization_administrator
                                       ).should be_true
     end
   end

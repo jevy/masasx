@@ -32,6 +32,14 @@ describe OrganizationAdmin do
     FactoryGirl.create(:organization_admin).uuid.should match /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/
   end
 
+  it "should not update the UUID during an update" do
+    org = FactoryGirl.create(:organization_admin)
+    expect{
+      org.first_name = 'New name'
+      org.save
+    }.to_not change{org.uuid}
+  end
+
   describe 'email validation' do
     it 'passes with jevin@quickjack.ca' do
       OrganizationAdmin.new(email: 'jevin@quickjack.ca').should have(0).errors_on(:email)

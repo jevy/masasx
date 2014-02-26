@@ -10,10 +10,6 @@ describe Organization do
 
   it { should respond_to(:department) }
 
-  it { should respond_to(:division) }
-
-  it { should respond_to(:sub_division) }
-
   it { should respond_to(:address_line_1) }
 
   it { should respond_to(:address_line_2) }
@@ -42,6 +38,14 @@ describe Organization do
 
   it "should have a UUID" do
     FactoryGirl.create(:organization).uuid.should match /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/
+  end
+
+  it "should not update the UUID during an update" do
+    org = FactoryGirl.create(:organization)
+    expect{
+      org.name = 'New name'
+      org.save
+    }.to_not change{org.uuid}
   end
 
   context 'before creating' do

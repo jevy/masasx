@@ -1,5 +1,7 @@
 class Organization < ActiveRecord::Base
 
+  has_paper_trail :on => [:update]
+
   has_many :organization_admins
   has_one :primary_organization_administrator,   class_name: 'OrganizationAdmin', conditions: { role: 'Primary'   }
   has_one :secondary_organization_administrator, class_name: 'OrganizationAdmin', conditions: { role: 'Secondary' }
@@ -19,7 +21,7 @@ class Organization < ActiveRecord::Base
   attr_accessor :agreements
 
   after_initialize :init_agreements
-  before_save :generate_uuid
+  before_create :generate_uuid
 
   def init_agreements
     self.agreements = self.persisted? ? Agreement.all : []

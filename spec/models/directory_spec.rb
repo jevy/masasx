@@ -28,8 +28,7 @@ describe Directory do
           @organization,
           @organization.primary_organization_administrator,
           @organization.secondary_organization_administrator,
-          @organization.secondary_organization_administrator,
-          @admin
+          @organization.secondary_organization_administrator
         )
         Directory.add_organization(@organization)
       end
@@ -51,8 +50,7 @@ describe Directory do
           @organization,
           @organization.primary_organization_administrator,
           @organization.secondary_organization_administrator,
-          @organization.authority_organization_administrator,
-          @admin
+          @organization.authority_organization_administrator
         )
         Directory.add_organization(@organization)
       end
