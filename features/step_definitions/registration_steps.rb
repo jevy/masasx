@@ -20,7 +20,7 @@ Given /^I complete the organization page$/ do
   fill_in 'Address Line 2',     with: 'NoBuilding Center - 42 floor'
   fill_in 'City',               with: 'Nocity'
   fill_in 'State/Prov',         with: 'Nostate'
-  fill_in 'Country',            with: 'Nowhere'
+  select 'Canada',              from: 'Country'
   fill_in 'Telephone',          with: '555-42-42-42'
   fill_in 'Postal code',        with: '424242'
   fill_in 'Website',            with: 'http://www.example.com'
@@ -38,7 +38,7 @@ Given /^I complete the (\w+) Contact page(.*)$/ do |contact, authority|
   fill_in 'Address Line 2',     with: "#{contact} NoBuilding Center - 42 floor"
   fill_in 'City',               with: "#{contact} Nocity"
   fill_in 'State/Prov',         with: "#{contact} Nostate"
-  fill_in 'Country',            with: "#{contact} Nowhere"
+  select 'Canada',              from: 'Country'
   fill_in 'Postal code',        with: "#{contact} 424242"
   check 'Executive' if authority.present?
 end

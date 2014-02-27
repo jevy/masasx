@@ -22,7 +22,7 @@
 
   <%= f.input :state, label: 'State/Prov' %>
 
-  <%= f.input :country, label: 'Country', as: :string %>
+  <%= f.input :country, label: 'Country' %>
 
   <%= f.input :postal_code, label: 'Postal code' %>
 
@@ -32,5 +32,5 @@
 
   <div class="form-actions"> <%= link_to 'Previous',
     previous_step_path(@organization), class: 'btn'  %> <%= f.button :submit,
-    'Next', class: 'btn-primary' %> </div> 
+    'Next', class: 'btn-primary' %> </div>
 <% end %>

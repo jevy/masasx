@@ -166,7 +166,6 @@ Feature: A brand new organization may apply for an account
       | Address Line 1 | Address Line 1 required |
       | City           | City required           |
       | State/Prov     | State required          |
-      | Country        | Country required        |
       | Postal code    | Postal code required    |
 
   Scenario Outline: A new organization does not enter required values for the primary contact
