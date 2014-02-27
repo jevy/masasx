@@ -21,7 +21,10 @@
   </tr>
 </table>
 
-<%= link_to 'Edit', edit_admin_organization_path(@organization), class: 'btn'  %>
+<% if @organization.can_update_attributes? %>
+  <%= link_to 'Edit', edit_admin_organization_path(@organization), class: 'btn'  %>
+<% end %>
+
 
 <h3>Contacts Details:</h3>
 
@@ -50,7 +53,11 @@
         <td><%= administrator.mobile_phone %></td>
         <td><%= administrator.executive ? 'Yes' : 'No' %></td>
         <td><%= show_address administrator %></td>
-        <td><%= link_to 'Edit', edit_admin_organization_admin_path(administrator), class: 'btn' %></td>
+          <td>
+            <% if @organization.can_update_attributes? %>
+              <%= link_to 'Edit', edit_admin_organization_admin_path(administrator), class: 'btn' %>
+            <% end %>
+          </td>
       </tr>
     <% end %>
   </tbody>
@@ -88,7 +95,9 @@
 </div>
 
 <div class="btn-toolbar">
-  <%= link_to 'Approve', approve_admin_organization_path(@organization), class: 'btn btn-success'  %>
-  <%= link_to 'Reject',  reject_admin_organization_path(@organization), class: 'btn btn-danger'  %>
+  <% if @organization.can_update_attributes? %>
+    <%= link_to 'Approve', approve_admin_organization_path(@organization), class: 'btn btn-success'  %>
+    <%= link_to 'Reject',  reject_admin_organization_path(@organization), class: 'btn btn-danger'  %>
+  <% end %>
   <%= link_to 'All Applications', admin_organizations_path, class: 'btn'  %>
 </div>

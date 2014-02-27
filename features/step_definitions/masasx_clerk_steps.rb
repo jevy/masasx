@@ -84,3 +84,16 @@ end
 Given /^an organization that is pending approval exists with a name of "([^"]*)"$/ do |org_name|
   @organization = FactoryGirl.create(:organization_pending_approval, name: org_name)
 end
+
+
+Then /^I should not be able to see modification buttons$/ do
+  page.should_not have_link('Edit')
+  page.should_not have_link('Approve')
+  page.should_not have_link('Reject')
+end
+
+Then /^I should be able to edit the organization$/ do
+  page.should have_link('Edit')
+  page.should have_link('Approve')
+  page.should have_link('Reject')
+end
