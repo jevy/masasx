@@ -79,7 +79,7 @@
       <th>Change</th>
     </thead>
     <tbody>
-    <% @organization.versions.each do |version| %>
+    <% @organization.versions.reverse.each do |version| %>
     <tr>
       <td><%= version.created_at %></td>
       <td>
