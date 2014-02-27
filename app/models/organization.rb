@@ -105,6 +105,10 @@ class Organization < ActiveRecord::Base
    name.downcase.gsub(' ', '_')
   end
 
+  def can_update_attributes?
+    status == 'pending_approval'
+  end
+
   private
   def accept_agreements
     if self.agreements.reject(&:blank?).size < 3

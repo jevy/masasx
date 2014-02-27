@@ -491,4 +491,19 @@ describe Organization do
 
   end
 
+  describe '.can_update_attributes?' do
+
+    it 'is true if in pending_approval state' do
+      FactoryGirl.create(:organization_pending_approval).can_update_attributes?.should be_true
+    end
+
+    it 'is false if in approved state' do
+      FactoryGirl.create(:organization_approved).can_update_attributes?.should be_false
+    end
+
+    it 'is true if in rejected state' do
+      FactoryGirl.create(:organization_rejected).can_update_attributes?.should be_false
+    end
+  end
+
 end
