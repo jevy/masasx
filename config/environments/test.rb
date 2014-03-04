@@ -8,8 +8,10 @@ Masasx::Application.configure do
   config.cache_classes = !(ENV['DRB'] == 'true')
 
   # Configure static asset server for tests with Cache-Control for performance
-  config.serve_static_assets = true
-  config.static_cache_control = "public, max-age=3600"
+  config.serve_static_assets = false
+  config.assets.compress = false
+  config.assets.debug = true
+  #config.static_cache_control = "public, max-age=3600"
 
   # Log error messages when you accidentally call methods on nil
   config.whiny_nils = true
@@ -34,4 +36,6 @@ Masasx::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  WebMock.disable_net_connect!(:allow_localhost => true)
 end

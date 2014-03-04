@@ -171,6 +171,7 @@ Feature: MasasxClerk should be able to manage the entire system
   Scenario: After I login, I should be taken to the organizations admin page
     Then I should be on the Organizations admin page
 
+    @javascript
   Scenario: End to end registration test
     Given I am on the signup page
     And I complete the agreement page

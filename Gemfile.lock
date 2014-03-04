@@ -45,11 +45,16 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    carmen (1.0.0)
+      unicode_utils (~> 1.4.0)
+    carmen-rails (1.0.0)
+      carmen (~> 1.0.0.beta2)
+      rails
     carrierwave (0.6.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
-    childprocess (0.3.1)
-      ffi (~> 1.0.6)
+    childprocess (0.5.1)
+      ffi (~> 1.0, >= 1.0.11)
     ci_reporter (1.7.0)
       builder (>= 2.1.2)
     coffee-rails (3.2.2)
@@ -60,10 +65,6 @@ GEM
       execjs
     coffee-script-source (1.2.0)
     commonjs (0.2.5)
-    countries (0.9.3)
-      currencies (~> 0.4.2)
-    country_select (1.3.1)
-      countries (= 0.9.3)
     crack (0.3.1)
     cucumber (1.1.9)
       builder (>= 2.1.2)
@@ -75,7 +76,6 @@ GEM
       capybara (>= 1.1.2)
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
-    currencies (0.4.2)
     database_cleaner (0.7.1)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
@@ -84,6 +84,7 @@ GEM
       warden (~> 1.1.1)
     diff-lcs (1.1.3)
     erubis (2.7.0)
+    eventmachine (1.0.0)
     excon (0.25.1)
     execjs (1.3.0)
       multi_json (~> 1.0)
@@ -96,11 +97,14 @@ GEM
       multipart-post (~> 1.1)
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
-    ffi (1.0.11)
+    faye-websocket (0.4.7)
+      eventmachine (>= 0.12.0)
+    ffi (1.9.3)
     gherkin (2.9.0)
       json (>= 1.4.6)
     highline (1.6.11)
     hike (1.2.3)
+    http_parser.rb (0.5.3)
     i18n (0.6.9)
     journey (1.0.4)
     jquery-rails (2.0.1)
@@ -136,6 +140,12 @@ GEM
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
     pg (0.17.1)
+    poltergeist (1.0.2)
+      capybara (~> 1.1)
+      childprocess (~> 0.3)
+      faye-websocket (~> 0.4, >= 0.4.4)
+      http_parser.rb (~> 0.5.3)
+      multi_json (~> 1.0)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -181,17 +191,17 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.8.0)
-    rubyzip (0.9.6.1)
+    rubyzip (1.1.0)
     sass (3.1.15)
     sass-rails (3.2.4)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.20.0)
-      childprocess (>= 0.2.5)
-      ffi (~> 1.0)
+    selenium-webdriver (2.40.0)
+      childprocess (>= 0.5.0)
       multi_json (~> 1.0)
-      rubyzip
+      rubyzip (~> 1.0)
+      websocket (~> 1.0.4)
     simple_form (2.1.1)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -221,11 +231,13 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    unicode_utils (1.4.0)
     warden (1.1.1)
       rack (>= 1.0)
     webmock (1.8.11)
       addressable (>= 2.2.7)
       crack (>= 0.1.7)
+    websocket (1.0.7)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -235,10 +247,10 @@ PLATFORMS
 DEPENDENCIES
   capistrano
   capybara
+  carmen-rails
   carrierwave
   ci_reporter
   coffee-rails (~> 3.2.1)
-  country_select
   cucumber-rails (~> 1.0)
   database_cleaner
   devise
@@ -250,6 +262,7 @@ DEPENDENCIES
   launchy
   paper_trail (~> 3.0.0)
   pg
+  poltergeist
   rails (= 3.2.2)
   rb-fchange
   rb-fsevent

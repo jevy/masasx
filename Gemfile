@@ -14,7 +14,7 @@ gem 'faraday'
 gem 'excon'
 gem 'faraday_middleware'
 gem 'paper_trail', '~> 3.0.0'
-gem 'country_select'
+gem 'carmen-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -36,4 +36,5 @@ group :development, :test do
   gem 'capybara'
   gem 'webmock'
   gem 'launchy'
+  gem 'poltergeist'
 end

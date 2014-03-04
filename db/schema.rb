@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140226000156) do
+ActiveRecord::Schema.define(:version => 20140301191008) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -85,15 +85,15 @@ ActiveRecord::Schema.define(:version => 20140226000156) do
     t.string   "website"
     t.text     "references"
     t.text     "questions"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "address_line_2"
     t.string   "city"
-    t.string   "state"
-    t.string   "country"
     t.string   "postal_code"
     t.text     "admin_notes"
     t.string   "uuid"
+    t.string   "country",        :default => ""
+    t.string   "state",          :default => ""
   end
 
   create_table "versions", :force => true do |t|

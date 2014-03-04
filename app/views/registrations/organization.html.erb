@@ -14,15 +14,17 @@
 
   <%= f.input :department %>
 
+  <%= f.input :country, label: 'Country' do %>
+    <%= f.country_select :country, {object: f.object, priority: %w(CA US), prompt: 'Please select a country'} %>
+  <% end %>
+
   <%= f.input :address_line_1, label: 'Address Line 1' %>
 
   <%= f.input :address_line_2, label: 'Address Line 2' %>
 
   <%= f.input :city, label: 'City' %>
 
-  <%= f.input :state, label: 'State/Prov' %>
-
-  <%= f.input :country, label: 'Country' %>
+  <%= render partial: 'subregion_select', locals: {parent_region: f.object.country} %>
 
   <%= f.input :postal_code, label: 'Postal code' %>
 
