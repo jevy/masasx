@@ -40,4 +40,5 @@ Masasx::Application.routes.draw do
   match '/admin/accounts'      => 'accounts#index',      as: :organization_admin_root
 
   get '/welcome/subregion_options' => 'welcome#subregion_options'
+  get '/welcome/primary_subregion_options' => 'welcome#primary_subregion_options'
 end

@@ -30,6 +30,12 @@
 
     <%= administrator.input :executive, label: 'Executive Authority', disabled: @organization.has_executive? %>
 
+    <%= administrator.object.country %>
+
+    <%= administrator.input :country do %>
+      <%= administrator.country_select :country, {object: administrator.object, prompt: 'Country'} %>
+    <% end %>
+
     <%= administrator.input :address_line_1, label: 'Address Line 1' %>
 
     <%= administrator.input :address_line_2, label: 'Address Line 2' %>
@@ -38,7 +44,7 @@
 
     <%= administrator.input :state, label: 'State/Prov' %>
 
-    <%= administrator.input :country, label: 'Country' %>
+    <%= render partial: 'subregion_select_primary', locals: {country: administrator.object.country, primary_organization_administrator: administrator} %>
 
     <%= administrator.input :postal_code, label: 'Postal code' %>
 

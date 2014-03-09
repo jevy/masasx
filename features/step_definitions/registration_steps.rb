@@ -37,8 +37,8 @@ Given /^I complete the (\w+) Contact page(.*)$/ do |contact, authority|
   fill_in 'Address Line 1',     with: "#{contact} Nowhere, 42"
   fill_in 'Address Line 2',     with: "#{contact} NoBuilding Center - 42 floor"
   fill_in 'City',               with: "#{contact} Nocity"
-  fill_in 'State/Prov',         with: "#{contact} Nostate"
   select 'Canada',              from: 'Country'
+  select 'Ontario',             from: 'State/Prov'
   fill_in 'Postal code',        with: "#{contact} 424242"
   check 'Executive' if authority.present?
 end

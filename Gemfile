@@ -37,4 +37,5 @@ group :development, :test do
   gem 'webmock'
   gem 'launchy'
   gem 'poltergeist'
+  gem 'debugger'
 end
