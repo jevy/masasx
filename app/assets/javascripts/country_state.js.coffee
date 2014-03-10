@@ -19,3 +19,23 @@ $ ->
     url = "/welcome/primary_subregion_options?country=#{country}"
     select_wrapper.load(url)
 
+  $('select#organization_secondary_organization_administrator_attributes_country').on "change", (event) ->
+    select_wrapper = $('#state_wrapper')
+
+    $('select', select_wrapper).attr('disabled', true)
+
+    country = $(this).val()
+
+    url = "/welcome/secondary_subregion_options?country=#{country}"
+    select_wrapper.load(url)
+
+  $('select#organization_authority_organization_administrator_attributes_country').on "change", (event) ->
+    select_wrapper = $('#state_wrapper')
+
+    $('select', select_wrapper).attr('disabled', true)
+
+    country = $(this).val()
+
+    url = "/welcome/authority_subregion_options?country=#{country}"
+    select_wrapper.load(url)
+

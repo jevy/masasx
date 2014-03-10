@@ -42,8 +42,6 @@
 
     <%= administrator.input :city, label: 'City' %>
 
-    <%= administrator.input :state, label: 'State/Prov' %>
-
     <%= render partial: 'subregion_select_primary', locals: {country: administrator.object.country, primary_organization_administrator: administrator} %>
 
     <%= administrator.input :postal_code, label: 'Postal code' %>

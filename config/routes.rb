@@ -41,4 +41,6 @@ Masasx::Application.routes.draw do
 
   get '/welcome/subregion_options' => 'welcome#subregion_options'
   get '/welcome/primary_subregion_options' => 'welcome#primary_subregion_options'
+  get '/welcome/secondary_subregion_options' => 'welcome#secondary_subregion_options'
+  get '/welcome/authority_subregion_options' => 'welcome#authority_subregion_options'
 end

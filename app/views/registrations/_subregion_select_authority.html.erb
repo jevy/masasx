@@ -1,0 +1,18 @@
+<div id="state_wrapper">
+  <div class="control-group state optional authority_contact_state">
+    <label class="string optional control-label" for="authority_organization_administrator_state">State/Prov</label>
+    <div class="controls">
+      <% authority_organization_administrator ||= :authority_organization_administrator %>
+      <% country ||= params[:country] %>
+      <% country = Carmen::Country.coded(country) %>
+
+      <% if country.nil? %>
+        <em>Please select a country above</em>
+      <% elsif country.subregions? %>
+        <%= subregion_select(authority_organization_administrator, :state, country, {}, {:name => 'organization[authority_organization_administrator_attributes][state]'} ) %>
+      <% else %>
+        <%= text_field(authority_organization_administrator, :state, :name => 'organization[authority_organization_administrator_attributes][state]') %>
+      <% end %>
+    </div>
+  </div>
+</div>
