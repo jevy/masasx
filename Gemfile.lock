@@ -47,9 +47,6 @@ GEM
       xpath (~> 0.1.4)
     carmen (1.0.0)
       unicode_utils (~> 1.4.0)
-    carmen-rails (1.0.0)
-      carmen (~> 1.0.0.beta2)
-      rails
     carrierwave (0.6.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -254,7 +251,7 @@ PLATFORMS
 DEPENDENCIES
   capistrano
   capybara
-  carmen-rails
+  carmen
   carrierwave
   ci_reporter
   coffee-rails (~> 3.2.1)

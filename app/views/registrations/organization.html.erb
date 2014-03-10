@@ -15,7 +15,7 @@
   <%= f.input :department %>
 
   <%= f.input :country, label: 'Country' do %>
-    <%= f.country_select :country, {object: f.object, priority: %w(CA US), prompt: 'Please select a country'} %>
+    <%= f.collection_select :country, country_collection, :code, :name, {object: f.object, priority: %w(CA US), prompt: 'Please select a country'} %>
   <% end %>
 
   <%= f.input :address_line_1, label: 'Address Line 1' %>
@@ -24,7 +24,9 @@
 
   <%= f.input :city, label: 'City' %>
 
-  <%= render partial: 'subregion_select', locals: {parent_region: f.object.country} %>
+  <%= f.input :state, label: 'State/Prov' do %>
+    <%= f.grouped_collection_select :state, country_collection, :subregions, :name, :code, :name, {prompt: "Please select a country above"}, {"data-filtered-by" => "#organization_country", "data-filtered-by-prompt" => "Please select a state / province"} %>
+  <% end %>
 
   <%= f.input :postal_code, label: 'Postal code' %>
 

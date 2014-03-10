@@ -43,11 +43,13 @@
 
     <%= administrator.input :city, label: 'City' %>
 
-    <%= administrator.input :country do %>
-      <%= administrator.country_select :country, {object: administrator.object, prompt: 'Country'} %>
+    <%= administrator.input :country, label: 'Country' do %>
+      <%= administrator.collection_select :country, country_collection, :code, :name, {object: f.object, priority: %w(CA US), prompt: 'Please select a country'} %>
     <% end %>
 
-    <%= render partial: 'subregion_select_authority', locals: {country: administrator.object.country, authority_organization_administrator: administrator} %>
+    <%= administrator.input :state, label: 'State/Prov' do %>
+      <%= administrator.grouped_collection_select :state, country_collection, :subregions, :name, :code, :name, {prompt: "Please select a country above"}, {"data-filtered-by" => "#organization_authority_organization_administrator_attributes_country", "data-filtered-by-prompt" => "Please select a state / province"} %>
+    <% end %>
 
     <%= administrator.input :postal_code, label: 'Postal code' %>
 

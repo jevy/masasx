@@ -63,3 +63,17 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
+
+# Capybara does not trigger change events on <select> elements
+# properly, we need to trigger them manually if we can
+
+module FixedSelectHelper
+  def select(value, options = {})
+    super(value, options).tap do
+      select = find(:xpath, XPath::HTML.select(options[:from]))
+      page.execute_script("$('##{select["id"]}').change();") if select and select["id"]
+    end
+  end
+end
+
+World(FixedSelectHelper)

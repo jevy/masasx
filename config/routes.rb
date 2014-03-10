@@ -38,9 +38,4 @@ Masasx::Application.routes.draw do
   root to: 'welcome#index'
   match '/admin/organizations' => 'organizations#index', as: :masasx_clerk_root
   match '/admin/accounts'      => 'accounts#index',      as: :organization_admin_root
-
-  get '/welcome/subregion_options' => 'welcome#subregion_options'
-  get '/welcome/primary_subregion_options' => 'welcome#primary_subregion_options'
-  get '/welcome/secondary_subregion_options' => 'welcome#secondary_subregion_options'
-  get '/welcome/authority_subregion_options' => 'welcome#authority_subregion_options'
 end
