@@ -10,6 +10,8 @@
 
   <%= f.input :agreements, collection: Agreement.all, as: :check_boxes %>
 
+  <p> Click <%= link_to 'here', 'http://www.masas-x.ca/images/MASAS-X_Participant_Agreement.pdf' %> to view the agreement</p>
+
   <div class="form-actions">
     <%= link_to 'Cancel', root_path, class: 'btn' %>
     <%= f.button :submit, 'Next', class: 'btn-primary' %>
