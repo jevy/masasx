@@ -11,37 +11,44 @@ class DirectoryApi
 
   def self.connection
     Faraday.new(url: URL, ssl: {verify: false}) do |c|
+      # We can't use retry middleware here, because Faraday 0.8.9
+      # doesn't allow retrying requests failed after custom exceptions
+      # i.e. Faraday::Error::ClientError. This seems to be fixed in
+      # 0.9.0, but faraday_middleware is incompatible with it yet, so
+      # we have to deal with retries on our own.
+      # c.request :retry
       c.request :json
-      c.request :retry
       c.response :logger
       c.adapter Faraday.default_adapter
+      c.use Faraday::Response::RaiseError
     end
   end
 
   def self.create_organization(organization, primary, secondary, executive)
     # Missing more stuff
-    body =
-      {
-          'MasasOrganizationScopes' => ["Federal"],
-          'MasasOrganizationKinds' => "NGO",
-          'MasasUUID' => organization.uuid,
-          'displayName' => organization.name,
-          'MasasOrganizationRole' => ["Police"],
-          'MasasContactURLs' => ["#{primary.masas_name} PRIMARY", "#{secondary.masas_name} SECONDARY"]
-      }
-    response = connection.put("/organizations/#{organization.masas_name}") do |request|
+    body = {
+      'MasasOrganizationScopes' => ["Federal"],
+      'MasasOrganizationKinds' => "NGO",
+      'MasasUUID' => organization.uuid,
+      'displayName' => organization.name,
+      'MasasOrganizationRole' => ["Police"],
+      'MasasContactURLs' => ["#{primary.masas_name} PRIMARY", "#{secondary.masas_name} SECONDARY"]
+    }
+    connection.put("/organizations/#{organization.masas_name}") do |request|
       request.headers['X-OpenIDM-Password'] = 'abcd1234'
       request.headers['X-OpenIDM-Username'] = 'gg_admin'
       request.headers['If-None-Match'] = '*'
       request.body = body
     end
 
-    if response.success?
-      return true
-    else
-      raise DirectoryApiOrganizationCreationException, "Message from OpenDJ: #{response.body}"
+    true
+  rescue Faraday::Error::ClientError => exception
+    retries ||= 2
+    if retries > 0
+      retries -= 1
+      retry
     end
-
+    raise DirectoryApiContactCreationException, "Message from OpenDJ: #{exception.response[:body]}"
   end
 
   def self.create_contact(contact)
@@ -55,24 +62,27 @@ class DirectoryApi
       'displayName' => contact.display_name
     }
 
-    response = connection.put("/contacts/#{contact.masas_name}") do |request|
+    connection.put("/contacts/#{contact.masas_name}") do |request|
       request.headers['X-OpenIDM-Password'] = 'abcd1234'
       request.headers['X-OpenIDM-Username'] = 'gg_admin'
       request.headers['If-None-Match'] = '*'
       request.body = body
     end
 
-    if response.success?
-      return true
-    else
-      raise DirectoryApiContactCreationException, "Message from OpenDJ: #{response.body}"
+    true
+  rescue Faraday::Error::ClientError => exception
+    retries ||= 2
+    if retries > 0
+      retries -= 1
+      retry
     end
-
+    raise DirectoryApiContactCreationException, "Message from OpenDJ: #{exception.response[:body]}"
   end
 
   def self.delete_contact(contact)
     response = connection.delete("/contacts/#{contact.masas_name}")
     response.success?
+  rescue Faraday::Error::ClientError
+    false
   end
-
 end
