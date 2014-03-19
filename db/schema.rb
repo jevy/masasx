@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140301191008) do
+ActiveRecord::Schema.define(:version => 20140309134638) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -66,11 +66,11 @@ ActiveRecord::Schema.define(:version => 20140301191008) do
     t.string   "address_line_1"
     t.string   "address_line_2"
     t.string   "city"
-    t.string   "state"
-    t.string   "country"
     t.string   "postal_code"
     t.string   "first_name"
     t.string   "uuid"
+    t.string   "country",                :default => ""
+    t.string   "state",                  :default => ""
   end
 
   add_index "organization_admins", ["email"], :name => "index_organization_admins_on_email", :unique => true

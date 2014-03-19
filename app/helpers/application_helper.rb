@@ -24,4 +24,11 @@ module ApplicationHelper
     content_tag :span, output.html_safe
   end
 
+  def country_collection
+    Carmen::Country.all.select { |country| %w[US CA].include?(country.code) }
+  end
+
+  def subregion_collection
+    country_collection.map { |country| [country, country.subregions] }
+  end
 end

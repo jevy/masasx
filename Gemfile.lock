@@ -47,9 +47,6 @@ GEM
       xpath (~> 0.1.4)
     carmen (1.0.0)
       unicode_utils (~> 1.4.0)
-    carmen-rails (1.0.0)
-      carmen (~> 1.0.0.beta2)
-      rails
     carrierwave (0.6.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -64,6 +61,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
+    columnize (0.3.6)
     commonjs (0.2.5)
     crack (0.3.1)
     cucumber (1.1.9)
@@ -77,6 +75,12 @@ GEM
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
     database_cleaner (0.7.1)
+    debugger (1.6.1)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -247,12 +251,13 @@ PLATFORMS
 DEPENDENCIES
   capistrano
   capybara
-  carmen-rails
+  carmen
   carrierwave
   ci_reporter
   coffee-rails (~> 3.2.1)
   cucumber-rails (~> 1.0)
   database_cleaner
+  debugger
   devise
   excon
   factory_girl_rails

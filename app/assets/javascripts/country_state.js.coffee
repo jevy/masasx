@@ -1,10 +1,27 @@
 $ ->
-  $('select#organization_country').on "change", (event) ->
-    select_wrapper = $('#state_wrapper')
+  $("[data-filtered-by]").each (i, element) ->
+    filteredBy = $(element).data("filtered-by")
+    promptOption = "<option value>#{prompt}</option>" if prompt = $(element).data("filtered-by-prompt")
 
-    $('select', select_wrapper).attr('disabled', true)
+    $(filteredBy).change (event) ->
+      # save unfiltered content
+      $(element).data("unfiltered", $(element).html()) unless $(element).data("unfiltered")
 
-    country = $(this).val()
+      # restore unfiltered content
+      $(element).html($(element).data("unfiltered"))
 
-    url = "/welcome/subregion_options?parent_region=#{country}"
-    select_wrapper.load(url)
+      # find selected label in filtering element
+      label = $(event.target).find(":selected").text()
+
+      # find corresponding group in filtered element
+      optgroup = $(element).find("optgroup[label='#{label}']")
+
+      if optgroup.length > 0
+        # corresponding group has been found
+        $(element).removeAttr("disabled").html(promptOption + optgroup.html())
+      else
+        # no groups found - disable element
+        $(element).attr("disabled", "disabled")
+
+    # trigger change event to apply filter at startup
+    $(filteredBy).change()
