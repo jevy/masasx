@@ -3,13 +3,13 @@ Given /^I am on the signup page$/ do
 end
 
 Given /^I complete the agreement page$/ do
-  check('I accept the MASAS Information eXchange (MASAS-X) Pilot Participation Agreement.')
+  check('I accept the Participation Agreement.')
   check('I am not a member of the media.')
   check('I certify that I am a bona fide member of the Canadian Emergency Management community and have a valid reason to join the MASAS-X community.')
 end
 
 Given /^I do not complete the agreement page$/ do
-  check('I accept the MASAS Information eXchange (MASAS-X) Pilot Participation Agreement.')
+  check('I accept the Participation Agreement.')
   check('I am not a member of the media.')
 end
 
@@ -50,7 +50,7 @@ end
 
 Then /^I should be on the agreement page$/ do
   within('head title') do
-    page.should have_content('Agreements')
+    page.should have_content('Agreement')
   end
 end
 
@@ -97,7 +97,7 @@ Then /^I should see the organization page completed$/ do
 end
 
 Then /^I should see the agreement page completed$/ do
-  page.should have_checked_field('I accept the MASAS Information eXchange (MASAS-X) Pilot Participation Agreement.')
+  page.should have_checked_field('I accept the Participation Agreement.')
   page.should have_checked_field('I am not a member of the media.')
   page.should have_checked_field('I certify that I am a bona fide member of the Canadian Emergency Management community and have a valid reason to join the MASAS-X community.')
 end
