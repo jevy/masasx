@@ -12,6 +12,7 @@ class DirectoryApi
   def self.connection
     Faraday.new(url: URL, ssl: {verify: false}) do |c|
       c.request :json
+      c.request :retry
       c.response :logger
       c.adapter Faraday.default_adapter
     end
