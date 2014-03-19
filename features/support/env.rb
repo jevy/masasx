@@ -69,9 +69,11 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 
 module FixedSelectHelper
   def select(value, options = {})
-    super(value, options).tap do
-      select = find(:xpath, XPath::HTML.select(options[:from]))
-      page.execute_script("$('##{select["id"]}').change();") if select and select["id"]
+    super.tap do
+      if options[:from]
+        select = find(:xpath, XPath::HTML.select(options[:from]))
+        page.execute_script("$('##{select["id"]}').change();") if select and select["id"]
+      end
     end
   end
 end
