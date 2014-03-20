@@ -30,8 +30,6 @@
 
     <%= administrator.input :mobile_phone, label: 'Mobile Phone' %>
 
-    <%= administrator.input :executive, label: 'Executive Authority', disabled: @organization.has_executive? %>
-
     <%= administrator.object.country %>
 
     <%= administrator.input :country, label: 'Country' do %>

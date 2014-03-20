@@ -26,7 +26,7 @@ Given /^I complete the organization page$/ do
   fill_in 'Website',            with: 'http://www.example.com'
 end
 
-Given /^I complete the (\w+) Contact page(.*)$/ do |contact, authority|
+Given /^I complete the (\w+) Contact page$/ do |contact|
   fill_in 'First Name',           with: "John"
   fill_in 'Last Name',           with: "#{contact} Doe"
   fill_in 'Title',          with: "Head of #{contact}"
@@ -40,7 +40,6 @@ Given /^I complete the (\w+) Contact page(.*)$/ do |contact, authority|
   select 'Canada',              from: 'Country'
   select 'Ontario',             from: 'State/Prov'
   fill_in 'Postal code',        with: "#{contact} 424242"
-  check 'Executive' if authority.present?
 end
 
 Given /^I complete the References page$/ do

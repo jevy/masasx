@@ -37,7 +37,6 @@
     <th>E-mail</th>
     <th>Office Phone</th>
     <th>Mobile Phone</th>
-    <th>Executive</th>
     <th>Address</th>
     <th>Actions</th>
   </thead>
@@ -51,7 +50,6 @@
         <td><%= administrator.email %></td>
         <td><%= administrator.office_phone %></td>
         <td><%= administrator.mobile_phone %></td>
-        <td><%= administrator.executive ? 'Yes' : 'No' %></td>
         <td><%= show_address administrator %></td>
           <td>
             <% if @organization.can_update_attributes? %>

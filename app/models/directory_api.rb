@@ -24,7 +24,7 @@ class DirectoryApi
     end
   end
 
-  def self.create_organization(organization, primary, secondary, executive)
+  def self.create_organization(organization, primary, secondary)
     # Missing more stuff
     body = {
       'MasasOrganizationScopes' => ["Federal"],

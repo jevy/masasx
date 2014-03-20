@@ -16,8 +16,4 @@ FactoryGirl.define do
     country 'CA'
     postal_code 'K1J 1A6'
   end
-
-  factory :organization_admin_executive, parent: :organization_admin do
-    executive true
-  end
 end

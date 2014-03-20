@@ -16,7 +16,7 @@ feature 'Directory API' do
     before do
       @organization = FactoryGirl.create(:organization_pending_approval)
       FactoryGirl.create(:organization_admin, organization: @organization, role: 'Primary')
-      FactoryGirl.create(:organization_admin, organization: @organization, role: 'Secondary', executive: true)
+      FactoryGirl.create(:organization_admin, organization: @organization, role: 'Secondary')
     end
 
     it 'should call the directory API' do

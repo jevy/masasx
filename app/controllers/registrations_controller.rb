@@ -31,14 +31,8 @@ class RegistrationsController < ApplicationController
     @organization.build_secondary_organization_administrator(role: 'Secondary') unless @organization.secondary_organization_administrator
   end
 
-  def authority
-    unless @organization.authority_organization_administrator
-      @organization.build_authority_organization_administrator(role: 'Authority', executive: true)
-      flash.now[:notice]="You require an authority contact in your application."
-    end
-  end
-
   private
+
   def current_step
     @organization.status_name
   end

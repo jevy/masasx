@@ -7,7 +7,6 @@ describe DirectoryApi do
       @organization = FactoryGirl.create(:organization, name: 'Awesome Organization')
       FactoryGirl.create(:organization_admin, organization: @organization, role: 'Primary', first_name: 'Primary', last_name: 'Admin')
       FactoryGirl.create(:organization_admin, organization: @organization, role: 'Secondary', first_name: 'Secondary', last_name: 'Admin')
-      FactoryGirl.create(:organization_admin, organization: @organization, role: 'Authority', first_name: 'Authority', last_name: 'Admin')
       stub_request(:put, /iam.continuumloop.com:9080\/contacts\//).to_return(status: 200)
 
       @timeout_json_content = {
@@ -33,7 +32,6 @@ describe DirectoryApi do
       DirectoryApi.create_organization(@organization,
                                        @organization.primary_organization_administrator,
                                        @organization.secondary_organization_administrator,
-                                       @organization.authority_organization_administrator
                                        ).should be_true
     end
 
@@ -55,7 +53,6 @@ describe DirectoryApi do
       DirectoryApi.create_organization(@organization,
                                        @organization.primary_organization_administrator,
                                        @organization.secondary_organization_administrator,
-                                       @organization.authority_organization_administrator
                                        ).should be_true
     end
   end

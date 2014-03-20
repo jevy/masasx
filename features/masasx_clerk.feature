@@ -109,7 +109,6 @@ Feature: MasasxClerk should be able to manage the entire system
       | title          | Mister             |
       | office_phone   | 555-42-42-42       |
       | mobile_phone   | 555-24-24-24       |
-      | executive      | true               |
       | address_line_1 | Nowhere, 42        |
       | city           | A city             |
       | country        | A country          |
@@ -123,7 +122,6 @@ Feature: MasasxClerk should be able to manage the entire system
     And I should see "Mister"
     And I should see "555-42-42-42"
     And I should see "555-24-24-24"
-    And I should see "Yes"
     And I should see "Nowhere, 42"
     And I should see "A city"
     And I should see "A country"
@@ -181,8 +179,6 @@ Feature: MasasxClerk should be able to manage the entire system
     And I complete the Primary Contact page
     And I follow "Next"
     And I complete the Secondary Contact page
-    And I follow "Next"
-    And I complete the Authority Contact page
     And I follow "Next"
     And I complete the References page
     And I follow "Next"

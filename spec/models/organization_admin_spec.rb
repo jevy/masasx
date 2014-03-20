@@ -14,8 +14,6 @@ describe OrganizationAdmin do
 
   it { should respond_to(:mobile_phone) }
 
-  it { should respond_to(:executive) }
-
   it { should respond_to(:address_line_1) }
 
   it { should respond_to(:address_line_2) }
