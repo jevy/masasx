@@ -8,7 +8,6 @@ Masasx::Application.routes.draw do
   get '/organization/:id'      => 'registrations#organization'
   get '/primary_contact/:id'   => 'registrations#primary_contact'
   get '/secondary_contact/:id' => 'registrations#secondary_contact'
-  get '/authority/:id'         => 'registrations#authority'
   get '/references/:id'        => 'registrations#references'
   get '/pending_approval/:id'  => 'registrations#pending_approval'
   put '/next_step/:id'         => 'registrations#next_step',     as: :next_step

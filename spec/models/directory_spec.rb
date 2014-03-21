@@ -19,7 +19,7 @@ describe Directory do
       Directory.add_organization(@organization)
     end
 
-    it 'calls DirectoryApi with authority as fourth attribute' do
+    it 'calls DirectoryApi with two arguments' do
       DirectoryApi.should_receive(:create_organization).with(@organization,
                                                              @organization.primary_organization_administrator,
                                                              @organization.secondary_organization_administrator)
