@@ -3,7 +3,7 @@
 <% content_for :sidebar do -%>
   <p>References will help expedite the application review process and are
   required by some types of organizations (see Participation Agreement). You may
-  attach an endorsement letter here or send to 
+  attach an endorsement letter here or send to
   <a href="mailto:support@masas-x.ca">support@masas-x.ca</a>.</p>
 <% end -%>
 
@@ -11,7 +11,7 @@
 
 <%= simple_form_for @organization, url: next_step_path, method: :put  do |f| %>
 
-  <%= f.input :references, label: 'References', input_html: { class:'xxlarge', rows: 5 }  %>
+  <%= f.input :references, label: 'References', input_html: { class:'xxlarge', rows: 5 }, required: true  %>
 
   <%= f.input :questions, label: 'Comments/Questions', input_html: { class:'xxlarge', rows: 5 }%>
 

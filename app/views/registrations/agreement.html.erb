@@ -8,7 +8,7 @@
 
 <%= simple_form_for @organization, url: next_step_path(@organization), method: :put do |f| %>
 
-  <%= f.input :agreements, collection: Agreement.all, as: :check_boxes %>
+  <%= f.input :agreements, collection: Agreement.all, as: :check_boxes, required: true %>
 
   <p> Click <%= link_to 'here', 'http://www.masas-x.ca/images/MASAS-X_Participant_Agreement.pdf' %> to view the agreement</p>
 

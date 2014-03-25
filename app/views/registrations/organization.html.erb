@@ -11,29 +11,29 @@
 <%= render partial: 'steps' %>
 
 <%= simple_form_for @organization, url: next_step_path, method: :put do |f| %>
-  <%= f.input :name, label: 'Organization Name' %>
+  <%= f.input :name, label: 'Organization Name', required: true %>
 
   <%= f.input :department %>
 
-  <%= f.input :country, label: 'Country' do %>
+  <%= f.input :country, label: 'Country', required: true do %>
     <%= f.collection_select :country, country_collection, :code, :name, {object: f.object, priority: %w(CA US), prompt: 'Please select a country'} %>
   <% end %>
 
-  <%= f.input :address_line_1, label: 'Address Line 1' %>
+  <%= f.input :address_line_1, label: 'Address Line 1', required: true %>
 
   <%= f.input :address_line_2, label: 'Address Line 2' %>
 
-  <%= f.input :city, label: 'City' %>
+  <%= f.input :city, label: 'City', required: true %>
 
-  <%= f.input :state, label: 'State/Prov' do %>
+  <%= f.input :state, label: 'State/Prov', required: true do %>
     <%= f.grouped_collection_select :state, country_collection, :subregions, :name, :code, :name, {prompt: "Please select a country above"}, {"data-filtered-by" => "#organization_country", "data-filtered-by-prompt" => "Please select a state / province"} %>
   <% end %>
 
-  <%= f.input :postal_code, label: 'Postal code' %>
+  <%= f.input :postal_code, label: 'Postal code', required: true %>
 
   <%= f.input :telephone %>
 
-  <%= f.input :website %>
+  <%= f.input :website, required: true %>
 
   <div class="form-actions"> <%= link_to 'Previous',
     previous_step_path(@organization), class: 'btn'  %> <%= f.button :submit,
