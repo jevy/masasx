@@ -36,6 +36,14 @@ Feature: MasasxClerk should be able to manage the entire system
     And I press "Rejected"
     Then I should see "Organization Name"
 
+  Scenario: MasasxClerk should be able to delete rejected Organization's application
+    Given an organization rejected exists with a name of "Organization Name"
+    When I am on the Organizations admin page
+    And I press "Rejected"
+    And I press "Delete"
+    Then I should see "Organization successfully deleted!"
+    And I should see "Rejected (0)"
+
   Scenario: MasasxClerk should be able to approve an Organization's application
     Given OpenDJ approves all organization requests
     Given an organization pending approval exists with a name of "Organization Name"

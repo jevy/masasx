@@ -14,6 +14,7 @@
         <td>
           <div class="btn-toolbar">
             <%= link_to 'View', [:admin, organization], class: 'btn' %>
+            <%= link_to 'Delete', [:admin, organization], class: 'btn btn-danger', method: "delete", data: {confirm: "Are you sure?"} if organization.rejected? %>
           </div>
         </td>
       </tr>

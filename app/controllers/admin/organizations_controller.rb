@@ -23,9 +23,7 @@ class Admin::OrganizationsController < Admin::AdminController
 
   def approve
     @organization = Organization.find params[:id]
-
     @organization.approve!
-
     redirect_to admin_organizations_path, notice: 'Organization successfully approved!'
   rescue DirectoryApiException => e
     flash[:error] = e.message
@@ -34,10 +32,13 @@ class Admin::OrganizationsController < Admin::AdminController
 
   def reject
     @organization = Organization.find params[:id]
-
     @organization.reject!
-
     redirect_to admin_organizations_path, notice: 'Organization successfully rejected!'
   end
 
+  def destroy
+    @organization = Organization.rejected.find(params[:id])
+    @organization.destroy
+    redirect_to admin_organizations_path, notice: 'Organization successfully deleted!'
+  end
 end
