@@ -14,7 +14,7 @@ feature 'Directory API' do
   context 'approving an Organization' do
 
     before do
-      @organization = FactoryGirl.create(:organization_pending_approval)
+      @organization = FactoryGirl.create(:organization_new)
       FactoryGirl.create(:organization_admin, organization: @organization, role: 'Primary')
       FactoryGirl.create(:organization_admin, organization: @organization, role: 'Secondary')
     end

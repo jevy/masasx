@@ -5,7 +5,7 @@ Feature: Track changes to an application
 
   Background:
     Given I am logged-in as a MasasxClerk
-    And an organization pending approval exists with a name of "Organization Name"
+    And an organization new exists with a name of "Organization Name"
 
   Scenario: If I make a change and update, I should see those changes
     When I update the Organizations "Department" to "Fire"

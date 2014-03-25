@@ -17,8 +17,8 @@ Feature: The organization is read-only on approved or rejected
     When I press "View"
     Then I should not be able to see modification buttons
 
-  Scenario: MasasxClerk should see fields enabled if organization is pending_approval
-    Given an organization pending approval exists with a name of "Organization Name"
+  Scenario: MasasxClerk should see fields enabled if organization is new
+    Given an organization new exists with a name of "Organization Name"
     And I am on the Organizations admin page
     And I press "Pending"
     When I press "View"

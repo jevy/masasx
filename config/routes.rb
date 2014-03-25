@@ -9,13 +9,16 @@ Masasx::Application.routes.draw do
   get '/primary_contact/:id'   => 'registrations#primary_contact'
   get '/secondary_contact/:id' => 'registrations#secondary_contact'
   get '/references/:id'        => 'registrations#references'
-  get '/pending_approval/:id'  => 'registrations#pending_approval'
+  get '/new/:id'               => 'registrations#new'
   put '/next_step/:id'         => 'registrations#next_step',     as: :next_step
   get '/previous_step/:id'     => 'registrations#previous_step', as: :previous_step
 
   namespace :admin do
     resources :organizations do
       member  do
+        get 'mark_as_new'
+        get 'mark_as_in_progress'
+        get 'mark_as_on_hold'
         get 'approve'
         get 'reject'
       end

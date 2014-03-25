@@ -5,7 +5,7 @@ describe Directory do
   context 'add_organization' do
 
     before do
-      @organization = FactoryGirl.create(:organization, status: 'pending_approval')
+      @organization = FactoryGirl.create(:organization, status: 'new')
       FactoryGirl.create(:organization_admin, organization: @organization, role: 'Primary')
       DirectoryApi.stub!(:create_organization)
       DirectoryApi.stub!(:create_contact)

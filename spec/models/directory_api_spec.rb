@@ -60,7 +60,7 @@ describe DirectoryApi do
   describe 'create_contact' do
     before do
       @organization = FactoryGirl.create(:organization_with_contacts,
-                                         status: 'pending_approval',
+                                         status: 'new',
                                          name: 'Awesome organization',
                                          address_line_1: '42 Nowhere',
                                          country: 'CA',

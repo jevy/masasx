@@ -4,7 +4,7 @@ Feature: MasasxClerk should be able to manage the entire system
     Given I am logged-in as a MasasxClerk
 
   Scenario: MasasxClerk should see the number of pending Organization applications
-    Given an organization pending approval exists with a name of "Organization Name"
+    Given an organization new exists with a name of "Organization Name"
     When I am on the Organizations admin page
     Then I should see "Pending (1)"
 
@@ -19,7 +19,7 @@ Feature: MasasxClerk should be able to manage the entire system
     Then I should see "Rejected (1)"
 
   Scenario: MasasxClerk should be able to review all the pending Organization's application
-    Given an organization pending approval exists with a name of "Organization Name"
+    Given an organization new exists with a name of "Organization Name"
     When I am on the Organizations admin page
     And I press "Pending"
     Then I should see "Organization Name"
@@ -46,7 +46,7 @@ Feature: MasasxClerk should be able to manage the entire system
 
   Scenario: MasasxClerk should be able to approve an Organization's application
     Given OpenDJ approves all organization requests
-    Given an organization pending approval exists with a name of "Organization Name"
+    Given an organization new exists with a name of "Organization Name"
     And I am on the Organizations admin page
     And I press "Pending"
     And I press "View"
@@ -55,7 +55,7 @@ Feature: MasasxClerk should be able to manage the entire system
     And I should see "Approved (1)"
 
   Scenario: MasasxClerk should be able to reject an Organization's application
-    Given an organization pending approval exists with a name of "Organization Name"
+    Given an organization new exists with a name of "Organization Name"
     And I am on the Organizations admin page
     And I press "Pending"
     And I press "View"
@@ -64,7 +64,7 @@ Feature: MasasxClerk should be able to manage the entire system
     And I should see "Rejected (1)"
 
   Scenario: MasasxClerk should be able to edit the application's organization details
-    Given an organization pending approval exists with a name of "Organization Name"
+    Given an organization new exists with a name of "Organization Name"
     And I am on the Organizations admin page
     And I press "Pending"
     And I press "View"
@@ -86,7 +86,7 @@ Feature: MasasxClerk should be able to manage the entire system
     And I should see the changes to the Primary contact
 
   Scenario Outline: MasasxClerk should be able to view the applicant's submitted application details
-    Given an organization pending approval exists with a <field> of "<value>"
+    Given an organization new exists with a <field> of "<value>"
     And I am on the Organizations admin page
     And I press "Pending"
     When I press "View"
@@ -108,7 +108,7 @@ Feature: MasasxClerk should be able to manage the entire system
       | postal code    | 424242                 |
 
   Scenario: MasasxClerk should be able to view the applicant's submitted primary contact details
-    Given an organization pending approval exists with a name of "Organization Name"
+    Given an organization new exists with a name of "Organization Name"
     And the following secondary contact for the organization "Organization Name" exists:
       | field          | value              |
       | first_name     | Ops                |
@@ -137,7 +137,7 @@ Feature: MasasxClerk should be able to manage the entire system
     And I should see "424242"
 
   Scenario: MasasxClerk should be able to view the applicant's submitted secondary contact details
-    Given an organization pending approval exists with a name of "Organization Name"
+    Given an organization new exists with a name of "Organization Name"
     And the following secondary contact for the organization "Organization Name" exists:
       | field          | value                       |
       | first_name     | Ops                         |
@@ -166,7 +166,7 @@ Feature: MasasxClerk should be able to manage the entire system
     And I should see "424242"
 
   Scenario: MasaxClerk can add notes to the organization's application
-    Given an organization pending approval exists with a name of "Organization Name"
+    Given an organization new exists with a name of "Organization Name"
     And I am on the Organizations admin page
     And I press "Pending"
     And I press "View"

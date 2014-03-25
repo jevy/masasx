@@ -14,11 +14,19 @@ FactoryGirl.define do
     country 'CA'
   end
 
-  factory :organization_pending_approval, parent: :organization do
-    status 'pending_approval'
+  factory :organization_new, parent: :organization do
+    status 'new'
   end
 
-  factory :organization_with_contacts, parent: :organization_pending_approval do
+  factory :organization_in_progress, parent: :organization do
+    status 'in_progress'
+  end
+
+  factory :organization_on_hold, parent: :organization do
+    status 'on_hold'
+  end
+
+  factory :organization_with_contacts, parent: :organization_new do
     after_create do |organization|
       FactoryGirl.create(:organization_admin, organization: organization, role: 'Primary', last_name: 'The admin')
       FactoryGirl.create(:organization_admin, organization: organization, role: 'Secondary', last_name: 'Not as important')

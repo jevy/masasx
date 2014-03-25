@@ -81,8 +81,8 @@ Given /^an approved organization exists with a name of "([^"]*)"$/ do |org_name|
   @organization = FactoryGirl.create(:organization_approved, name: org_name)
 end
 
-Given /^an organization that is pending approval exists with a name of "([^"]*)"$/ do |org_name|
-  @organization = FactoryGirl.create(:organization_pending_approval, name: org_name)
+Given /^an organization that is new exists with a name of "([^"]*)"$/ do |org_name|
+  @organization = FactoryGirl.create(:organization_new, name: org_name)
 end
 
 

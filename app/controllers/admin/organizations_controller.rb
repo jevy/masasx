@@ -36,9 +36,29 @@ class Admin::OrganizationsController < Admin::AdminController
     redirect_to admin_organizations_path, notice: 'Organization successfully rejected!'
   end
 
+  def mark_as_new
+    mark_as(:new)
+  end
+
+  def mark_as_in_progress
+    mark_as(:in_progress)
+  end
+
+  def mark_as_on_hold
+    mark_as(:on_hold)
+  end
+
   def destroy
     @organization = Organization.rejected.find(params[:id])
     @organization.destroy
     redirect_to admin_organizations_path, notice: 'Organization successfully deleted!'
+  end
+
+  private
+
+  def mark_as(status)
+    @organization = Organization.find params[:id]
+    @organization.send("mark_as_#{status}!")
+    redirect_to admin_organizations_path, notice: "Organization successfully marked as #{status.to_s.humanize.downcase}!"
   end
 end

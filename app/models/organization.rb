@@ -12,7 +12,7 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :primary_organization_administrator
   accepts_nested_attributes_for :secondary_organization_administrator
 
-  scope :pending_approval,  where(status: 'pending_approval')
+  scope :pending_approval,  where(status: %w[new in_progress on_hold])
   scope :approved,          where(status: 'approved')
   scope :rejected,          where(status: 'rejected')
 
@@ -32,7 +32,7 @@ class Organization < ActiveRecord::Base
       transition organization: :primary_contact
       transition primary_contact: :secondary_contact
       transition secondary_contact: :references
-      transition references: :pending_approval
+      transition references: :new
     end
 
     event :previous do
@@ -43,12 +43,35 @@ class Organization < ActiveRecord::Base
     end
 
     before_transition on: :approve, do: -> organization { Directory.add_organization(organization) }
+
+    event :mark_as_new do
+      transition new: :new
+      transition in_progress: :new
+      transition on_hold: :new
+    end
+
+    event :mark_as_in_progress do
+      transition new: :in_progress
+      transition in_progress: :in_progress
+      transition on_hold: :in_progress
+    end
+
+    event :mark_as_on_hold do
+      transition new: :on_hold
+      transition in_progress: :on_hold
+      transition on_hold: :on_hold
+    end
+
     event :approve do
-      transition pending_approval: :approved
+      transition new: :approved
+      transition in_progress: :approved
+      transition on_hold: :approved
     end
 
     event :reject do
-      transition pending_approval: :rejected
+      transition new: :rejected
+      transition in_progress: :rejected
+      transition on_hold: :rejected
     end
 
   end
@@ -84,7 +107,7 @@ class Organization < ActiveRecord::Base
   end
 
   def can_update_attributes?
-    status == 'pending_approval'
+    %[new in_progress on_hold].include?(status)
   end
 
   private

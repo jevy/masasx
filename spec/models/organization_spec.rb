@@ -159,14 +159,14 @@ describe Organization do
 
     end
 
-    context 'from references to pending_approval' do
+    context 'from references to new' do
 
-      it "changes the status to 'pending_approval' " do
+      it "changes the status to 'new' " do
         @organization.status = 'references'
 
         @organization.next!
 
-        @organization.status.should eql('pending_approval')
+        @organization.status.should eql('new')
       end
 
     end
@@ -231,15 +231,24 @@ describe Organization do
 
   describe '#approve!' do
 
-    it "changes to status to 'approved'" do
+    it "changes to status from 'new' to 'approved'" do
       Directory.stub(:add_organization).and_return(:true)
-
-      @organization = FactoryGirl.create(:organization)
-
-      @organization.status = 'pending_approval'
-
+      @organization = FactoryGirl.create(:organization_new)
       @organization.approve!
+      @organization.status.should eql('approved')
+    end
 
+    it "changes to status from 'in_progress' to 'approved'" do
+      Directory.stub(:add_organization).and_return(:true)
+      @organization = FactoryGirl.create(:organization_in_progress)
+      @organization.approve!
+      @organization.status.should eql('approved')
+    end
+
+    it "changes to status from 'on_hold' to 'approved'" do
+      Directory.stub(:add_organization).and_return(:true)
+      @organization = FactoryGirl.create(:organization_on_hold)
+      @organization.approve!
       @organization.status.should eql('approved')
     end
 
@@ -248,7 +257,7 @@ describe Organization do
 
       Directory.should_receive(:add_organization).with(@organization).once
 
-      @organization.status = 'pending_approval'
+      @organization.status = 'new'
 
       @organization.approve!
     end
@@ -260,7 +269,7 @@ describe Organization do
     it "changes to status to 'rejected'" do
       @organization = FactoryGirl.create(:organization)
 
-      @organization.status = 'pending_approval'
+      @organization.status = 'new'
 
       @organization.reject!
 
@@ -272,7 +281,10 @@ describe Organization do
   describe '.pending_approval' do
 
     before do
-      @organizations = FactoryGirl.create_list(:organization_pending_approval, 2)
+      @organizations =
+        FactoryGirl.create_list(:organization_new, 2) +
+        FactoryGirl.create_list(:organization_in_progress, 2) +
+        FactoryGirl.create_list(:organization_on_hold, 2)
     end
 
     it 'returns the organization pending approval' do
@@ -281,7 +293,7 @@ describe Organization do
 
   end
 
-  describe '.pending_approval' do
+  describe '.approved' do
 
     before do
       @organizations = FactoryGirl.create_list(:organization_approved, 2)
@@ -289,18 +301,6 @@ describe Organization do
 
     it 'returns the approved organizations' do
       Organization.approved.should =~ @organizations
-    end
-
-  end
-
-  describe '.approved' do
-
-    before do
-      @organizations = FactoryGirl.create_list(:organization_pending_approval, 2)
-    end
-
-    it 'returns the organizations pending approval' do
-      Organization.pending_approval.should =~ @organizations
     end
 
   end
@@ -319,8 +319,8 @@ describe Organization do
 
   describe '.can_update_attributes?' do
 
-    it 'is true if in pending_approval state' do
-      FactoryGirl.create(:organization_pending_approval).can_update_attributes?.should be_true
+    it 'is true if in new state' do
+      FactoryGirl.create(:organization_new).can_update_attributes?.should be_true
     end
 
     it 'is false if in approved state' do
