@@ -24,6 +24,26 @@
 
     <%= administrator.input :mobile_phone, label: 'Mobile Phone' %>
 
+    <div class="control-group">
+      <div class="controls">
+        <button class="btn populate" type="button"
+                data-populate-address-line-first="<%= @organization.primary_organization_administrator.address_line_1 %>"
+                data-populate-address-line-first-target="#organization_secondary_organization_administrator_attributes_address_line_1"
+                data-populate-address-line-second="<%= @organization.primary_organization_administrator.address_line_2 %>"
+                data-populate-address-line-second-target="#organization_secondary_organization_administrator_attributes_address_line_2"
+                data-populate-city="<%= @organization.primary_organization_administrator.city %>"
+                data-populate-city-target="#organization_secondary_organization_administrator_attributes_city"
+                data-populate-country="<%= @organization.primary_organization_administrator.country %>"
+                data-populate-country-target="#organization_secondary_organization_administrator_attributes_country"
+                data-populate-state="<%= @organization.primary_organization_administrator.state %>"
+                data-populate-state-target="#organization_secondary_organization_administrator_attributes_state"
+                data-populate-postal-code="<%= @organization.primary_organization_administrator.postal_code %>"
+                data-populate-postal-code-target="#organization_secondary_organization_administrator_attributes_postal_code">
+          Same as Primary Contacts' Address
+        </button>
+      </div>
+    </div>
+
     <%= administrator.input :address_line_1, label: 'Address Line 1' %>
 
     <%= administrator.input :address_line_2, label: 'Address Line 2' %>
