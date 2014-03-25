@@ -6,7 +6,7 @@ class OrganizationAdmin < ActiveRecord::Base
 
   belongs_to :organization
 
-  validates :email, presence: { message: 'Email address required' }, email: true
+  validates :email, presence: { message: 'Email address required' }, email: true, uniqueness: true
   validates :office_phone, presence: { message: 'Phone required' }
   validates :first_name, presence: { message: 'Name required' }
   validates :last_name, presence: { message: 'Name required' }
