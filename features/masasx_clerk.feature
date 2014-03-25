@@ -63,6 +63,36 @@ Feature: MasasxClerk should be able to manage the entire system
     Then I should be on the Organizations admin page
     And I should see "Rejected (1)"
 
+  Scenario: MasasxClerk should be able to mark an Organization's application as new
+    Given an organization new exists with a name of "Organization Name"
+    And I am on the Organizations admin page
+    And I press "Pending"
+    And I press "View"
+    And I press "New"
+    Then I should be on the Organizations admin page
+    And I should see "Organization successfully marked as new"
+    And I should see "Pending (1)"
+
+  Scenario: MasasxClerk should be able to mark an Organization's application as in progress
+    Given an organization new exists with a name of "Organization Name"
+    And I am on the Organizations admin page
+    And I press "Pending"
+    And I press "View"
+    And I press "In progress"
+    Then I should be on the Organizations admin page
+    And I should see "Organization successfully marked as in progress"
+    And I should see "Pending (1)"
+
+  Scenario: MasasxClerk should be able to mark an Organization's application as on hold
+    Given an organization new exists with a name of "Organization Name"
+    And I am on the Organizations admin page
+    And I press "Pending"
+    And I press "View"
+    And I press "On hold"
+    Then I should be on the Organizations admin page
+    And I should see "Organization successfully marked as on hold"
+    And I should see "Pending (1)"
+
   Scenario: MasasxClerk should be able to edit the application's organization details
     Given an organization new exists with a name of "Organization Name"
     And I am on the Organizations admin page
