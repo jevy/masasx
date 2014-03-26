@@ -58,12 +58,12 @@ class DirectoryApi
       'lastName' => contact.last_name,
       'email' => contact.email,
       'office-phone' => contact.office_phone,
-      '_id' => contact.uuid,
+      '_id' => contact.masas_name,
       'MasasUUID' => contact.uuid,
       'displayName' => contact.display_name
     }
 
-    connection.put("/contacts/#{contact.uuid}") do |request|
+    connection.put("/contacts/#{contact.masas_name}") do |request|
       request.headers['X-OpenIDM-Password'] = 'abcd1234'
       request.headers['X-OpenIDM-Username'] = 'gg_admin'
       request.headers['If-None-Match'] = '*'
