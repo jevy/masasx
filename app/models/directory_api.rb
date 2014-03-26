@@ -43,13 +43,14 @@ class DirectoryApi
     end
 
     true
-  rescue Faraday::Error::ClientError => exception
+  rescue Faraday::Error::ClientError# => exception
     retries ||= 2
     if retries > 0
       retries -= 1
       retry
     end
-    raise DirectoryApiContactCreationException, "Message from OpenDJ: #{exception.response[:body]}"
+    raise
+    # raise DirectoryApiContactCreationException, "Message from OpenDJ: #{exception.response[:body]}"
   end
 
   def self.create_contact(contact)
@@ -72,13 +73,14 @@ class DirectoryApi
     end
 
     true
-  rescue Faraday::Error::ClientError => exception
+  rescue Faraday::Error::ClientError# => exception
     retries ||= 2
     if retries > 0
       retries -= 1
       retry
     end
-    raise DirectoryApiContactCreationException, "Message from OpenDJ: #{exception.response[:body]}"
+    raise
+    # raise DirectoryApiContactCreationException, "Message from OpenDJ: #{exception.response[:body]}"
   end
 
   def self.delete_contact(contact)
