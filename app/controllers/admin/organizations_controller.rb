@@ -25,8 +25,8 @@ class Admin::OrganizationsController < Admin::AdminController
     @organization = Organization.find params[:id]
     @organization.approve!
     redirect_to admin_organizations_path, notice: 'Organization successfully approved!'
-  rescue DirectoryApiException => e
-    flash[:error] = e.message
+  rescue Faraday::Error::ClientError => exception
+    flash[:error] = "Message from OpenDJ: #{exception.response.try(:[], :body)}"
     redirect_to admin_organizations_path
   end
 

@@ -12,7 +12,6 @@ gem 'capistrano'
 gem 'pg'
 gem 'faraday'
 gem 'excon'
-gem 'faraday_middleware'
 gem 'paper_trail', '~> 3.0.0'
 gem 'carmen'
 

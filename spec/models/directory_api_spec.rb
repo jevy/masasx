@@ -18,6 +18,7 @@ describe DirectoryApi do
 
     it 'sends the correct JSON data to the right place' do
       expected_json_content = {
+        'ou' => "awesome_organization",
         'MasasOrganizationScopes' => ["Federal"],
         'MasasOrganizationKinds' => "NGO",
         'MasasUUID' => @organization.uuid,
@@ -37,6 +38,7 @@ describe DirectoryApi do
 
     it 'retries request 2 times after failure' do
       expected_json_content = {
+        'ou' => "awesome_organization",
         'MasasOrganizationScopes' => ["Federal"],
         'MasasOrganizationKinds' => "NGO",
         'MasasUUID' => @organization.uuid,
@@ -147,7 +149,7 @@ describe DirectoryApi do
         .with(:body => expected_json_content.to_json)
         .to_return(body: @timeout_json_content, status: 500).times(3)
 
-      expect { DirectoryApi.create_contact(admin) }.to raise_exception(DirectoryApiContactCreationException)
+      expect { DirectoryApi.create_contact(admin) }.to raise_exception(Faraday::Error::ClientError)
     end
   end
 
@@ -158,10 +160,10 @@ describe DirectoryApi do
       DirectoryApi.delete_contact(@contact).should be_true
     end
 
-    it 'sends a DELETE request to the server and returns false if it failed' do
+    it 'sends a DELETE request to the server and returns exception if it failed' do
       @contact = FactoryGirl.create(:organization_admin, first_name: 'Jevin', last_name: 'Maltais')
       stub_request(:delete, "http://iam.continuumloop.com:9080/contacts/#{@contact.uuid}").to_return(status: 404)
-      DirectoryApi.delete_contact(@contact).should be_false
+      expect {DirectoryApi.delete_contact(@contact) }.to raise_exception(Faraday::ResourceNotFound)
     end
   end
 end
