@@ -58,7 +58,7 @@ class DirectoryApi
       'lastName' => contact.last_name,
       'email' => contact.email,
       'office-phone' => contact.office_phone,
-      '_id' => contact.masas_name,
+      '_id' => contact.uuid,
       'MasasUUID' => contact.uuid,
       'displayName' => contact.display_name
     }
