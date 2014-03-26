@@ -49,8 +49,7 @@ class DirectoryApi
       retries -= 1
       retry
     end
-    raise
-    # raise DirectoryApiContactCreationException, "Message from OpenDJ: #{exception.response[:body]}"
+    raise DirectoryApiContactCreationException, "Message from OpenDJ: #{exception.response.try(:[], :body)}"
   end
 
   def self.create_contact(contact)
@@ -79,8 +78,7 @@ class DirectoryApi
       retries -= 1
       retry
     end
-    raise
-    # raise DirectoryApiContactCreationException, "Message from OpenDJ: #{exception.response[:body]}"
+    raise DirectoryApiContactCreationException, "Message from OpenDJ: #{exception.response.try(:[], :body)}"
   end
 
   def self.delete_contact(contact)
