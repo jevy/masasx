@@ -43,7 +43,7 @@ class DirectoryApi
     end
 
     true
-  rescue Faraday::Error::ClientError# => exception
+  rescue Faraday::Error::ClientError => exception
     retries ||= 2
     if retries > 0
       retries -= 1
@@ -72,7 +72,7 @@ class DirectoryApi
     end
 
     true
-  rescue Faraday::Error::ClientError# => exception
+  rescue Faraday::Error::ClientError => exception
     retries ||= 2
     if retries > 0
       retries -= 1
