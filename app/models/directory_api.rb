@@ -63,7 +63,7 @@ class DirectoryApi
       'displayName' => contact.display_name
     }
 
-    connection.put("/contacts/#{contact.masas_name}") do |request|
+    connection.put("/contacts/#{contact.uuid}") do |request|
       request.headers['X-OpenIDM-Password'] = 'abcd1234'
       request.headers['X-OpenIDM-Username'] = 'gg_admin'
       request.headers['If-None-Match'] = '*'
@@ -82,9 +82,13 @@ class DirectoryApi
   end
 
   def self.delete_contact(contact)
-    response = connection.delete("/contacts/#{contact.masas_name}")
-    response.success?
-  rescue Faraday::Error::ClientError
+    connection.delete("/contacts/#{contact.uuid}") do |request|
+      request.headers['X-OpenIDM-Password'] = 'abcd1234'
+      request.headers['X-OpenIDM-Username'] = 'gg_admin'
+    end
+    true
+  rescue Faraday::Error::ClientError => e
+    puts e.response
     false
   end
 end

@@ -88,7 +88,7 @@ describe DirectoryApi do
         'MasasUUID' => admin.uuid,
         'displayName' => "Jevin Maltais",
       }
-      stub_request(:put, "http://iam.continuumloop.com:9080/contacts/jevin_maltais")
+      stub_request(:put, "http://iam.continuumloop.com:9080/contacts/#{admin.uuid}")
         .with(:body => expected_json_content.to_json).to_return(status: 200)
       DirectoryApi.create_contact(admin).should be_true
     end
@@ -114,7 +114,7 @@ describe DirectoryApi do
         'displayName' => "Jevin Maltais",
       }
 
-      stub_request(:put, "http://iam.continuumloop.com:9080/contacts/jevin_maltais")
+      stub_request(:put, "http://iam.continuumloop.com:9080/contacts/#{admin.uuid}")
         .with(:body => expected_json_content.to_json)
         .to_return(body: @timeout_json_content, status: 500).times(2).then
         .to_return(body: expected_json_content.to_json, status: 200)
@@ -143,7 +143,7 @@ describe DirectoryApi do
         'displayName' => "Jevin Maltais",
       }
 
-      stub_request(:put, "http://iam.continuumloop.com:9080/contacts/jevin_maltais")
+      stub_request(:put, "http://iam.continuumloop.com:9080/contacts/#{admin.uuid}")
         .with(:body => expected_json_content.to_json)
         .to_return(body: @timeout_json_content, status: 500).times(3)
 
@@ -154,13 +154,13 @@ describe DirectoryApi do
   describe 'delete_contact' do
     it 'sends a DELETE request to the server and returns true if it worked' do
       @contact = FactoryGirl.create(:organization_admin, first_name: 'Jevin', last_name: 'Maltais')
-      stub_request(:delete, "http://iam.continuumloop.com:9080/contacts/jevin_maltais").to_return(status: 200)
+      stub_request(:delete, "http://iam.continuumloop.com:9080/contacts/#{@contact.uuid}").to_return(status: 200)
       DirectoryApi.delete_contact(@contact).should be_true
     end
 
     it 'sends a DELETE request to the server and returns false if it failed' do
       @contact = FactoryGirl.create(:organization_admin, first_name: 'Jevin', last_name: 'Maltais')
-      stub_request(:delete, "http://iam.continuumloop.com:9080/contacts/jevin_maltais").to_return(status: 404)
+      stub_request(:delete, "http://iam.continuumloop.com:9080/contacts/#{@contact.uuid}").to_return(status: 404)
       DirectoryApi.delete_contact(@contact).should be_false
     end
   end
