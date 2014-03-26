@@ -39,6 +39,7 @@ class DirectoryApi
       request.headers['X-OpenIDM-Username'] = 'gg_admin'
       request.headers['If-None-Match'] = '*'
       request.body = body
+      request.options[:timeout] = 5
     end
 
     true
@@ -67,6 +68,7 @@ class DirectoryApi
       request.headers['X-OpenIDM-Username'] = 'gg_admin'
       request.headers['If-None-Match'] = '*'
       request.body = body
+      request.options[:timeout] = 5
     end
 
     true
