@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.17'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'carrierwave'
@@ -33,7 +33,7 @@ group :development, :test do
   gem 'spork', '> 0.9.0.rc'
   gem 'ci_reporter'
   gem 'capybara'
-  gem 'webmock'
+  #gem 'webmock'
   gem 'launchy'
   gem 'poltergeist'
   gem 'debugger'

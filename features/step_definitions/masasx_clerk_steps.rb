@@ -74,7 +74,7 @@ When /^I fill in the notes with "([^"]*)"$/ do |arg1|
 end
 
 Then /^within notes I should see "([^"]*)"$/ do |arg1|
-  find_field('Admin notes').value.should eq arg1
+  find_field('Admin notes').value.strip.should eq arg1
 end
 
 Given /^an approved organization exists with a name of "([^"]*)"$/ do |org_name|
