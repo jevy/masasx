@@ -11,6 +11,7 @@ class RegistrationsController < ApplicationController
   def next_step
     if @organization.update_attributes(params[:organization])
       @organization.next!
+      MasasxClerk.find_each { |masasx_clerk| MasasxClerkMailer.new_organization(masasx_clerk, @organization).deliver } if @organization.status == "new"
       redirect_to action: @organization.status, id: @organization
     else
       flash.now[:error] = 'Please review your data'

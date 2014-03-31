@@ -108,3 +108,12 @@ end
 Then /^"([^"]*)" should be checked$/ do |label|
   page.should have_checked_field(label)
 end
+
+Given /^a MASAS-X Clerk exists$/ do
+  @organization = FactoryGirl.create(:masasx_clerk)
+end
+
+Then /^a "([^"]*)" email should be sent$/ do |subject|
+  mail = ActionMailer::Base.deliveries.last
+  mail.subject.should == subject
+end

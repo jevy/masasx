@@ -6,6 +6,7 @@ Feature: A brand new organization may apply for an account
 
   Scenario: A brand new organization signs up for an account
     Given I complete the agreement page
+    And a MASAS-X Clerk exists
     When I follow "Next"
     And I complete the organization page
     And I follow "Next"
@@ -16,6 +17,7 @@ Feature: A brand new organization may apply for an account
     And I complete the References page
     And I follow "Next"
     Then I should see "Your application has been received and a confirmation email has been sent to the Primary Contact"
+    And a "New organization" email should be sent
 
    Scenario: A brand new organization can navigate to the agreement page from the organization page
     Given I complete the agreement page
