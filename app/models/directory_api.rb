@@ -1,8 +1,4 @@
 class DirectoryApi
-  URL = "http://iam.continuumloop.com:9080"
-  USERNAME = "gg_admin"
-  PASSWORD = "abcd1234"
-
   def self.connection
     Faraday.new(url: URL, ssl: {verify: false}) do |faraday|
       faraday.request :retry, exceptions: [Faraday::Error::ClientError]
