@@ -12,6 +12,6 @@ raise "You must set an Open DJ URL in ENV['OPEN_DJ_URL']" if open_dj_url.blank?
 raise "You must set an Open DJ username in ENV['OPEN_DJ_USERNAME']" if open_dj_username.blank?
 raise "You must set an Open DJ password in ENV['OPEN_DJ_PASSWORD']" if open_dj_password.blank?
 
-DirectoryApi::URL = open_dj_url
+DirectoryApi::URL      = open_dj_url
 DirectoryApi::USERNAME = open_dj_username
 DirectoryApi::PASSWORD = open_dj_password
