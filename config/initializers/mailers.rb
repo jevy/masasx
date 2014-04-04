@@ -1,7 +1,7 @@
 from = ENV["EMAIL_FROM"]
 
 if Rails.env.development? or Rails.env.test?
-  from ||= "noreply@masasx.herokuapp.com"
+  from ||= "noreply@masasx.heroku.com"
 end
 
 raise "You must set an email from address in ENV['EMAIL_FROM']" if from.blank?
