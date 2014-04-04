@@ -14,7 +14,7 @@ describe MasasxClerkMailer do
   end
 
   it "sets the sender email" do
-    mail.from.should == ["noreply@masasx.herokuapp.com"]
+    mail.from.should == ["noreply@masasx.heroku.com"]
   end
 
   it "renders organization name" do
