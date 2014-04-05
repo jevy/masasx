@@ -5,8 +5,8 @@ describe DirectoryApi do
   describe 'create_organization' do
     before do
       @organization = FactoryGirl.create(:organization, name: 'Awesome Organization')
-      FactoryGirl.create(:organization_admin, organization: @organization, role: 'Primary', first_name: 'Primary', last_name: 'Admin')
-      FactoryGirl.create(:organization_admin, organization: @organization, role: 'Secondary', first_name: 'Secondary', last_name: 'Admin')
+      @primary = FactoryGirl.create(:organization_admin, organization: @organization, role: 'Primary', first_name: 'Primary', last_name: 'Admin')
+      @secondary = FactoryGirl.create(:organization_admin, organization: @organization, role: 'Secondary', first_name: 'Secondary', last_name: 'Admin')
       stub_request(:put, /iam.continuumloop.com:9080\/contacts\//).to_return(status: 200)
 
       @timeout_json_content = {
@@ -18,13 +18,13 @@ describe DirectoryApi do
 
     it 'sends the correct JSON data to the right place' do
       expected_json_content = {
-        'ou' => "awesome_organization",
+        'ou' => @organization.uuid,
         'MasasOrganizationScopes' => ["Federal"],
         'MasasOrganizationKinds' => "NGO",
         'MasasUUID' => @organization.uuid,
         'displayName' => 'Awesome Organization',
         'MasasOrganizationRole' => ["Police"],
-        'MasasContactURLs' => ["primary_admin PRIMARY", "secondary_admin SECONDARY"]
+        'MasasContactURLs' => ["#{@primary.uuid} PRIMARY", "#{@secondary.uuid} SECONDARY"]
       }
 
       stub_request(:put, "http://iam.continuumloop.com:9080/organizations/awesome_organization")
@@ -38,13 +38,13 @@ describe DirectoryApi do
 
     it 'retries request 2 times after failure' do
       expected_json_content = {
-        'ou' => "awesome_organization",
+        'ou' => @organization.uuid,
         'MasasOrganizationScopes' => ["Federal"],
         'MasasOrganizationKinds' => "NGO",
         'MasasUUID' => @organization.uuid,
         'displayName' => 'Awesome Organization',
         'MasasOrganizationRole' => ["Police"],
-        'MasasContactURLs' => ["primary_admin PRIMARY", "secondary_admin SECONDARY"]
+        'MasasContactURLs' => ["#{@primary.uuid} PRIMARY", "#{@secondary.uuid} SECONDARY"]
       }
 
       stub_request(:put, "http://iam.continuumloop.com:9080/organizations/awesome_organization")

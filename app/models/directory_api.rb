@@ -10,13 +10,13 @@ class DirectoryApi
 
   def self.create_organization(organization, primary, secondary)
     body = {
-      "ou" => organization.masas_name,
+      "ou" => organization.uuid,
       "MasasOrganizationScopes" => ["Federal"],
       "MasasOrganizationKinds" => "NGO",
       "MasasUUID" => organization.uuid,
       "displayName" => organization.name,
       "MasasOrganizationRole" => ["Police"],
-      "MasasContactURLs" => ["#{primary.masas_name} PRIMARY", "#{secondary.masas_name} SECONDARY"],
+      "MasasContactURLs" => ["#{primary.uuid} PRIMARY", "#{secondary.uuid} SECONDARY"],
     }.to_json
 
     connection.put("/organizations/#{organization.masas_name}") do |request|
