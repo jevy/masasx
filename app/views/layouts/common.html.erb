@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title><%= content_for?(:title) ? yield(:title) : 'MASAX' %></title>
+    <title><%= Rails.env.operational_production? ? 'MASAS-X Registration' : 'MASAS Sandbox Registration' %><%= content_for?(:title) ? " - #{yield(:title)}" : '' %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
 

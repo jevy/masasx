@@ -3,8 +3,13 @@
     <div class="span12">
       <%= render partial: 'common/flashes' %>
       <div class="hero-unit">
-        <h1>MASAS-X Registration</h1>
-        <p>Canada's Multi-Agency Situational Awareness System - Information Exchange (MASAS-X)</p>
+        <% if Rails.env.operational_production? %>
+          <h1>MASAS-X Registration</h1>
+          <p>Apply for access to Canada's Multi-Agency Situational Awareness System - Information Exchange (MASAS-X)</p>
+        <% else %>
+          <h1>MASAS Sandbox Registration</h1>
+          <p>Apply for access to the Developer and Vendor Sandbox for testing and developing MASAS-enabled applications.</p>
+        <% end %>
         <p><%= link_to ('Apply now &raquo').html_safe, registration_path, :class =>'btn btn-primary btn-large' %></p>
       </div>
     </div>

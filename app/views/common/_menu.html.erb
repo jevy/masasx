@@ -6,7 +6,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <%= link_to 'MASAS-X', root_path, class: 'brand'  %>
+      <% if Rails.env.operational_production? %>
+        <%= link_to 'MASAS-X Registration', root_path, class: 'brand'  %>
+      <% else %>
+        <%= link_to 'MASAS Sandbox Registration', root_path, class: 'brand'  %>
+      <% end %>
       <div class="container-fluid nav-collapse">
         <ul class="nav">
             <li><%= link_to 'Application for Participant Organization', registration_path %></li>
