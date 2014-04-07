@@ -25,4 +25,8 @@ class OrganizationAdmin < ActiveRecord::Base
     "#{first_name} #{last_name}".titleize
   end
 
+  def address_as_single_line
+    [address_line_1, address_line_2].join(', ')
+  end
+
 end

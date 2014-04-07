@@ -2,7 +2,7 @@ class DirectoryApi
   def self.connection
     Faraday.new(url: URL, ssl: {verify: false}) do |faraday|
       faraday.request :retry, exceptions: [Faraday::Error::ClientError]
-      faraday.response :logger
+      #faraday.response :logger
       faraday.adapter Faraday.default_adapter
       faraday.use Faraday::Response::RaiseError
     end
@@ -37,7 +37,12 @@ class DirectoryApi
       "lastName" => contact.last_name,
       "email" => contact.email,
       "office-phone" => contact.office_phone,
-      "_id" => contact.masas_name,
+      "country" => contact.country,
+      "address" => contact.address_as_single_line,
+      "city" => contact.city,
+      "prov" => contact.state,
+      "postalCode" => contact.postal_code,
+      "_id" => contact.uuid,
       "MasasUUID" => contact.uuid,
       "displayName" => contact.display_name
     }.to_json
