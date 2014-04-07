@@ -9,6 +9,7 @@ describe Directory do
       @secondary = double(OrganizationAdmin, update_attributes: true)
       @organization.stub(:primary_organization_administrator).and_return(@primary)
       @organization.stub(:secondary_organization_administrator).and_return(@secondary)
+      @organization.stub(:as_contact).and_return(OpenStruct.new)
       DirectoryApi.stub(:delete_contact)
     end
 
@@ -47,6 +48,30 @@ describe Directory do
       end
     end
 
+    describe 'because the organization contact failed' do
+      before do
+        DirectoryApi.stub(:create_contact).with(@primary).and_return(true)
+        DirectoryApi.stub(:create_contact).with(@secondary).and_return(true)
+        @primary.stub(:uuid).and_return('a UUID')
+        @secondary.stub(:uuid).and_return('a UUID')
+        DirectoryApi.stub(:create_organization_contact).and_raise(Faraday::Error::ClientError.new(nil))
+      end
+
+      it 'returns a Faraday::Error::ClientError' do
+        expect { Directory.add_organization(@organization) }.to raise_error(Faraday::Error::ClientError)
+      end
+
+      it 'removes the primary contact' do
+        DirectoryApi.should_receive(:delete_contact).with(@primary)
+        expect { Directory.add_organization(@organization) }.to raise_error(Faraday::Error::ClientError)
+      end
+
+      it 'removes the secondary contact' do
+        DirectoryApi.should_receive(:delete_contact).with(@secondary)
+        expect { Directory.add_organization(@organization) }.to raise_error(Faraday::Error::ClientError)
+      end
+    end
+
     describe 'because the organization creation failed' do
       context 'with authority admin' do
         before do
@@ -54,6 +79,7 @@ describe Directory do
           @secondary.stub(:uuid).and_return('a UUID')
           DirectoryApi.stub(:create_contact).with(@primary).and_return(true)
           DirectoryApi.stub(:create_contact).with(@secondary).and_return(true)
+          DirectoryApi.stub(:create_organization_contact).and_return(true)
           DirectoryApi.stub(:create_organization).and_raise(Faraday::Error::ClientError.new(nil))
         end
 
@@ -61,9 +87,10 @@ describe Directory do
           expect { Directory.add_organization(@organization) }.to raise_error(Faraday::Error::ClientError)
         end
 
-        it 'removes the primary and secondary contact' do
+        it 'removes the primary, secondary and organization contacts' do
           DirectoryApi.should_receive(:delete_contact).with(@primary)
           DirectoryApi.should_receive(:delete_contact).with(@secondary)
+          DirectoryApi.should_receive(:delete_contact).with(@organization.as_contact)
           expect { Directory.add_organization(@organization) }.to raise_error(Faraday::Error::ClientError)
         end
       end

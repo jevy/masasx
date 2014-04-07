@@ -11,6 +11,7 @@ FactoryGirl.define do
     agreements [1, 2, 3]
     postal_code 'K1J 234'
     state 'Ontario'
+    city 'Ottawa'
     country 'CA'
   end
 

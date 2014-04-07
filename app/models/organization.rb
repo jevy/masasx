@@ -110,6 +110,21 @@ class Organization < ActiveRecord::Base
     %[new in_progress on_hold].include?(status)
   end
 
+  def as_contact
+    result = OpenStruct.new
+    result.department = department
+    result.address_as_single_line = [address_line_1, address_line_2].join(', ')
+    result.city = city
+    result.state = state
+    result.country = country
+    result.office_phone = telephone
+    result.website = website
+    result.uuid = uuid
+    result.name = name
+    result.postal_code = postal_code
+    result
+  end
+
   private
   def accept_agreements
     if self.agreements.reject(&:blank?).size < 3

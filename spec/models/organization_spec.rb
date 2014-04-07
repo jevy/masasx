@@ -26,6 +26,8 @@ describe Organization do
 
   it { should respond_to(:website) }
 
+  it { should respond_to(:as_contact) }
+
   it { should respond_to(:primary_organization_administrator) }
 
   it { should respond_to(:secondary_organization_administrator) }
@@ -330,6 +332,23 @@ describe Organization do
     it 'is true if in rejected state' do
       FactoryGirl.create(:organization_rejected).can_update_attributes?.should be_false
     end
+  end
+
+  describe '.as_contact' do
+    it 'returns a struct that acts like an OrganizationAdmin' do
+      org_contact = FactoryGirl.create(:organization).as_contact
+      org_contact.should respond_to(:department)
+      org_contact.should respond_to(:address_as_single_line)
+      org_contact.should respond_to(:city)
+      org_contact.should respond_to(:state)
+      org_contact.should respond_to(:country)
+      org_contact.should respond_to(:office_phone)
+      org_contact.should respond_to(:website)
+      org_contact.should respond_to(:uuid)
+      org_contact.should respond_to(:name)
+      org_contact.should respond_to(:postal_code)
+    end
+
   end
 
 end

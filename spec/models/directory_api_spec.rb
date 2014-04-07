@@ -19,18 +19,17 @@ describe DirectoryApi do
     it 'sends the correct JSON data to the right place' do
       expected_json_content = {
         'ou' => @organization.uuid,
-        'MasasOrganizationScopes' => ["Federal"],
-        'MasasOrganizationKinds' => "NGO",
         'MasasUUID' => @organization.uuid,
         'displayName' => 'Awesome Organization',
-        'MasasOrganizationRole' => ["Police"],
-        'MasasContactURLs' => ["#{@primary.uuid} PRIMARY", "#{@secondary.uuid} SECONDARY"]
+        'MasasFullInformationName' => 'Awesome Organization',
+        'MasasContactURLs' => ["#{@organization.as_contact.uuid} ORG", "#{@primary.uuid} PRIMARY", "#{@secondary.uuid} SECONDARY"]
       }
 
       stub_request(:put, "http://iam.continuumloop.com:9080/organizations/awesome_organization")
         .with(:body => expected_json_content.to_json).to_return(status: 200)
 
       DirectoryApi.create_organization(@organization,
+                                       @organization.as_contact,
                                        @organization.primary_organization_administrator,
                                        @organization.secondary_organization_administrator,
                                        ).should be_true
@@ -39,12 +38,10 @@ describe DirectoryApi do
     it 'retries request 2 times after failure' do
       expected_json_content = {
         'ou' => @organization.uuid,
-        'MasasOrganizationScopes' => ["Federal"],
-        'MasasOrganizationKinds' => "NGO",
         'MasasUUID' => @organization.uuid,
         'displayName' => 'Awesome Organization',
-        'MasasOrganizationRole' => ["Police"],
-        'MasasContactURLs' => ["#{@primary.uuid} PRIMARY", "#{@secondary.uuid} SECONDARY"]
+        'MasasFullInformationName' => 'Awesome Organization',
+        'MasasContactURLs' => ["#{@organization.as_contact.uuid} ORG", "#{@primary.uuid} PRIMARY", "#{@secondary.uuid} SECONDARY"]
       }
 
       stub_request(:put, "http://iam.continuumloop.com:9080/organizations/awesome_organization")
@@ -53,6 +50,7 @@ describe DirectoryApi do
         .to_return(body: expected_json_content.to_json, status: 200)
 
       DirectoryApi.create_organization(@organization,
+                                       @organization.as_contact,
                                        @organization.primary_organization_administrator,
                                        @organization.secondary_organization_administrator,
                                        ).should be_true
@@ -104,6 +102,39 @@ describe DirectoryApi do
       stub_request(:put, "http://iam.continuumloop.com:9080/contacts/#{admin.uuid}")
         .with(:body => expected_json_content.to_json).to_return(status: 200)
       DirectoryApi.create_contact(admin).should be_true
+    end
+
+    it 'sends the correct JSON data to the right place for an organization as a contact' do
+      organization = FactoryGirl.create(:organization,
+                                        name: 'Awesome EMS',
+                                        department: 'Finance',
+                                        address_line_1: '123 Main St.',
+                                        address_line_2: 'Apt 1',
+                                        city: 'Ottawa',
+                                        state: 'ON',
+                                        telephone: '613-265-5389',
+                                        website: 'http://www.someplace.ca',
+                                        postal_code: 'K1J 1A2',
+                                        country: 'Canada'
+                                       )
+      # UUID regex
+      expected_json_content =
+        {
+        'department' => "Finance",
+        'office-phone' => '613-265-5389',
+        'country' => 'Canada',
+        'address' => '123 Main St., Apt 1',
+        'city' => 'Ottawa',
+        'prov' => 'ON',
+        'postalCode' => 'K1J 1A2',
+        '_id' => organization.uuid,
+        'MasasUUID' => organization.uuid,
+        'displayName' => "Awesome EMS",
+        'website' => 'http://www.someplace.ca'
+      }
+      stub_request(:put, "http://iam.continuumloop.com:9080/contacts/#{organization.uuid}")
+        .with(:body => expected_json_content.to_json).to_return(status: 200)
+      DirectoryApi.create_organization_contact(organization.as_contact).should be_true
     end
 
     it 'retries request 2 times after failure' do
