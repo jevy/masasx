@@ -60,6 +60,7 @@ class DirectoryApi
   def self.create_organization_contact(contact)
     body = {
       "department" => contact.department,
+      "lastName" => contact.name,
       "office-phone" => contact.office_phone,
       "country" => contact.country,
       "address" => contact.address_as_single_line,

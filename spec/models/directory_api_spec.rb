@@ -121,6 +121,7 @@ describe DirectoryApi do
       expected_json_content =
         {
         'department' => "Finance",
+        'lastName' => 'Awesome EMS',
         'office-phone' => '613-265-5389',
         'country' => 'Canada',
         'address' => '123 Main St., Apt 1',
