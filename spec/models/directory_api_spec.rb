@@ -25,7 +25,7 @@ describe DirectoryApi do
         'MasasContactURLs' => ["#{@organization.as_contact.uuid} ORG", "#{@primary.uuid} PRIMARY", "#{@secondary.uuid} SECONDARY"]
       }
 
-      stub_request(:put, "http://iam.continuumloop.com:9080/organizations/awesome_organization")
+      stub_request(:put, "http://iam.continuumloop.com:9080/organizations/#{@organization.uuid}")
         .with(:body => expected_json_content.to_json).to_return(status: 200)
 
       DirectoryApi.create_organization(@organization,
@@ -44,7 +44,7 @@ describe DirectoryApi do
         'MasasContactURLs' => ["#{@organization.as_contact.uuid} ORG", "#{@primary.uuid} PRIMARY", "#{@secondary.uuid} SECONDARY"]
       }
 
-      stub_request(:put, "http://iam.continuumloop.com:9080/organizations/awesome_organization")
+      stub_request(:put, "http://iam.continuumloop.com:9080/organizations/#{@organization.uuid}")
         .with(:body => expected_json_content.to_json)
         .to_return(body: @timeout_json_content, status: 500).times(2).then
         .to_return(body: expected_json_content.to_json, status: 200)

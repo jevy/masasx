@@ -17,7 +17,7 @@ class DirectoryApi
       "MasasContactURLs" => ["#{organization_contact.uuid} ORG", "#{primary.uuid} PRIMARY", "#{secondary.uuid} SECONDARY"],
     }.to_json
 
-    connection.put("/organizations/#{organization.masas_name}") do |request|
+    connection.put("/organizations/#{organization.uuid}") do |request|
       request.headers["X-OpenIDM-Password"] = PASSWORD
       request.headers["X-OpenIDM-Username"] = USERNAME
       request.headers["If-None-Match"] = "*"
