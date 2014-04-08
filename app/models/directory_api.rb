@@ -13,7 +13,7 @@ class DirectoryApi
       "ou" => organization.uuid,
       "MasasUUID" => organization.uuid,
       "displayName" => organization.name,
-      "MasasFullInformationName" => organization.name,
+      "MasasFullOrganizationName" => organization.name,
       "MasasContactURLs" => ["#{organization_contact.uuid} ORG", "#{primary.uuid} PRIMARY", "#{secondary.uuid} SECONDARY"],
     }.to_json
 

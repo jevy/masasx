@@ -21,7 +21,7 @@ describe DirectoryApi do
         'ou' => @organization.uuid,
         'MasasUUID' => @organization.uuid,
         'displayName' => 'Awesome Organization',
-        'MasasFullInformationName' => 'Awesome Organization',
+        'MasasFullOrganizationName' => 'Awesome Organization',
         'MasasContactURLs' => ["#{@organization.as_contact.uuid} ORG", "#{@primary.uuid} PRIMARY", "#{@secondary.uuid} SECONDARY"]
       }
 
@@ -40,7 +40,7 @@ describe DirectoryApi do
         'ou' => @organization.uuid,
         'MasasUUID' => @organization.uuid,
         'displayName' => 'Awesome Organization',
-        'MasasFullInformationName' => 'Awesome Organization',
+        'MasasFullOrganizationName' => 'Awesome Organization',
         'MasasContactURLs' => ["#{@organization.as_contact.uuid} ORG", "#{@primary.uuid} PRIMARY", "#{@secondary.uuid} SECONDARY"]
       }
 
