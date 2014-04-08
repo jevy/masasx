@@ -95,6 +95,7 @@ class Organization < ActiveRecord::Base
     f.validates :state, presence: { message: 'State required' }
     f.validates :country, presence: { message: 'Country required' }
     f.validates :postal_code, presence: { message: 'Postal code required' }
+    f.validates :email, presence: { message: 'A general contact email is required' }
     f.validates :website, format: URI::regexp(%w(http https))
   end
 
@@ -122,6 +123,7 @@ class Organization < ActiveRecord::Base
     result.uuid = uuid
     result.name = name
     result.postal_code = postal_code
+    result.email = email
     result
   end
 

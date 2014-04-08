@@ -70,6 +70,7 @@ class DirectoryApi
       "_id" => contact.uuid,
       "MasasUUID" => contact.uuid,
       "displayName" => contact.name,
+      "email" => contact.email,
       "website" => contact.website
     }.to_json
 

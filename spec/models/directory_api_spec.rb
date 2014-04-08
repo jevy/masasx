@@ -115,6 +115,7 @@ describe DirectoryApi do
                                         telephone: '613-265-5389',
                                         website: 'http://www.someplace.ca',
                                         postal_code: 'K1J 1A2',
+                                        email: 'blah@blah.com',
                                         country: 'Canada'
                                        )
       # UUID regex
@@ -131,6 +132,7 @@ describe DirectoryApi do
         '_id' => organization.uuid,
         'MasasUUID' => organization.uuid,
         'displayName' => "Awesome EMS",
+        'email' => 'blah@blah.com',
         'website' => 'http://www.someplace.ca'
       }
       stub_request(:put, "http://iam.continuumloop.com:9080/contacts/#{organization.uuid}")

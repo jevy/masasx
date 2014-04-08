@@ -23,6 +23,7 @@ Given /^I complete the organization page$/ do
   select 'Ontario',             from: 'State/Prov'
   fill_in 'Telephone',          with: '555-42-42-42'
   fill_in 'Postal code',        with: '424242'
+  fill_in 'Email',              with: 'blah@blah.com'
   fill_in 'Website',            with: 'http://www.example.com'
 end
 
