@@ -23,8 +23,7 @@ describe DirectoryApi do
         'displayName' => 'Awesome Organization',
         'MasasFullOrganizationName' => 'Awesome Organization',
         'MasasContactURLs' => ["#{@organization.as_contact.uuid} ORG", "#{@primary.uuid} PRIMARY", "#{@secondary.uuid} SECONDARY"],
-        'REFERENCES' => "We are good.\n",
-        'NOTES' => "Great notes"
+        'MasasXAdminNote' => "REFERENCES: We are good.\nNOTES: Great notes"
       }
 
       stub_request(:put, "http://iam.continuumloop.com:9080/organizations/#{@organization.uuid}")
@@ -44,8 +43,7 @@ describe DirectoryApi do
         'displayName' => 'Awesome Organization',
         'MasasFullOrganizationName' => 'Awesome Organization',
         'MasasContactURLs' => ["#{@organization.as_contact.uuid} ORG", "#{@primary.uuid} PRIMARY", "#{@secondary.uuid} SECONDARY"],
-        'REFERENCES' => "We are good.\n",
-        'NOTES' => "Great notes"
+        'MasasXAdminNote' => "REFERENCES: We are good.\nNOTES: Great notes"
       }
 
       stub_request(:put, "http://iam.continuumloop.com:9080/organizations/#{@organization.uuid}")
