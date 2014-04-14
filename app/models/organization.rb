@@ -1,7 +1,8 @@
 class Organization < ActiveRecord::Base
   STEPS = %w[agreement organization primary_contact secondary_contact references].map(&:to_sym)
 
-  has_paper_trail :on => [:update]
+  has_paper_trail :on => [:update],
+                  :if => Proc.new { |o| Organization.pending_approval.include? o }
 
   has_many :organization_admins
   has_one :primary_organization_administrator,   class_name: 'OrganizationAdmin', conditions: { role: 'Primary'   }

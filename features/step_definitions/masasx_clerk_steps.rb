@@ -31,6 +31,18 @@ Then /^in the history, I should see that fire was updated$/ do
   end
 end
 
+Then /^in the history, I should not see that fire was updated$/ do
+  within(:xpath, "//div[contains(@id,'history')]") do
+    page.should have_no_content "Fire"
+  end
+end
+
+Then /^in the history, I should not see that name was updated$/ do
+  within(:xpath, "//div[contains(@id,'history')]") do
+    page.should have_no_content "name"
+  end
+end
+
 When /^I am on the Organizations admin page for "([^"]*)"$/ do |organization_name|
   visit admin_organization_path(Organization.find_by_name(organization_name))
 end
