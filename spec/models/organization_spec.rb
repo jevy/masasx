@@ -100,11 +100,6 @@ describe Organization do
       @org.should have(0).errors_on(:website)
     end
 
-    it 'fails with bob' do
-      @org.website = 'bob'
-      @org.should have(1).errors_on(:website)
-    end
-
   end
 
   describe '#next!' do

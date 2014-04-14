@@ -33,9 +33,9 @@
 
   <%= f.input :telephone %>
 
-  <%= f.input :email %>
+  <%= f.input :email, required: true %>
 
-  <%= f.input :website, required: true %>
+  <%= f.input :website %>
 
   <div class="form-actions"> <%= link_to 'Previous',
     previous_step_path(@organization), class: 'btn'  %> <%= f.button :submit,

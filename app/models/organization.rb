@@ -95,11 +95,10 @@ class Organization < ActiveRecord::Base
     f.validates :country, presence: { message: 'Country required' }
     f.validates :postal_code, presence: { message: 'Postal code required' }
     f.validates :email, presence: { message: 'A general contact email is required' }
-    f.validates :website, format: URI::regexp(%w(http https))
   end
 
   with_options if: -> organization { organization.status?(:references) } do |f|
-    f.validates :references, presence: { message: 'References required' }
+    # Nothing required
   end
 
   def masas_name
