@@ -113,17 +113,3 @@ Feature: A brand new organization may apply for an account
       | E-mail        | Email address required |
       | Office Phone  | Phone required         |
       | Name          | Name required          |
-
-  Scenario: A new organization does not enter any references for the references page
-    Given I complete the agreement page
-    And I follow "Next"
-    And I complete the organization page
-    And I follow "Next"
-    And I complete the Primary Contact page
-    And I follow "Next"
-    And I complete the Secondary Contact page
-    And I follow "Next"
-    And I complete the References page
-    When I leave the "References" field blank
-    And I follow "Next"
-    Then I should see "References required"
