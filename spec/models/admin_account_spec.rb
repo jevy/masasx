@@ -6,7 +6,6 @@ describe AdminAccount do
     AdminAccount.new(FactoryGirl.create(:organization_admin,
                        first_name: 'Jevin',
                        last_name: 'Maltais',
-                       title: 'President',
                        language: 'en',
                        email: 'jevin@quickjack.ca',
                        office_phone: '613-265-5389',

@@ -3,7 +3,6 @@ FactoryGirl.define do
     sequence :email do |n|
       "email_#{n}@example.com"
     end
-    title 'president'
     language 'en'
     first_name 'First Name'
     last_name 'Last Name'

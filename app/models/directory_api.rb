@@ -44,7 +44,8 @@ class DirectoryApi
       "postalCode" => contact.postal_code,
       "_id" => contact.uuid,
       "MasasUUID" => contact.uuid,
-      "displayName" => contact.display_name
+      "displayName" => contact.display_name,
+      "department" => contact.organization.department
     }.to_json
 
     connection.put("/contacts/#{contact.uuid}") do |request|
@@ -73,7 +74,8 @@ class DirectoryApi
       "MasasUUID" => contact.uuid,
       "displayName" => contact.name,
       "email" => contact.email,
-      "website" => contact.website
+      "website" => contact.website,
+      "department" => contact.department
     }.to_json
 
     connection.put("/contacts/#{contact.uuid}") do |request|

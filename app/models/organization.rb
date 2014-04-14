@@ -123,6 +123,7 @@ class Organization < ActiveRecord::Base
     result.name = name
     result.postal_code = postal_code
     result.email = email
+    result.department = department
     result
   end
 

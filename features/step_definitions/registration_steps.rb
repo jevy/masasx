@@ -30,11 +30,9 @@ end
 Given /^I complete the (\w+) Contact page$/ do |contact|
   fill_in 'First Name',           with: "John"
   fill_in 'Last Name',           with: "#{contact} Doe"
-  fill_in 'Title',          with: "Head of #{contact}"
   select 'English',         from: 'Language'
   fill_in 'E-mail',  with: "john.doe.#{contact}@example.com"
   fill_in 'Office Phone',   with: '555-111-111-111'
-  fill_in 'Mobile Phone',   with: '555-222-222-222'
   fill_in 'Address Line 1',     with: "#{contact} Nowhere, 42"
   fill_in 'Address Line 2',     with: "#{contact} NoBuilding Center - 42 floor"
   fill_in 'City',               with: "#{contact} Nocity"
@@ -81,11 +79,9 @@ end
 Then /^I should see the (\w*) contact page completed$/ do |contact|
   page.find_field('First Name').value.should eql("John")
   page.find_field('Last Name').value.should eql("#{contact} Doe")
-  page.find_field('Title').value.should eql("Head of #{contact}")
   page.find_field('Language').value.should eql('English')
   page.find_field('E-mail').value.should  eql("john.doe.#{contact}@example.com")
   page.find_field('Office Phone').value.should   eql('555-111-111-111')
-  page.find_field('Mobile Phone').value.should   eql('555-222-222-222')
 end
 
 Then /^I should see the organization page completed$/ do

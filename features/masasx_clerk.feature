@@ -144,9 +144,7 @@ Feature: MasasxClerk should be able to manage the entire system
       | first_name     | Ops                |
       | last_name      | Secondary Manager  |
       | email          | some@example.com   |
-      | title          | Mister             |
       | office_phone   | 555-42-42-42       |
-      | mobile_phone   | 555-24-24-24       |
       | address_line_1 | Nowhere, 42        |
       | city           | A city             |
       | country        | A country          |
@@ -157,9 +155,7 @@ Feature: MasasxClerk should be able to manage the entire system
     When I press "View"
     Then I should see "Secondary Manager"
     And I should see "some@example.com"
-    And I should see "Mister"
     And I should see "555-42-42-42"
-    And I should see "555-24-24-24"
     And I should see "Nowhere, 42"
     And I should see "A city"
     And I should see "A country"
@@ -173,9 +169,7 @@ Feature: MasasxClerk should be able to manage the entire system
       | first_name     | Ops                         |
       | last_name      | Secondary Manager           |
       | email          | somesecondary@example.com   |
-      | title          | Secondary                   |
       | office_phone   | 555-42-42-42                |
-      | mobile_phone   | 555-24-24-24                |
       | address_line_1 | Nowhere, 42                 |
       | city           | secondary city              |
       | country        | secondary country           |
@@ -188,7 +182,6 @@ Feature: MasasxClerk should be able to manage the entire system
     And I should see "somesecondary@example.com"
     And I should see "Secondary"
     And I should see "555-42-42-42"
-    And I should see "555-24-24-24"
     And I should see "Nowhere, 42"
     And I should see "secondary city"
     And I should see "secondary country"

@@ -75,7 +75,6 @@ describe DirectoryApi do
       admin = FactoryGirl.create(:organization_admin,
                                  first_name: 'Jevin',
                                  last_name: 'Maltais',
-                                 title: 'President',
                                  language: 'en',
                                  email: 'jevin@quickjack.ca',
                                  office_phone: '613-265-5389',
@@ -102,6 +101,7 @@ describe DirectoryApi do
         '_id' => admin.uuid,
         'MasasUUID' => admin.uuid,
         'displayName' => "Jevin Maltais",
+        'department' => 'Important department'
       }
       stub_request(:put, "http://iam.continuumloop.com:9080/contacts/#{admin.uuid}")
         .with(:body => expected_json_content.to_json).to_return(status: 200)
@@ -148,7 +148,6 @@ describe DirectoryApi do
       admin = FactoryGirl.create(:organization_admin,
                                  first_name: 'Jevin',
                                  last_name: 'Maltais',
-                                 title: 'President',
                                  language: 'en',
                                  email: 'jevin@quickjack.ca',
                                  office_phone: '613-265-5389',
@@ -174,6 +173,7 @@ describe DirectoryApi do
         '_id' => admin.uuid,
         'MasasUUID' => admin.uuid,
         'displayName' => "Jevin Maltais",
+        'department' => 'Important department'
       }
 
       stub_request(:put, "http://iam.continuumloop.com:9080/contacts/#{admin.uuid}")
@@ -188,7 +188,6 @@ describe DirectoryApi do
       admin = FactoryGirl.create(:organization_admin,
                                  first_name: 'Jevin',
                                  last_name: 'Maltais',
-                                 title: 'President',
                                  language: 'en',
                                  email: 'jevin@quickjack.ca',
                                  office_phone: '613-265-5389',
@@ -214,6 +213,7 @@ describe DirectoryApi do
         '_id' => admin.uuid,
         'MasasUUID' => admin.uuid,
         'displayName' => "Jevin Maltais",
+        'department' => 'Important department'
       }
 
       stub_request(:put, "http://iam.continuumloop.com:9080/contacts/#{admin.uuid}")

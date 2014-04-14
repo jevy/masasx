@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140408152747) do
+ActiveRecord::Schema.define(:version => 20140414161255) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -58,10 +58,8 @@ ActiveRecord::Schema.define(:version => 20140408152747) do
     t.string   "last_sign_in_ip"
     t.string   "role"
     t.string   "last_name"
-    t.string   "title"
     t.string   "language"
     t.string   "office_phone"
-    t.string   "mobile_phone"
     t.string   "address_line_1"
     t.string   "address_line_2"
     t.string   "city"
