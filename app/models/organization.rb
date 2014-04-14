@@ -8,8 +8,6 @@ class Organization < ActiveRecord::Base
   has_one :primary_organization_administrator,   class_name: 'OrganizationAdmin', conditions: { role: 'Primary'   }
   has_one :secondary_organization_administrator, class_name: 'OrganizationAdmin', conditions: { role: 'Secondary' }
 
-  has_many :accounts
-
   accepts_nested_attributes_for :primary_organization_administrator
   accepts_nested_attributes_for :secondary_organization_administrator
 

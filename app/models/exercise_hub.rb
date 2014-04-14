@@ -1,3 +1,0 @@
-module ExerciseHub
-
-end

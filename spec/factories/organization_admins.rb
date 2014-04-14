@@ -5,8 +5,6 @@ FactoryGirl.define do
     end
     title 'president'
     language 'en'
-    password 'my_password'
-    password_confirmation { |organization_admin| organization_admin.password }
     first_name 'First Name'
     last_name 'Last Name'
     office_phone '555-342-1233'

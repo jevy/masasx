@@ -36,8 +36,6 @@ describe Organization do
 
   it { should respond_to(:questions) }
 
-  it { should respond_to(:accounts) }
-
   it "should have a UUID" do
     FactoryGirl.create(:organization).uuid.should match /[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/
   end
