@@ -15,6 +15,8 @@ class DirectoryApi
       "displayName" => organization.name,
       "MasasFullOrganizationName" => organization.name,
       "MasasContactURLs" => ["#{organization_contact.uuid} ORG", "#{primary.uuid} PRIMARY", "#{secondary.uuid} SECONDARY"],
+      "REFERENCES" => organization.references + "\n",
+      "NOTES" => organization.admin_notes
     }.to_json
 
     connection.put("/organizations/#{organization.uuid}") do |request|

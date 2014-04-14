@@ -13,6 +13,7 @@ FactoryGirl.define do
     state 'Ontario'
     city 'Ottawa'
     country 'CA'
+    admin_notes 'Great notes'
   end
 
   factory :organization_new, parent: :organization do
