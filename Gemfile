@@ -14,7 +14,6 @@ gem 'faraday'
 gem 'excon'
 gem 'paper_trail', '~> 3.0.0'
 gem 'carmen'
-gem 'airbrake'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
