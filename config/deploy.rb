@@ -35,3 +35,6 @@ namespace :deploy do
 end
 
 before "deploy:finalize_update", "deploy:database_file"
+
+        require './config/boot'
+        require 'airbrake/capistrano'
